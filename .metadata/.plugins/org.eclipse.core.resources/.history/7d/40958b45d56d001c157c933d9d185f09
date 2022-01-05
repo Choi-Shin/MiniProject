@@ -1,0 +1,19 @@
+package com.choi.board.dataservice;
+
+import java.sql.PreparedStatement;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.choi.board.common.Reply;
+
+public class BoardDAO {
+	@Autowired
+	Connector conn;
+	public void 댓글달다(Reply reply) {
+		String sql = "Insert into reply("
+				+ "board_no, reply_no, writer, memo, regDate) values ("
+				+ "?,?,?,?,?)";
+		PreparedStatement pstmt = null;
+		
+	}
+}

@@ -1,0 +1,4 @@
+INDEX VERSION 1.4+/Users/macintosh/git/ToyProject/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+749558400.index
+2853602194.index
+811172740.index

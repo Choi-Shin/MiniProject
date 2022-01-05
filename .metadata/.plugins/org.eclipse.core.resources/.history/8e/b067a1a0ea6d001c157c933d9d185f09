@@ -1,0 +1,5 @@
+package com.choi.board.util;
+
+public class JdbcUtil {
+
+}

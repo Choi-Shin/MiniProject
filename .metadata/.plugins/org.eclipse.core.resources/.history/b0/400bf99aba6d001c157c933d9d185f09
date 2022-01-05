@@ -1,0 +1,9 @@
+package com.choi.board.dataservice;
+
+import java.sql.Connection;
+
+public class Connector {
+	private Connection conn;
+	
+	
+}

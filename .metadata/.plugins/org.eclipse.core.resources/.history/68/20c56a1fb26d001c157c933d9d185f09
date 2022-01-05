@@ -1,0 +1,7 @@
+package com.choi.board.common;
+
+public class Reply {
+	private int board_no;
+	private int reply_no;
+	
+}

@@ -1,0 +1,9 @@
+package com.choi.board.dataservice;
+
+import com.choi.board.common.Reply;
+
+public class BoardDAO {
+	public void 댓글달다(Reply reply) {
+		
+	}
+}

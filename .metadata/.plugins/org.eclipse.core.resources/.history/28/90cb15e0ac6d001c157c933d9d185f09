@@ -1,0 +1,5 @@
+package com.choi.board.dataservice.copy;
+
+public class BoardDAO {
+
+}
