@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <a href="boardlist">게시판 목록</a>
+    <a href="List">게시판 목록</a>
     <script src="js/bootstrap.js"></script>
 </body>
 

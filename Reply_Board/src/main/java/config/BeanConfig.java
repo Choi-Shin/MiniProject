@@ -9,7 +9,7 @@ import com.choi.board.controller.HomeController;
 @Configuration
 public class BeanConfig {
 	@Bean
-	public BoardController AnyControl( ) {
+	public BoardController boardController( ) {
 		return new BoardController( );
 	}
 	
