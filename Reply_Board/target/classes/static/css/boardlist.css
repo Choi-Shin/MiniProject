@@ -6,31 +6,31 @@
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-header, footer, nav, aside, section, article {
+footer, aside, section, article {
 	display: block;
 }
 
-ul, li {
-	list-style: none;
+.board-top h1 {
+	color: gray;
 }
 
-header, nav, footer {
+.board-top {
+	text-align: center;
+}
+
+aside>ul, li {
+	list-style: none;
+	display: table;
+}
+
+footer {
 	width: 100%;
 }
 
 section {
 	margin-bottom: 10px;
-	width: 80vw;
+	width: 82vw;
 	float: right;
-}
-
-#header {
-	width: 100%;
-	height: auto;
-	background-color: #0d82eb;
-	border-top-left-radius: 30px;
-	border-top-right-radius: 30px;
-	background-color: #0d82eb;
 }
 
 #freeBoard {
@@ -46,26 +46,62 @@ aside {
 	border-top: 1px solid white;
 	float: left;
 	color: white;
-	background-color: #0d82eb;
+	background: teal;
 	font-size: 2vw;
 }
 
-.menu {
-	color: white;
-	text-decoration: none;
+header {
+	display: flex;
+	justify-content: space-between;
+	background: cadetblue;
+	padding: 20px;
 }
 
-.menu:hover {
+nav {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+header>ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+header>li.icon {
+	flex-basis: 25%;
+}
+
+header>.btn {
+	display: block;
+}
+
+h1 {
+	text-align: center;
+}
+
+.btn, .btn-main, .btn:visited, .btn-main:link, .btn-main:visited, .btn:active,
+	.btn-main:active, .btn-main:hover {
+	display: block;
+	text-align: center;
+	margin: .25rem;
+	padding: .5rem 1rem;
 	text-decoration: none;
-	color: pink;
+	font-weight: bold;
+	color: white;
+	background: teal;
+}
+
+.btn:hover {
+	background: yellowgreen;
+	text-decoration: none;
 }
 
 .btn {
+	margin-left: 10px;
 	margin-right: 10px;
 	margin-top: 10px;
-	float: right;
-	background-color: #0d82eb;
-	color: white;
 	float: right;
 }
 
@@ -83,6 +119,56 @@ aside {
 }
 
 .table-striped>tbody>tr:hover {
-	background-color: gray;
+	background-color: #DCDCDC;
 	color: white;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+h1 {
+	display: inline-block;
+	vertical-align: middle;
+	color: white;
+	margin: 0.5rem;
+	padding: 0;
+}
+
+nav {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+nav>ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+nav>li.icon {
+	flex-basis: 25%;
+}
+
+header {
+	background: cadetblue;
+	padding: 20px;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -17,30 +18,39 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
 	rel="stylesheet">
-<style type="text/css">
-</style>
 </head>
-
+<style>
+.container {
+	text-align: center;
+}
+</style>
 <body>
 	<header>
-<h1>안녕하세요.</h1>
-		<nav>
-			<ul>
-				<li><a class="btn" href="login"
-					onclick="window.open('login','로그인','resizable=no width=300 height=200');return false">로그인</a>
-				</li>
-				<li><a class="btn" href="#">메뉴 2</a></li>
-				<li><a class="btn" href="#">메뉴 3</a></li>
-			</ul>
-		</nav>
+			<h1>미니 프로젝트</h1>
+			<nav>
+				<ul>
+					<u:notLogin>
+						<li><a class="btn" href="#" onclick="팝업창()">로그인</a></li>
+
+						<li><a class="btn" href="#">회원가입</a></li>
+					</u:notLogin>
+					<u:isLogin>
+						<li><a class="btn" href="member/login"
+							onclick="window.open('login','로그인','resizable=no width=300 height=200');return false">회원정보수정</a></li>
+
+						<li><a class="btn" href="member/logout">로그아웃</a></li>
+					</u:isLogin>
+				</ul>
+			</nav>
 	</header>
 	<div class="container">
 		<div class="jumbotron">
 			<div class="container">
 				<h1>웹 사이트 소개</h1>
-				<p>미니프로젝트 자유게시판 사이트 입니다.</p> <a class="btn" href="list"></a>
+				<p align="center">자유게시판 사이트 입니다.</p>
+				<a class="btn" href="board/list">게시판</a>
 				<p>
-					<a class="btn-primary btn-pull" href="#" role="button" onclick="상세설명()">자세히 알아보기</a>
+					<a class="btn" href="#" role="button" onclick="상세설명()">자세히 알아보기</a>
 				</p>
 				<div id="detail"></div>
 			</div>
@@ -86,12 +96,16 @@
 	</div>
 	<script>
 		function 상세설명() {
-			 const element = document.getElementById('detail');
-			  element.innerText 
-			    = '이 게시판은 스프링, 톰캣, 부트스트랩으로 제작되었습니다.';
-			} 
-
-	</script>
+			const element = document.getElementById('detail');
+			element.innerText = '이 게시판은 스프링, 톰캣, 부트스트랩으로 제작되었습니다.';
+		}
+		
+		function 팝업창() {
+			var popupX = (document.body.offsetWidth / 2) - (200 / 2);
+			var popupY= (window.screen.height / 2) - (300 / 2);
+			window.open('member/login','로그인','resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
+		}
+		</script>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
 </body>

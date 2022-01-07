@@ -117,6 +117,8 @@ public class BoardDAO {
 			pstmt.setInt(3, board.getNo());
 			int result = pstmt.executeUpdate();
 		} catch (SQLException e) {
+		} finally {
+			JdbcUtil.close(pstmt);
 		}
 	}
 
@@ -129,6 +131,8 @@ public class BoardDAO {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
+		} finally {
+			JdbcUtil.close(pstmt);
 		}
 		return 0;
 	}
@@ -150,4 +154,22 @@ public class BoardDAO {
 		}
 	}
 
+	public int 댓글수를세다() {
+		String sql = "Select count(*) from reply";
+		Statement stmt = null;
+		ResultSet rs = null;
+		int cnt = 0;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if (rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
+		}
+		return cnt;
+	}
 }
