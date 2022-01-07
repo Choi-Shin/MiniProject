@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+header, footer, nav, aside, section, article {
+	display: block;
+}
+
+ul, li {
+	list-style: none;
+}
+
+header, nav, footer {
+	width: 100%;
+}
+
+section {
+	margin-bottom: 10px;
+	width: 80vw;
+	float: right;
+}
+
+#header {
+	width: 100%;
+	height: auto;
+	background-color: #0d82eb;
+	border-top-left-radius: 30px;
+	border-top-right-radius: 30px;
+	background-color: #0d82eb;
+}
+
+#freeBoard {
+	margin-top: 20px;
+	display: inline-block;
+	font-size: 5vh;
+	margin-left: 10px;
+}
+
+aside {
+	width: 15vw;
+	height: 100vh;
+	border-top: 1px solid white;
+	float: left;
+	color: white;
+	background-color: #0d82eb;
+	font-size: 2vw;
+}
+
+.menu {
+	color: white;
+	text-decoration: none;
+}
+
+.menu:hover {
+	text-decoration: none;
+	color: pink;
+}
+
+.btn {
+	margin-right: 10px;
+	margin-top: 10px;
+	float: right;
+	background-color: #0d82eb;
+	color: white;
+	float: right;
+}
+
+@media screen and (max-width: 500px) {
+	aside {
+		width: 28vw;
+		font-size: 4vw;
+	}
+	section {
+		margin-bottom: 10px;
+		width: 67vw;
+		float: right;
+		font-size: 1.5vw;
+	}
+}
+
+.table-striped>tbody>tr:hover {
+	background-color: gray;
+	color: white;
+}
