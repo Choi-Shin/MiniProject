@@ -48,7 +48,7 @@
 			<div class="container">
 				<h1>웹 사이트 소개</h1>
 				<p align="center">자유게시판 사이트 입니다.</p>
-				<a class="btn" href="board/list">게시판</a>
+				<a class="btn" href="board/list?page=1">게시판</a>
 				<p>
 					<a class="btn" href="#" role="button" onclick="상세설명()">자세히 알아보기</a>
 				</p>

@@ -6,10 +6,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.choi.board.common.AuthUser;
+import org.springframework.stereotype.Repository;
+
 import com.choi.board.common.Member;
 import com.choi.board.util.JdbcUtil;
 
+@Repository
 public class MemberDAO {
 	private Connection conn;
 
@@ -26,7 +28,7 @@ public class MemberDAO {
 		}
 	}
 
-	public Member 회원검색하다(String id) {
+	public Member 찾는다ById(String id) {
 		String sql = "Select * from member where id=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
