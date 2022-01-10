@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 import org.springframework.stereotype.Repository;
 
@@ -40,8 +41,10 @@ public class MemberDAO {
 			if (rs.next()) {
 				회원.setId(id);
 				회원.setName(rs.getString("name"));
-				회원.setPassword(rs.getNString("password"));
-				회원.setRegDate(rs.getDate("regDate"));
+				회원.setPassword(rs.getString("password"));
+				회원.setEmail(rs.getString("email"));
+				Date date = rs.getTimestamp("regdate");
+				회원.setRegDate(date);
 			}
 			return 회원;
 		} catch (SQLException e) {

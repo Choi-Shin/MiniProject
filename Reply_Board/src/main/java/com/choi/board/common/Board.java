@@ -11,7 +11,15 @@ public class Board {
 	private Date regDate;
 	private int hit;
 	private int replyCnt;
+	
+	public Board() {
+	}
 
+	public Board(String title, String content, String writer) {
+		this.title = title;
+		this.content = content;
+		this.writer = writer;
+	}
 	public String getContent() {
 		return content;
 	}

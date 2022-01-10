@@ -26,18 +26,17 @@ public class MemberController {
 	@PostMapping(value = "/login")
 	public ModelAndView 로그인시도하다(AuthUser user) {
 		ModelAndView mv = new ModelAndView();
-		
 		System.out.println(user.getId());
-		AuthUser 로그인유저 = new AuthUser(user.getId(), user.getPassword());
-		boolean 로그인결과 = ms.로그인하다(로그인유저);
-		mv.setViewName("/member/로그인결과");
+		boolean 로그인결과 = ms.로그인하다(user);
 		if (로그인결과 == false) {
 			mv.addObject("fail", "아이디나 비밀번호가 틀립니다.");
+			mv.setViewName("/member/로그인결과");
 			return mv;
 		} else if (로그인결과 == true) {
-			String welcome = "환영합니다. " + 로그인유저.getId() + "님";
+			String welcome = "환영합니다. " + user.getId() + "님";
 			mv.addObject("success", welcome);
-			mv.addObject("loginUser", 로그인유저);
+			mv.addObject("loginUser", user);
+			mv.setViewName("/member/로그인결과");
 		}
 		return mv;
 	}

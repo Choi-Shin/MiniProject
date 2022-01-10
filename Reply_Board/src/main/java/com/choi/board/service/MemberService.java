@@ -12,14 +12,14 @@ public class MemberService {
 
 	@Autowired
 	MemberDAO dao;
-
+	
 	public boolean 로그인하다(AuthUser 로그인회원) {
 		Member DB회원 = dao.찾는다ById(로그인회원.getId());
-		if(DB회원.getId() != null) {
-			if (DB회원.matchPassword(로그인회원.getPassword())) {
+		if(DB회원.getId() != "") {
+			if(DB회원.matchPassword(로그인회원.getPassword())) {
 				return true;
 			}
-		}
+		} 
 		return false;
 	}
 	

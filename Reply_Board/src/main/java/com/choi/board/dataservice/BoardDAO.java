@@ -85,7 +85,7 @@ public class BoardDAO {
 		return null;
 	}
 
-	public void 새글을저장하다(Board 새게시물) {
+	public int 새글을저장하다(Board 새게시물) {
 		String sql = "insert into board (title, writer, content, regDate) values(?,?,?,now())";
 		PreparedStatement pstmt = null;
 
@@ -95,13 +95,11 @@ public class BoardDAO {
 			pstmt.setString(2, 새게시물.getWriter());
 			pstmt.setString(3, 새게시물.getContent());
 			pstmt.setInt(4, 0);
-			int result = pstmt.executeUpdate();
-			if (result > 0) {
-				System.out.println("저장 완료");
-			}
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + "저장 실패");
 		}
+		return 0;
 	}
 
 	public Board 찾는다By번호(int 번호) {
@@ -118,7 +116,8 @@ public class BoardDAO {
 				찾는게시물.setNo(번호);
 				찾는게시물.setTitle(게시물표.getString("title"));
 				찾는게시물.setContent(게시물표.getString("content"));
-				찾는게시물.setRegDate(게시물표.getDate("regDate"));
+				Date date = 게시물표.getTimestamp("regDate");
+				찾는게시물.setRegDate(date);
 				찾는게시물.setHit(게시물표.getInt("hit"));
 				찾는게시물.setReplyCnt(댓글수를세다(번호));
 			}

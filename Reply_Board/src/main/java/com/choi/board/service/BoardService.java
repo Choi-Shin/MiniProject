@@ -26,4 +26,8 @@ public class BoardService {
 	public Board 찾는다By번호(int 번호) {
 		return dao.찾는다By번호(번호);
 	}
+	
+	public int 새글을저장하다(Board 새게시물) {
+		return dao.새글을저장하다(새게시물);
+	}
 }

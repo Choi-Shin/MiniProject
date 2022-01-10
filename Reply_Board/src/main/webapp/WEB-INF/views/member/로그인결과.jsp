@@ -8,25 +8,26 @@ if (loginUser != null) {
 	session.setAttribute("loginUser", loginUser);
 }
 %>
-
 <html>
 <head>
 <title>Title</title>
 </head>
 <body>
 	<script>
+		var fail = '<%=fail%>';
+		var success = '<%=success%>';
+		if (!fail) {
+			alert(fail);
+		} else if (!success) {
+			alert(success);
+		}
+		selfClose();
+
 		function selfClose() {
 			opener.document.location.reload();
 			self.close();
 		}
-		var fail = '<%=fail%>';
-		var success = '<%=success%>';
-		if (fail !== null) {
-			alert(fail);
-		} else if (success !== null) {
-			alert(success);
-		}
-		selfClose();
+
 		/* 		selfClose(); */
 		/* 		self.location = "/"; */
 	</script>

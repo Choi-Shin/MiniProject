@@ -18,5 +18,13 @@
 					style="height: auto;" /></a></li>
 		</ul>
 	</div>
+	<script type="text/javascript">
+		function 참고한자료() {
+			$("#board").empty().text('동빈나 유튜브');
+		}
+		function 공지사항() {
+			$("#board").empty().load('notice');
+		}
+	</script>
 
 </aside>
