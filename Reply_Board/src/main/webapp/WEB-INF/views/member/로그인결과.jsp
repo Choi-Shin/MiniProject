@@ -1,8 +1,7 @@
 <%@page import="com.choi.board.common.AuthUser"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%
-String fail = (String) request.getAttribute("fail");
-String success = (String) request.getAttribute("success");
+String msg = (String) request.getAttribute("msg");
 AuthUser loginUser = (AuthUser) request.getAttribute("loginUser");
 if (loginUser != null) {
 	session.setAttribute("loginUser", loginUser);
@@ -14,12 +13,9 @@ if (loginUser != null) {
 </head>
 <body>
 	<script>
-		var fail = '<%=fail%>';
-		var success = '<%=success%>';
-		if (!fail) {
-			alert(fail);
-		} else if (!success) {
-			alert(success);
+		var msg = '${msg}';
+		if (msg !== null) {
+			alert(msg);
 		}
 		selfClose();
 

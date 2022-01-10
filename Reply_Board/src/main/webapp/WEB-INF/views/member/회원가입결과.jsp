@@ -1,8 +1,7 @@
 <%@page import="com.choi.board.common.AuthUser"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%
-String fail = (String) request.getAttribute("fail");
-String success = (String) request.getAttribute("success");
+String msg = (String) request.getAttribute("msg");
 %>
 
 <html>
@@ -15,12 +14,9 @@ String success = (String) request.getAttribute("success");
 			opener.document.location.reload();
 			self.close();
 		}
-		var fail = '<%=fail%>';
-		var success = '<%=success%>';
-		if (fail !== null) {
-			alert(fail);
-		} else if (success !== null) {
-			alert(success);
+		var msg = '${msg}';
+		if (msg !== null) {
+			alert(msg);
 		}
 		selfClose();
 		/* 		selfClose(); */
