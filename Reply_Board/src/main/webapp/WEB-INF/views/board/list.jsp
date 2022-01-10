@@ -1,24 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>게시판 글목록</title>
-<link rel="stylesheet" href="/static/css/bootstrap.css">
-<link rel="stylesheet" href="/static/css/boardlist.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
-</head>
+<html>
+<%@ include file="../include/head.jsp" %>
 <body>
 	<header>
 		<h1>미니 프로젝트</h1>
@@ -42,7 +25,7 @@
 			<ul>
 				<li style="width: 100%"><a class="btn" href="/"
 					style="width: 90%">메인화면으로</a></li>
-				<li style="width: 100%"><a class="btn" href="../notice"
+				<li style="width: 100%"><a class="btn" href="#"
 					onclick="공지사항()" style="width: 90%">공지사항</a></li>
 				<li style="width: 100%"><a class="btn" href="list"
 					style="width: 90%">자유게시판</a></li>
@@ -78,8 +61,10 @@
 					<c:forEach items="${board}" var="board">
 						<tr class="detail">
 							<td>${board.no}</td>
-							<td><a href="read?no=${board.no}">${board.title}</a><span
-								class="badge bg-red">${board.replyCnt}</span></td>
+							<td><a href="#" onclick="글보기(${board.no})">${board.title}</a>
+								<c:if test="${board.replyCnt > 0}">
+									<span class="badge bg-red">${board.replyCnt}</span>
+								</c:if></td>
 							<td>${board.writer}</td>
 							<td><fmt:formatDate value="${board.regDate}"
 									pattern="yyyy년 MM월 dd일 HH:mm" /></td>
@@ -112,12 +97,24 @@
 		</div>
 	</footer>
 	<script type="text/javascript">
+		$(function(){
+			var msg = "${msg}";
+			if (msg != null){
+				alert(msg);
+			}
+		});
+		
 		function 참고한자료() {
 			$("#board").empty().text('동빈나 유튜브');
 		}
 		function 공지사항() {
 			$("#board").empty().load('notice');
 		}
+		function 글보기(no) {
+			var board = "read?no="+no;
+			$("#board").empty().load(board);
+		}
+		
 		function 팝업창(type){
 			var url = "../member/"+type;
 			var popupX = (document.body.offsetWidth / 2) - (200 / 2);

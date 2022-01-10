@@ -23,19 +23,13 @@ form {
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<form action="/member/login" method="post">
-				<label for="id">아이디<input type="text" id="id" /></label> <label
-					for="password">비밀번호<input type="password" id="password" /></label>
-				<button class="btn big-login" type="submit" onclick="selfClose()">로그인</button>
+				<label for="id">아이디<input type="text" name="id" /></label> <label
+					for="password">비밀번호<input type="password" name="password" /></label>
+				<button class="btn big-login" type="submit">로그인</button>
 			</form>
 		</div>
 		<div class="col-sm-4"></div>
 	</div>
-	<script type="text/javascript">
-	function selfClose() {
-		opener.document.location.reload();
-		self.close();
-	}	
-	</script>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
 </body>

@@ -1,49 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>게시판 메인화면</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="/static/css/bootstrap.css">
-<link rel="stylesheet" href="/static/css/home.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
-	rel="stylesheet">
-</head>
-<style>
-.container {
-	text-align: center;
-}
-</style>
+<%@ include file="include/head.jsp"%>
 <body>
-	<header>
-			<h1>미니 프로젝트</h1>
-			<nav>
-				<ul>
-					<u:notLogin>
-						<li><a class="btn" href="#" onclick="팝업창()">로그인</a></li>
-
-						<li><a class="btn" href="#">회원가입</a></li>
-					</u:notLogin>
-					<u:isLogin>
-						<li><a class="btn" href="member/login"
-							onclick="window.open('login','로그인','resizable=no width=300 height=200');return false">회원정보수정</a></li>
-
-						<li><a class="btn" href="member/logout">로그아웃</a></li>
-					</u:isLogin>
-				</ul>
-			</nav>
-	</header>
-	<div class="container">
+	<%@ include file="include/header.jsp"%>
+	<div class="container" align="center">
 		<div class="jumbotron">
 			<div class="container">
 				<h1>웹 사이트 소개</h1>
@@ -94,16 +56,18 @@
 			</a>
 		</div>
 	</div>
+	<%@ include file="include/footer.jsp"%>
 	<script>
 		function 상세설명() {
 			const element = document.getElementById('detail');
 			element.innerText = '이 게시판은 스프링, 톰캣, 부트스트랩으로 제작되었습니다.';
 		}
 		
-		function 팝업창() {
+		function 팝업창(type) {
+			var url = "../member/"+type;
 			var popupX = (document.body.offsetWidth / 2) - (200 / 2);
 			var popupY= (window.screen.height / 2) - (300 / 2);
-			window.open('member/login','로그인','resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
+			window.open(url,type,'resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
 		}
 		</script>
 	<script src="/static/js/jQuery-3.6.0.js"></script>

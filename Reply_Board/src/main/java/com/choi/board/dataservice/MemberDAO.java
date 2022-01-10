@@ -43,16 +43,17 @@ public class MemberDAO {
 				회원.setPassword(rs.getNString("password"));
 				회원.setRegDate(rs.getDate("regDate"));
 			}
+			return 회원;
 		} catch (SQLException e) {
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
-		return 회원;
+		return null;
 	}
 
-	public void 회원가입하다(Member member) {
-		String sql = "insert into member(id, name, password, regdate) values(?,?,?, now())";
+	public int 회원가입하다(Member member) {
+		String sql = "insert into member(id, name, password, email) values(?,?,?,?)";
 		PreparedStatement pstmt = null;
 
 		try {
@@ -60,12 +61,15 @@ public class MemberDAO {
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getName());
 			pstmt.setString(3, member.getPassword());
-			pstmt.executeUpdate();
+			pstmt.setString(4, member.getEmail());
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
+		return -1;
 	}
+
 	public void 비밀번호변경하다(Member member) {
 		String sql = "update member set password=? where id=?";
 		PreparedStatement pstmt = null;

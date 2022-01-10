@@ -45,7 +45,6 @@ public class BoardDAO {
 				return rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -68,9 +67,10 @@ public class BoardDAO {
 				글.setNo(rs.getInt("no"));
 				글.setTitle(rs.getString("title"));
 				글.setWriter(rs.getString("writer"));
-				글.setContents(rs.getString("contents"));
-				글.setRegDate(rs.getDate("regDate"));
-				글.setHit(rs.getLong("hit"));
+				글.setContent(rs.getString("content"));
+				Date date = rs.getTimestamp("regDate");
+				글.setRegDate(date);
+				글.setHit(rs.getInt("hit"));
 				글.setReplyCnt(댓글수를세다(글.getNo()));
 				목록.add(글);
 			}
@@ -86,14 +86,14 @@ public class BoardDAO {
 	}
 
 	public void 새글을저장하다(Board 새게시물) {
-		String sql = "insert into board (title, writer, contents, regDate, hit) values(?,?,?,now(),?)";
+		String sql = "insert into board (title, writer, content, regDate) values(?,?,?,now())";
 		PreparedStatement pstmt = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, 새게시물.getTitle());
 			pstmt.setString(2, 새게시물.getWriter());
-			pstmt.setString(3, 새게시물.getContents());
+			pstmt.setString(3, 새게시물.getContent());
 			pstmt.setInt(4, 0);
 			int result = pstmt.executeUpdate();
 			if (result > 0) {
@@ -117,9 +117,9 @@ public class BoardDAO {
 				찾는게시물 = new Board();
 				찾는게시물.setNo(번호);
 				찾는게시물.setTitle(게시물표.getString("title"));
-				찾는게시물.setContents(게시물표.getString("contents"));
+				찾는게시물.setContent(게시물표.getString("content"));
 				찾는게시물.setRegDate(게시물표.getDate("regDate"));
-				찾는게시물.setHit(게시물표.getLong("hit"));
+				찾는게시물.setHit(게시물표.getInt("hit"));
 				찾는게시물.setReplyCnt(댓글수를세다(번호));
 			}
 		} catch (SQLException e) {
@@ -131,15 +131,15 @@ public class BoardDAO {
 	}
 
 	public void 게시글을수정하다(Board board) {
-		String sql = "update board set title=?, contents=?, regDate=now() where no=?";
+		String sql = "update board set title=?, content=?, regDate=now() where no=?";
 		PreparedStatement pstmt = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
-			pstmt.setString(2, board.getContents());
+			pstmt.setString(2, board.getContent());
 			pstmt.setInt(3, board.getNo());
-			int result = pstmt.executeUpdate();
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
 			JdbcUtil.close(pstmt);
@@ -191,6 +191,20 @@ public class BoardDAO {
 			pstmt.setInt(2, reply.getReply_no());
 			pstmt.setString(3, reply.getWriter());
 			pstmt.setString(4, reply.getMemo());
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+	}
+	
+	public void 조회수를올리다(Board 조회할게시물) {
+		String sql = "update board set hit=? where no=?";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 조회할게시물.getHit());
+			pstmt.setInt(2, 조회할게시물.getNo());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {

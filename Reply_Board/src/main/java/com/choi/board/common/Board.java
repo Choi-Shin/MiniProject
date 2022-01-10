@@ -1,16 +1,23 @@
 package com.choi.board.common;
 
-import java.sql.Timestamp;
+
 import java.util.Date;
 
 public class Board {
 	private int no;
 	private String title;
-	private String contents;
+	private String content;
 	private String writer;
-	private Timestamp regDate;
-	private Long hit;
+	private Date regDate;
+	private int hit;
 	private int replyCnt;
+
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	
 	public int getNo() {
 		return no;
@@ -30,23 +37,16 @@ public class Board {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	public String getContents() {
-		return contents;
-	}
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
 	public Date getRegDate() {
 		return regDate;
 	}
-	public Date setRegDate(Timestamp regDate) {
-		return regDate.
-		
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
-	public Long getHit() {
+	public int getHit() {
 		return hit;
 	}
-	public void setHit(Long hit) {
+	public void setHit(int hit) {
 		this.hit = hit;
 	}
 	public int getReplyCnt() {

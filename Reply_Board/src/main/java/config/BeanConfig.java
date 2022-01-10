@@ -37,11 +37,12 @@ public class BeanConfig {
 	public MemberController memberController() {
 		return new MemberController();
 	}
+
 	@Bean
 	public MemberService memberService() {
 		return new MemberService();
 	}
-	
+
 	@Bean
 	public MemberDAO memberDAO() {
 		return new MemberDAO();

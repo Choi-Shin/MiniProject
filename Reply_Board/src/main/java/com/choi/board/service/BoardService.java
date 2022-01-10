@@ -22,4 +22,8 @@ public class BoardService {
 	public int 모든게시물의갯수를세다() {
 		return dao.모든게시물의갯수를세다();
 	}
+	
+	public Board 찾는다By번호(int 번호) {
+		return dao.찾는다By번호(번호);
+	}
 }

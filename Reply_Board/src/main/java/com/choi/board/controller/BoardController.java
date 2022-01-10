@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.choi.board.common.Board;
 import com.choi.board.common.Page;
 import com.choi.board.common.PageNavigator;
 import com.choi.board.service.BoardService;
@@ -31,6 +32,14 @@ public class BoardController {
 
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public String 공지사항() {
-		return "board/notice";
+		return "board/list";
+	}
+	
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public ModelAndView 게시글상세내용출력하다(int no) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", bs.찾는다By번호(no));
+		mv.setViewName("board/list");
+		return mv;
 	}
 }
