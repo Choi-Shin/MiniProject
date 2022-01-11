@@ -12,7 +12,7 @@
 			<u:isLogin>
 				<li><a class="btn" onclick="팝업창('login')">회원정보수정</a></li>
 
-				<li><a class="btn" href="member/logout">로그아웃</a></li>
+				<li><a class="btn" href="../member/logout">로그아웃</a></li>
 			</u:isLogin>
 		</ul>
 	</nav>

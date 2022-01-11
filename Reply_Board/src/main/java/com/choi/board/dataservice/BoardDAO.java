@@ -116,6 +116,7 @@ public class BoardDAO {
 				찾는게시물.setNo(번호);
 				찾는게시물.setTitle(게시물표.getString("title"));
 				찾는게시물.setContent(게시물표.getString("content"));
+				찾는게시물.setWriter(게시물표.getString("writer"));
 				Date date = 게시물표.getTimestamp("regDate");
 				찾는게시물.setRegDate(date);
 				찾는게시물.setHit(게시물표.getInt("hit"));
@@ -202,7 +203,7 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 조회할게시물.getHit());
+			pstmt.setInt(1, 조회할게시물.getHit()+1);
 			pstmt.setInt(2, 조회할게시물.getNo());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

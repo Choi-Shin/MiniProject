@@ -5,7 +5,7 @@
 	<%@ include file="../include/header.jsp"%>
 	<%@ include file="../include/aside.jsp"%>
 	<section>
-		<div id="board">
+		<div id="board" class="board">
 			<div class="board-top">
 				<a class="btn" href="write">글쓰기</a>
 			</div>
@@ -28,10 +28,8 @@
 					<td><fmt:formatDate value="${board.regDate}"
 							pattern="yyyy년 MM월 dd일 HH:mm" /></td>
 				</tr>
-				<tr>
-					<td colspan="5"><div>${board.content}</div></td>
-				</tr>
 			</table>
+			<div class="container p-5 my-5 bg-primary text-white">${board.content}</div>
 			<a class="btn" href="board/list">목록</a>
 			<c:if test="${loginUser.id == board.writer}">
 				<a class="btn" href="board/modify?no=${board.no}">수정</a>
@@ -40,8 +38,7 @@
 		</div>
 		<div class="box box-warning">
 			<div class="box-header with-border">
-				<a class="btn"><i class="fa fa-pencil margin-r-5"></i>
-					댓글 쓰기</a>
+				<a class="btn"><i class="fa fa-pencil margin-r-5"></i> 댓글 쓰기</a>
 			</div>
 			<div class="box-body">
 				<c:if test="${not empty loginUser}">
@@ -61,7 +58,8 @@
 					</form>
 				</c:if>
 				<c:if test="${empty loginUser}">
-					<a class="btn" onclick="팝업창('login')"> 로그인 한 사용자만 댓글 등록이 가능합니다. </a>
+					<a class="btn" onclick="팝업창('login')"> 로그인 한 사용자만 댓글 등록이 가능합니다.
+					</a>
 				</c:if>
 			</div>
 		</div>

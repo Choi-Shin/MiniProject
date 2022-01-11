@@ -3,22 +3,28 @@
 <!DOCTYPE html>
 <html lang="ko">
 <%@ include file="include/head.jsp"%>
+<style>
+.btn {
+	display: inline-block;
+}
+</style>
 <body>
 	<%@ include file="include/header.jsp"%>
+
 	<div class="container" align="center">
 		<div class="jumbotron">
-			<div class="container">
+			<div class="container" align="center">
 				<h1>웹 사이트 소개</h1>
 				<p align="center">자유게시판 사이트 입니다.</p>
-				<a class="btn" href="board/list?page=1">게시판</a>
+				<a class="btn btn-primary btn-block" href="board/list?page=1">게시판</a>
 				<p>
-					<a class="btn" href="#" role="button" onclick="상세설명()">자세히 알아보기</a>
+					<a class="btn btn-primary btn-block" onclick="상세설명()">자세히 알아보기</a>
 				</p>
 				<div id="detail"></div>
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container" align="center">
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
@@ -73,5 +79,4 @@
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
 </body>
-
 </html>

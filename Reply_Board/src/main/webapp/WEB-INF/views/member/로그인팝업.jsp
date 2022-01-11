@@ -16,6 +16,15 @@
 form {
 	text-align: center;
 }
+
+.btn, .btn:active {
+	margin: 0 auto;
+}
+
+label {
+	display: inline-block;
+	width: 50%;
+}
 </style>
 </head>
 <body>
@@ -23,7 +32,7 @@ form {
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<form action="/member/login" method="post">
-				<label for="id">아이디<input type="text" name="id" /></label> <label
+				<label for="id">아이디<input type="text" name="id" /></label><br> <label
 					for="password">비밀번호<input type="password" name="password" /></label>
 				<button class="btn big-login" type="submit">로그인</button>
 			</form>

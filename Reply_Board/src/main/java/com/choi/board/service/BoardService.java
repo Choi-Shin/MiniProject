@@ -30,4 +30,8 @@ public class BoardService {
 	public int 새글을저장하다(Board 새게시물) {
 		return dao.새글을저장하다(새게시물);
 	}
+	
+	public void 조회수를올리다(Board 게시물) {
+		dao.조회수를올리다(게시물);
+	}
 }

@@ -40,7 +40,9 @@ public class BoardController {
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public ModelAndView 게시글상세내용출력하다(int no) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("board", bs.찾는다By번호(no));
+		Board board = bs.찾는다By번호(no);
+		mv.addObject("board", board);
+		bs.조회수를올리다(board);
 		mv.setViewName("board/read");
 		return mv;
 	}
