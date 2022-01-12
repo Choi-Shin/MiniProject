@@ -33,7 +33,7 @@ public class BoardDAO {
 			System.out.println("Connection을 연결할 수 없습니다.");
 		}
 	}
-	
+
 	public int 모든게시물의갯수를세다() {
 		String sql = "Select count(*) from board";
 		Statement stmt = null;
@@ -41,7 +41,7 @@ public class BoardDAO {
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql);
-			if(rs.next()) {
+			if (rs.next()) {
 				return rs.getInt(1);
 			}
 		} catch (SQLException e) {
@@ -49,11 +49,9 @@ public class BoardDAO {
 		}
 		return 0;
 	}
-	
+
 	public List<Board> 게시판목록을가져오다(Page page) {
-		String sql = "SELECT * FROM board "
-				+ "WHERE no > 0 ORDER BY no DESC "
-				+ "LIMIT ?, ?";
+		String sql = "SELECT * FROM board " + "WHERE no > 0 ORDER BY no DESC " + "LIMIT ?, ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Board> 목록 = new ArrayList<Board>();
@@ -94,7 +92,7 @@ public class BoardDAO {
 			pstmt.setString(1, 새게시물.getTitle());
 			pstmt.setString(2, 새게시물.getWriter());
 			pstmt.setString(3, 새게시물.getContent());
-			pstmt.setInt(4, 0);
+			;
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + "저장 실패");
@@ -149,11 +147,11 @@ public class BoardDAO {
 	public int 게시글을삭제하다(int no) {
 		String sql = "delete from board where no=?";
 		PreparedStatement pstmt = null;
-
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
-			return pstmt.executeUpdate();
+			int result = pstmt.executeUpdate();
+			return result;
 		} catch (SQLException e) {
 		} finally {
 			JdbcUtil.close(pstmt);
@@ -197,13 +195,13 @@ public class BoardDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
+
 	public void 조회수를올리다(Board 조회할게시물) {
 		String sql = "update board set hit=? where no=?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 조회할게시물.getHit()+1);
+			pstmt.setInt(1, 조회할게시물.getHit() + 1);
 			pstmt.setInt(2, 조회할게시물.getNo());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

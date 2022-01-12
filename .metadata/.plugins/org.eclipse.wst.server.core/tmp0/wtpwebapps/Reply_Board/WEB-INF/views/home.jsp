@@ -68,13 +68,6 @@
 			const element = document.getElementById('detail');
 			element.innerText = '이 게시판은 스프링, 톰캣, 부트스트랩으로 제작되었습니다.';
 		}
-		
-		function 팝업창(type) {
-			var url = "../member/"+type;
-			var popupX = (document.body.offsetWidth / 2) - (200 / 2);
-			var popupY= (window.screen.height / 2) - (300 / 2);
-			window.open(url,type,'resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
-		}
 		</script>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>

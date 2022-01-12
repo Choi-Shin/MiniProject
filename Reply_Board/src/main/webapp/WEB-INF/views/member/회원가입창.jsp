@@ -16,6 +16,15 @@
 form {
 	text-align: center;
 }
+
+.btn, .btn:active {
+	margin: 0 auto;
+}
+
+label {
+	display: inline-block;
+	width: 50%;
+}
 </style>
 </head>
 <body>

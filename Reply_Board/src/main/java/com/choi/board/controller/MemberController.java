@@ -1,5 +1,7 @@
 package com.choi.board.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -27,13 +29,15 @@ public class MemberController {
 	@PostMapping(value = "/login")
 	public ModelAndView 로그인시도하다(AuthUser user) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println(user.getId());
 		boolean 로그인결과 = ms.로그인하다(user);
 		if (로그인결과 == false) {
 			mv.addObject("msg", "아이디나 비밀번호가 틀립니다.");
 			mv.setViewName("/member/로그인결과");
 			return mv;
 		} else if (로그인결과 == true) {
+			if(user.getId().equals("admin")) {
+				mv.addObject("admin", user);
+			}
 			String welcome = "환영합니다. " + user.getId() + "님";
 			mv.addObject("msg", welcome);
 			mv.addObject("loginUser", user);
@@ -65,5 +69,29 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String 로그아웃하다() {
 		return "member/로그아웃";
+	}
+	
+	@GetMapping(value="/modify")
+	public String 정보수정창을띄우다() {
+		return "member/회원정보수정";
+	}
+	@PostMapping(value="/modify")
+	public ModelAndView 회원정보수정을요청하다(HttpSession session, String newPassword, String newEmail) {
+		ModelAndView mv = new ModelAndView();
+		AuthUser user = (AuthUser) session.getAttribute("loginUser");
+		Member m = ms.찾는다ById(user.getId());
+		m.setPassword(newPassword);
+		m.setEmail(newEmail);
+		int result = ms.회원정보수정하다(m);
+		if (result > 0) {
+			mv.addObject("msg", "정보를 수정하였습니다.");
+			user.setPassword(newPassword);
+			session.setAttribute("loginUser", user);
+			mv.setViewName("/member/회원정보수정결과");
+		} else {
+			mv.addObject("msg", "수정에 실패하였습니다.");
+			mv.setViewName("/member/회원정보수정결과");
+		}
+		return mv;
 	}
 }

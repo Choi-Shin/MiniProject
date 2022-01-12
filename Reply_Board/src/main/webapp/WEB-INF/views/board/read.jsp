@@ -1,13 +1,37 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/head.jsp"%>
+<style>
+textarea {
+	width: 78vw;
+	height: 150px;
+	padding: 12px 20px;
+	box-sizing: border-box;
+	border: 2px solid #ccc;
+	border-radius: 4px;
+	background-color: #f8f8f8;
+	font-size: 16px;
+	resize: none;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+h2 {
+	text-align: center;
+	margin-right: 15%;
+}
+</style>
 <body>
 	<%@ include file="../include/header.jsp"%>
 	<%@ include file="../include/aside.jsp"%>
+
 	<section>
 		<div id="board" class="board">
+			<h2>게시글보기</h2>
 			<div class="board-top">
-				<a class="btn" href="write">글쓰기</a>
+				<a class="btn" style="margin-right: 5%" onclick="로그인유저인가('write')">글쓰기</a>
 			</div>
 			<table class="table table-striped">
 				<colgroup>
@@ -29,17 +53,17 @@
 							pattern="yyyy년 MM월 dd일 HH:mm" /></td>
 				</tr>
 			</table>
-			<div class="container p-5 my-5 bg-primary text-white">${board.content}</div>
-			<a class="btn" href="board/list">목록</a>
+			<div class="container p-5 my-5">${board.content}</div>
+			<a class="btn" href="../board/list?page=1">목록</a>
 			<c:if test="${loginUser.id == board.writer}">
-				<a class="btn" href="board/modify?no=${board.no}">수정</a>
-				<a class="btn" href="board/delete?no=${board.no}">삭제</a>
+				<a class="btn" href="../board/modify?no=${board.no}">수정</a>
+				<a class="btn" href="../board/delete?no=${board.no}">삭제</a>
 			</c:if>
 		</div>
 		<div class="box box-warning">
-			<div class="box-header with-border">
+			<!-- <div class="box-header with-border">
 				<a class="btn"><i class="fa fa-pencil margin-r-5"></i> 댓글 쓰기</a>
-			</div>
+			</div> -->
 			<div class="box-body">
 				<c:if test="${not empty loginUser}">
 					<form>

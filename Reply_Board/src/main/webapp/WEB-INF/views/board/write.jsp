@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+session = request.getSession(false);
+AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
+if (loginUser == null) {
+	response.sendRedirect("list");
+}
+%>
 <!DOCTYPE html>
 <html>
 <%@ include file="../include/head.jsp"%>
@@ -8,6 +15,10 @@
 body {
 	padding-top: 70px;
 	padding-bottom: 30px;
+}
+
+li {
+	display: list-item !important;
 }
 
 .container {
@@ -24,15 +35,6 @@ body {
 		$("#form").submit();
 
 	});
-
-	$(document)
-			.on(
-					'click',
-					'#btnList',
-					function(e) {
-						e.preventDefault();
-						location.href = "board/list";
-					});
 </script>
 <body>
 
@@ -42,14 +44,12 @@ body {
 
 			<h2>board Form</h2>
 
-			<form name="form" id="form" role="form" method="post"
-				action="write">
+			<form name="form" id="form" role="form" method="post" action="write">
 
 				<div class="mb-3">
 
 					<label for="title">제목</label> <input type="text"
-						class="form-control" name="title" id="title"
-						placeholder="제목을 입력해 주세요">
+						class="form-control" name="title" placeholder="제목을 입력해 주세요">
 
 				</div>
 
@@ -58,8 +58,8 @@ body {
 				<div class="mb-3">
 
 					<label for="reg_id">작성자</label> <input type="text"
-						class="form-control" name="reg_id" id="reg_id"
-						placeholder="이름을 입력해 주세요">
+						class="form-control" name="writer" value="${loginUser.id}"
+						readonly="readonly">
 
 				</div>
 
@@ -76,19 +76,10 @@ body {
 
 
 
-				<div class="mb-3">
-
-					<label for="tag">TAG</label> <input type="text"
-						class="form-control" name="tag" id="tag" placeholder="태그를 입력해 주세요">
-
-				</div>
-
-
-
 			</form>
 
 			<div>
-				<a class="btn btn-sm btn-primary" href="list">목록</a>
+				<a class="btn btn-sm btn-primary" href="../board/list">목록</a>
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 
 
@@ -97,6 +88,13 @@ body {
 		</div>
 
 	</article>
-	<script src="static/js/ckeditor.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			if ('${msg}') {
+				alert('${msg}');
+			}
+		});
+	</script>
+	<script src="/static/js/ckeditor.js"></script>
 </body>
 </html>

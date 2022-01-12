@@ -32,8 +32,8 @@ label {
 		<div class="col-sm-4"></div>
 		<div class="col-sm-4">
 			<form action="/member/login" method="post">
-				<label for="id">아이디<input type="text" name="id" /></label><br> <label
-					for="password">비밀번호<input type="password" name="password" /></label>
+				<label for="id">아이디<input type="text" name="id" required="required"/></label><br> <label
+					for="password">비밀번호<input type="password" name="password" required="required"/></label>
 				<button class="btn big-login" type="submit">로그인</button>
 			</form>
 		</div>

@@ -34,7 +34,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/notice", method = RequestMethod.GET)
 	public String 공지사항() {
-		return "board/list";
+		return "board/notice";
 	}
 	
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
@@ -60,10 +60,27 @@ public class BoardController {
 		int result = bs.새글을저장하다(새게시물);
 		if(result > 0) {
 			mv.addObject("msg", "글이 등록되었습니다.");
+			int no = bs.모든게시물의갯수를세다();
+			새게시물.setNo(no);
+			mv.addObject("board", 새게시물);
+			mv.setViewName("board/read");
 		} else {
 			mv.addObject("msg", "글 등록에 실패하였습니다.");
+			mv.setViewName("board/write");
 		}
-		mv.setViewName("board/list");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView 게시글을삭제하다(int no) {
+		ModelAndView mv = new ModelAndView();
+		int result = bs.게시글을삭제하다(no);
+		if (result > 0) {
+			mv.addObject("msg", "게시글이 삭제되었습니다.");
+		} else {
+			mv.addObject("msg", "삭제에 실패하였습니다.");
+		}
+		mv.setViewName("board/list?page=1");
 		return mv;
 	}
 }

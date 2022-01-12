@@ -73,17 +73,19 @@ public class MemberDAO {
 		return -1;
 	}
 
-	public void 비밀번호변경하다(Member member) {
-		String sql = "update member set password=? where id=?";
+	public int 회원정보수정하다(Member member) {
+		String sql = "update member set password=?, email=? where id=?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getId());
-			pstmt.executeUpdate();
+			pstmt.setString(2, member.getEmail());
+			pstmt.setString(3, member.getId());
+			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
+		return 0;
 	}
 }

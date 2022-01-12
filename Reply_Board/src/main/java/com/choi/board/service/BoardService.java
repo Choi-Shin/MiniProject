@@ -34,4 +34,7 @@ public class BoardService {
 	public void 조회수를올리다(Board 게시물) {
 		dao.조회수를올리다(게시물);
 	}
+	public int 게시글을삭제하다(int no) {
+		return dao.게시글을삭제하다(no);
+	}
 }

@@ -18,6 +18,11 @@ public class Member {
 		this.password = password;
 		this.email = email;
 	}
+	
+	public Member(String newPassword, String newEmail) {
+		this.password = newPassword;
+		this.email = newEmail;
+	}
 
 	public String getId() {
 		return id;
@@ -60,7 +65,6 @@ public class Member {
 	}
 
 	public boolean matchPassword(String pwd) {
-		System.out.println(password.equals(pwd));
 		return password.equals(pwd);
 	}
 

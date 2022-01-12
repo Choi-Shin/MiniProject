@@ -3,8 +3,13 @@
 <%
 String msg = (String) request.getAttribute("msg");
 AuthUser loginUser = (AuthUser) request.getAttribute("loginUser");
+AuthUser admin = (AuthUser) request.getAttribute("admin");
 if (loginUser != null) {
+	session =request.getSession();
 	session.setAttribute("loginUser", loginUser);
+}
+if (admin != null) {
+	session.setAttribute("admin", admin);
 }
 %>
 <html>

@@ -30,4 +30,12 @@ public class MemberService {
 		}
 		return dao.회원가입하다(member);
 	}
+	
+	public int 회원정보수정하다(Member member) {
+		return dao.회원정보수정하다(member);
+	}
+	
+	public Member 찾는다ById(String id) {
+		return dao.찾는다ById(id);
+	}
 }
