@@ -13,15 +13,16 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.choi.board.common.Board;
+import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
 import com.choi.board.common.Reply;
 import com.choi.board.util.JdbcUtil;
 
 @Repository
-public class BoardDAO {
+public class NoticeDAO {
 	private Connection conn;
 
-	public BoardDAO() {
+	public NoticeDAO() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(
@@ -35,7 +36,7 @@ public class BoardDAO {
 	}
 
 	public int 모든게시물의갯수를세다() {
-		String sql = "Select count(*) from board";
+		String sql = "Select count(*) from notice";
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -51,7 +52,7 @@ public class BoardDAO {
 	}
 
 	public List<Board> 게시판목록을가져오다(Page page) {
-		String sql = "SELECT * FROM board " + "WHERE no > 0 ORDER BY no DESC " + "LIMIT ?, ?";
+		String sql = "SELECT * FROM notice " + "WHERE no > 0 ORDER BY no DESC " + "LIMIT ?, ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Board> 목록 = new ArrayList<Board>();
@@ -84,7 +85,7 @@ public class BoardDAO {
 	}
 
 	public int 새글을저장하다(Board 새게시물) {
-		String sql = "insert into board (title, writer, content, regDate) values(?,?,?,now())";
+		String sql = "insert into notice (title, content) values(?,?)";
 		PreparedStatement pstmt = null;
 
 		try {
@@ -104,7 +105,7 @@ public class BoardDAO {
 		Board 찾는게시물 = null;
 		PreparedStatement 명령자 = null;
 		ResultSet 게시물표 = null;
-		String sql = "select * from board where no = ?";
+		String sql = "select * from notice where no = ?";
 		try {
 			명령자 = conn.prepareStatement(sql);
 			명령자.setInt(1, 번호);
@@ -129,7 +130,7 @@ public class BoardDAO {
 	}
 
 	public void 게시글을수정하다(Board board) {
-		String sql = "update board set title=?, content=?, regDate=now() where no=?";
+		String sql = "update notice set title=?, content=?, regDate=now() where no=?";
 		PreparedStatement pstmt = null;
 
 		try {
@@ -145,7 +146,7 @@ public class BoardDAO {
 	}
 
 	public int 게시글을삭제하다(int no) {
-		String sql = "delete from board where no=?";
+		String sql = "delete from notice where no=?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -160,19 +161,16 @@ public class BoardDAO {
 	}
 
 	public int 댓글수를세다(int 글번호) {
-		String sql = "Select count(*) from reply where board_no=?";
+		String sql = "Select count(*) from notice_reply where notice_no=?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int cnt = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, 글번호);
-			rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery(sql);
 			if (rs.next()) {
-				System.out.println("여기도 되나");
 				cnt = rs.getInt(1);
-				System.out.println(cnt);
-				return cnt;
 			}
 		} catch (SQLException e) {
 		} finally {
@@ -182,16 +180,15 @@ public class BoardDAO {
 		return cnt;
 	}
 
-	public int 댓글달다(Reply reply) {
-		String sql = "Insert into reply(board_no,reply_no, writer, memo) values (?,?,?,?)";
+	public int 댓글달다(NoticeReply noticeRe) {
+		String sql = "Insert into notice_reply(board_no, writer, memo) values (?,?,?)";
 		PreparedStatement pstmt = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, reply.getBoard_no());
-			pstmt.setInt(2, 댓글수를세다(reply.getBoard_no())+1);
-			pstmt.setString(3, reply.getWriter());
-			pstmt.setString(4, reply.getMemo());
+			pstmt.setInt(1, noticeRe.getBoard_no());
+			pstmt.setString(2, noticeRe.getWriter());
+			pstmt.setString(3, noticeRe.getMemo());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
@@ -213,33 +210,5 @@ public class BoardDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
-	public List<Reply> 댓글목록을가져오다(int 게시글번호){
-		String sql = "select * from reply where board_no=? order by reply_no asc";
-		List<Reply> 댓글목록 = new ArrayList<Reply>();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, 게시글번호);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				Reply 댓글 = new Reply();
-				댓글.setBoard_no(rs.getInt("board_no"));
-				댓글.setReply_no(rs.getInt("reply_no"));
-				댓글.setWriter(rs.getString("writer"));
-				댓글.setMemo(rs.getString("memo"));
-				Date date = rs.getTimestamp("regdate");
-				댓글.setRegDate(date);
-				댓글목록.add(댓글);
-			}
-			return 댓글목록;
-		} catch (SQLException e) {
-		}finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-		}
-		return null;
-	}
+
 }

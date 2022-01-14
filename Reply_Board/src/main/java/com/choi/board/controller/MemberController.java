@@ -29,19 +29,24 @@ public class MemberController {
 	@PostMapping(value = "/login")
 	public ModelAndView 로그인시도하다(AuthUser user) {
 		ModelAndView mv = new ModelAndView();
-		boolean 로그인결과 = ms.로그인하다(user);
-		if (로그인결과 == false) {
-			mv.addObject("msg", "아이디나 비밀번호가 틀립니다.");
-			mv.setViewName("/member/로그인결과");
-			return mv;
-		} else if (로그인결과 == true) {
-			if(user.getId().equals("admin")) {
-				mv.addObject("admin", user);
+		boolean 로그인결과;
+		try {
+			로그인결과 = ms.로그인하다(user);
+
+			if (로그인결과 == false) {
+				mv.addObject("msg", "존재하지 않는 아이디이거나 비밀번호가 틀립니다.");
+				mv.setViewName("/member/로그인결과");
+				return mv;
+			} else if (로그인결과 == true) {
+				if (user.getId().equals("admin")) {
+					mv.addObject("admin", user);
+				}
+				String welcome = "환영합니다. " + user.getId() + "님";
+				mv.addObject("msg", welcome);
+				mv.addObject("loginUser", user);
+				mv.setViewName("/member/로그인결과");
 			}
-			String welcome = "환영합니다. " + user.getId() + "님";
-			mv.addObject("msg", welcome);
-			mv.addObject("loginUser", user);
-			mv.setViewName("/member/로그인결과");
+		} catch (Exception e) {
 		}
 		return mv;
 	}
@@ -50,32 +55,33 @@ public class MemberController {
 	public String registerPopup() {
 		return "/member/회원가입창";
 	}
-	
+
 	@PostMapping(value = "/register")
 	public ModelAndView 회원가입하다(Member member) {
 		ModelAndView mv = new ModelAndView();
 		int result = ms.회원가입하다(member);
 		mv.setViewName("/member/회원가입결과");
-		if(result == -1) {
+		if (result == -1) {
 			mv.addObject("msg", "가입에 실패하였습니다.");
-		} else if(result == 0) {
+		} else if (result == 0) {
 			mv.addObject("msg", "이미 존재하는 아이디입니다.");
-		}	else if (result > 0){
+		} else if (result > 0) {
 			mv.addObject("msg", "가입되었습니다.");
 		}
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String 로그아웃하다() {
 		return "member/로그아웃";
 	}
-	
-	@GetMapping(value="/modify")
+
+	@GetMapping(value = "/modify")
 	public String 정보수정창을띄우다() {
 		return "member/회원정보수정";
 	}
-	@PostMapping(value="/modify")
+
+	@PostMapping(value = "/modify")
 	public ModelAndView 회원정보수정을요청하다(HttpSession session, String newPassword, String newEmail) {
 		ModelAndView mv = new ModelAndView();
 		AuthUser user = (AuthUser) session.getAttribute("loginUser");

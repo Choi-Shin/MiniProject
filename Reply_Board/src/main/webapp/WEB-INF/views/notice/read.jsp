@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-session = request.getSession(false);
-AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
-if (loginUser == null) {
-	response.sendRedirect("list");
-}
-%>
 <%@ include file="../include/head.jsp"%>
 <style>
 textarea {
@@ -73,20 +66,19 @@ h2 {
 			</div> -->
 			<div class="box-body">
 				<c:if test="${not empty loginUser}">
-					<form action="reply" method="post">
+					<form>
 						<div class="form-group">
-							<input type="hidden" name="no" value="${board.no}"> <input
-								type="hidden" name="board_no" value="${board.no}"> <input
-								type="hidden" name="board" value="${board}">
-							<textarea class="form-control" name="memo" rows="3"
+							<textarea class="form-control" id="newReplyText" rows="3"
 								placeholder="댓글내용..." style="resize: none"></textarea>
 						</div>
 						<div class="col-sm-2" hidden=>
-							<input class="form-control" name="writer" type="text"
+							<input class="form-control" id="newReplyWriter" type="text"
 								value="${loginUser.id}" readonly>
 						</div>
-						<button type="submit"
-							class="btn btn-default btn-block replyAddBtn">댓글 저장</button>
+						<button type="button"
+							class="btn btn-default btn-block replyAddBtn">
+							<i class="fa fa-save"></i> 댓글 저장
+						</button>
 					</form>
 				</c:if>
 				<c:if test="${empty loginUser}">
@@ -95,16 +87,6 @@ h2 {
 				</c:if>
 			</div>
 		</div>
-		<c:forEach items="${comments}" var="r">
-			<div class="table table-bordered">
-				<a class="btn">수정</a><a class="btn">삭제</a>
-				<h4>${r.reply_no }</h4>
-				<div style="font-weight:bold; font-size:2em;">${r.memo }</div>
-				작성자: ${r.writer}
-				<h5>${r.regDate}</h5>
-
-			</div>
-		</c:forEach>
 	</section>
 	<script type="text/javascript">
 	function 팝업창(type){
@@ -113,6 +95,12 @@ h2 {
 		var popupY= (window.screen.height / 2) - (300 / 2);
 		window.open(url,'type','resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
 	}
+	$(function (){
+		var msg = "${msg}";
+		if(msg) {
+			alert(msg);
+		}
+	})
 	</script>
 </body>
 </html>

@@ -5,9 +5,9 @@
 		<ul>
 			<li style="width: 100%"><a class="btn" href="/"
 				style="width: 90%">메인화면으로</a></li>
-			<li style="width: 100%"><a class="btn" href="notice"
+			<li style="width: 100%"><a class="btn" href="../notice/list"
 				style="width: 90%">공지사항</a></li>
-			<li style="width: 100%"><a class="btn" href="list"
+			<li style="width: 100%"><a class="btn" href="../board/list"
 				style="width: 90%">자유게시판</a></li>
 			<li style="width: 100%"><a class="btn" href="#"
 				style="width: 90%">참고한 자료</a></li>

@@ -35,26 +35,35 @@ h2 {
 			</u:notAdmin>
 
 			<table class="table table-striped">
+				<colgroup>
+					<col width="12.5%" span="8">
+				</colgroup>
 				<thead>
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
+						<th colspan="1">번호</th>
+						<th colspan="3">제목</th>
+						<th colspan="1">작성자</th>
+						<th colspan="2">날짜</th>
 						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="detail" style="cursor: pointer;"
-						onClick=" location.href='/'">
-						<td>1</td>
-						<td>ㅎㅇ</td>
-						<td>관리자</td>
-						<td>2022.01.05</td>
-						<td>3</td>
-					</tr>
+					<c:forEach items="${board}" var="b">
+						<tr class="detail">
+							<td colspan="1">${b.no}</td>
+							<td colspan="3"><a onclick="로그인유저인가('read?no=${b.no}')">${b.title}</a>
+								<c:if test="${b.replyCnt > 0}">
+									<span class="badge bg-red">${b.replyCnt}</span>
+								</c:if></td>
+							<td colspan="1">${b.writer}</td>
+							<td colspan="2"><fmt:formatDate value="${b.regDate}"
+									pattern="yyyy년 MM월 dd일 HH:mm" /></td>
+							<td>${b.hit}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
-			</table></div>
+			</table>
+		</div>
 	</section>
 	<footer>
 		<div class="box-footer">

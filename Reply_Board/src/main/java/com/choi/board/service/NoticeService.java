@@ -6,15 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.choi.board.common.Board;
+import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
-import com.choi.board.common.Reply;
 import com.choi.board.dataservice.BoardDAO;
+import com.choi.board.dataservice.NoticeDAO;
 
 @Service
-public class BoardService {
+public class NoticeService {
 	
 	@Autowired
-	BoardDAO dao;
+	NoticeDAO dao;
 	
 	public List<Board> 게시판목록을가져오다(Page page) {
 		return dao.게시판목록을가져오다(page);
@@ -38,13 +39,7 @@ public class BoardService {
 	public int 게시글을삭제하다(int no) {
 		return dao.게시글을삭제하다(no);
 	}
-	public int 댓글달다(Reply reply) {
-		return dao.댓글달다(reply);
-	}
-	public int 댓글수를세다(int 글번호) {
-		return dao.댓글수를세다(글번호);
-	}
-	public List<Reply> 댓글목록을가져오다(int 게시글번호){
-		return dao.댓글목록을가져오다(게시글번호);
+	public int 댓글달다(NoticeReply noticeRe) {
+		return dao.댓글달다(noticeRe);
 	}
 }

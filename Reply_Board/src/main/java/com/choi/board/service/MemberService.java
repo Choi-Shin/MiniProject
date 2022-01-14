@@ -13,13 +13,15 @@ public class MemberService {
 	@Autowired
 	MemberDAO dao;
 	
-	public boolean 로그인하다(AuthUser 로그인회원) {
+	public boolean 로그인하다(AuthUser 로그인회원) throws Exception {
 		Member DB회원 = dao.찾는다ById(로그인회원.getId());
-		if(DB회원.getId() != "") {
+		if(DB회원.getId() != "" && DB회원.getId() != null) {
 			if(DB회원.matchPassword(로그인회원.getPassword())) {
 				return true;
+			} else {
+				throw new Exception();
 			}
-		} 
+		}
 		return false;
 	}
 	

@@ -2,13 +2,12 @@ package com.choi.board.common;
 
 import java.util.Date;
 
-public class Reply {
+public class NoticeReply {
 	private int board_no;
 	private int reply_no;
 	private String writer;
 	private String memo;
 	private Date regDate;
-	
 	public int getBoard_no() {
 		return board_no;
 	}

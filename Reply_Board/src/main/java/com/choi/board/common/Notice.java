@@ -1,9 +1,8 @@
 package com.choi.board.common;
 
-
 import java.util.Date;
 
-public class Board {
+public class Notice {
 	private int no;
 	private String title;
 	private String content;
@@ -11,23 +10,7 @@ public class Board {
 	private Date regDate;
 	private int hit;
 	private int replyCnt;
-	
 
-	public Board() {
-	}
-
-	public Board(String title, String writer, String content) {
-		this.title = title;
-		this.content = content;
-		this.writer = writer;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	
 	public int getNo() {
 		return no;
 	}
@@ -39,6 +22,12 @@ public class Board {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getWriter() {
 		return writer;
@@ -59,11 +48,10 @@ public class Board {
 		this.hit = hit;
 	}
 	public int getReplyCnt() {
-		System.out.println(replyCnt);
 		return replyCnt;
 	}
-	
 	public void setReplyCnt(int replyCnt) {
 		this.replyCnt = replyCnt;
 	}
+
 }
