@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.choi.board.common.Board;
 import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
-import com.choi.board.dataservice.BoardDAO;
 import com.choi.board.dataservice.NoticeDAO;
 
 @Service

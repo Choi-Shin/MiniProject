@@ -15,7 +15,6 @@ import org.springframework.stereotype.Repository;
 import com.choi.board.common.Board;
 import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
-import com.choi.board.common.Reply;
 import com.choi.board.util.JdbcUtil;
 
 @Repository

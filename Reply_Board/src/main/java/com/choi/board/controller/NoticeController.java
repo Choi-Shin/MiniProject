@@ -12,8 +12,6 @@ import com.choi.board.common.Board;
 import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
 import com.choi.board.common.PageNavigator;
-import com.choi.board.common.Reply;
-import com.choi.board.service.BoardService;
 import com.choi.board.service.NoticeService;
 
 @Controller
