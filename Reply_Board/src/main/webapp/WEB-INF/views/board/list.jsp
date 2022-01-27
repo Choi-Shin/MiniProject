@@ -14,7 +14,6 @@ h2 {
 }
 
 </style>
-ㅡ
 <body>
 	<%@ include file="../include/header.jsp"%>
 	<%@ include file="../include/aside.jsp"%>
