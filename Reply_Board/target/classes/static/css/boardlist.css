@@ -33,13 +33,6 @@ section {
 	float: right;
 }
 
-#freeBoard {
-	margin-top: 20px;
-	display: inline-block;
-	font-size: 5vh;
-	margin-left: 10px;
-}
-
 aside {
 	width: 15vw;
 	height: 100vh;

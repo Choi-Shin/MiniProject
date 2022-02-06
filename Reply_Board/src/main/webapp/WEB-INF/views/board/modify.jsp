@@ -1,10 +1,12 @@
+<%@page import="com.choi.board.common.Board"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 session = request.getSession(false);
+Board board = (Board)request.getAttribute("board");
 AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
-if (loginUser == null) {
+if (loginUser == null && !board.getWriter().equals(loginUser.getId())) {
 	response.sendRedirect("list");
 }
 %>
@@ -44,12 +46,12 @@ li {
 
 			<h2>board Form</h2>
 
-			<form name="form" id="form" role="form" method="post" action="/notice/write">
+			<form name="form" id="form" role="form" method="post" action="modify">
 
 				<div class="mb-3">
 
 					<label for="title">제목</label> <input type="text"
-						class="form-control" name="title" placeholder="제목을 입력해 주세요">
+						class="form-control" name="title" value="${board.title}">
 
 				</div>
 
@@ -70,7 +72,7 @@ li {
 					<label for="content">내용</label>
 
 					<textarea class="form-control" rows="5" name="content" id="content"
-						placeholder="내용을 입력해 주세요"></textarea>
+						>${board.contents}</textarea>
 
 				</div>
 
@@ -79,7 +81,7 @@ li {
 			</form>
 
 			<div>
-				<a class="btn btn-sm btn-primary" href="../notice/list">목록</a>
+				<a class="btn btn-sm btn-primary" href="../board/list">목록</a>
 				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 
 
@@ -88,6 +90,13 @@ li {
 		</div>
 
 	</article>
+	<script type="text/javascript">
+		$(function() {
+			if ('${msg}') {
+				alert('${msg}');
+			}
+		});
+	</script>
 	<script src="/static/js/ckeditor.js"></script>
 </body>
 </html>

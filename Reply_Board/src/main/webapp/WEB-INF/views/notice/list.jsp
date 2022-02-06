@@ -1,6 +1,13 @@
+<%@page import="com.choi.board.common.PageNavigator"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="u" tagdir="/WEB-INF/tags"%>
+<%
+PageNavigator pageNav = (PageNavigator)request.getAttribute("pageNavigator");
+int p = (pageNav.getPage().getPage()*10)-10;
+int row_ = pageNav.getTotalCount()%10;
+int	row = row_ + p;
+%>
 <!DOCTYPE html>
 <html>
 <%@ include file="../include/head.jsp"%>
@@ -18,19 +25,20 @@ h2 {
 <body>
 	<%@ include file="../include/header.jsp"%>
 	<%@ include file="../include/aside.jsp"%>
+	<c:set var="row" value="<%=row%>"></c:set>
 	<section>
 		<div id="board">
 			<h2>공지사항</h2>
 			<u:isAdmin>
 				<div class="board-top">
-					<a class="btn" href="/write" style="margin-right: 5%">글쓰기</a>
+					<a class="btn" onclick="관리자인가('write')" style="margin-right: 5%">글쓰기</a>
 				</div>
 			</u:isAdmin>
 			<u:notAdmin>
 
 				<div class="board-top">
 
-					<a class="btn" href="/" style="margin-right: 5%">관리자로그인</a>
+					<a class="btn" onclick="팝업창('admin/login')" style="margin-right: 5%">관리자로그인</a>
 				</div>
 			</u:notAdmin>
 
@@ -48,17 +56,17 @@ h2 {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${board}" var="b">
+					<c:forEach items="${boards}" var="b">
 						<tr class="detail">
-							<td colspan="1">${b.no}</td>
-							<td colspan="3"><a onclick="로그인유저인가('read?no=${b.no}')">${b.title}</a>
+							<td colspan="1">${row}</td>
+							<td colspan="3"><a onclick="로그인유저인가('read?no=${b.no}&row=${row}')">${b.title}</a>
 								<c:if test="${b.replyCnt > 0}">
 									<span class="badge bg-red">${b.replyCnt}</span>
 								</c:if></td>
 							<td colspan="1">${b.writer}</td>
 							<td colspan="2"><fmt:formatDate value="${b.regDate}"
 									pattern="yyyy년 MM월 dd일 HH:mm" /></td>
-							<td>${b.hit}</td>
+							<td>${b.hit}</td><c:set var="row" value="${row-1}" />
 						</tr>
 					</c:forEach>
 				</tbody>

@@ -13,8 +13,10 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.choi.board.common.Board;
+import com.choi.board.common.Notice;
 import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
+import com.choi.board.common.Reply;
 import com.choi.board.util.JdbcUtil;
 
 @Repository
@@ -33,7 +35,7 @@ public class NoticeDAO {
 			System.out.println("Connection을 연결할 수 없습니다.");
 		}
 	}
-
+	
 	public int 모든게시물의갯수를세다() {
 		String sql = "Select count(*) from notice";
 		Statement stmt = null;
@@ -50,18 +52,18 @@ public class NoticeDAO {
 		return 0;
 	}
 
-	public List<Board> 게시판목록을가져오다(Page page) {
+	public List<Notice> 게시판목록을가져오다(Page page) {
 		String sql = "SELECT * FROM notice " + "WHERE no > 0 ORDER BY no DESC " + "LIMIT ?, ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<Board> 목록 = new ArrayList<Board>();
+		List<Notice> 목록 = new ArrayList<Notice>();
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, page.getPageStart());
 			pstmt.setInt(2, page.getPerPageNum());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				Board 글 = new Board();
+				Notice 글 = new Notice();
 				글.setNo(rs.getInt("no"));
 				글.setTitle(rs.getString("title"));
 				글.setWriter(rs.getString("writer"));
@@ -83,15 +85,14 @@ public class NoticeDAO {
 		return null;
 	}
 
-	public int 새글을저장하다(Board 새게시물) {
+	public int 새글을저장하다(Notice 새게시물) {
 		String sql = "insert into notice (title, content) values(?,?)";
 		PreparedStatement pstmt = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, 새게시물.getTitle());
-			pstmt.setString(2, 새게시물.getWriter());
-			pstmt.setString(3, 새게시물.getContent());
+			pstmt.setString(2, 새게시물.getContent());
 			;
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -99,9 +100,37 @@ public class NoticeDAO {
 		}
 		return 0;
 	}
-
-	public Board 찾는다By번호(int 번호) {
-		Board 찾는게시물 = null;
+	
+	public Notice 마지막게시물가져오다() {
+		String sql = "SELECT * FROM notice DESC LIMIT 1";
+		Notice 찾는게시물 = null;
+		Statement 명령자 = null;
+		ResultSet 게시물표 = null;
+		try {
+			명령자 = conn.createStatement();
+			게시물표 = 명령자.executeQuery(sql);
+			if (게시물표.next()) {
+				찾는게시물 = new Notice();
+				찾는게시물.setNo(게시물표.getInt("no"));
+				찾는게시물.setTitle(게시물표.getString("title"));
+				찾는게시물.setContent(게시물표.getString("content"));
+				찾는게시물.setWriter(게시물표.getString("writer"));
+				Date date = 게시물표.getTimestamp("regDate");
+				찾는게시물.setRegDate(date);
+				찾는게시물.setHit(게시물표.getInt("hit"));
+				찾는게시물.setReplyCnt(댓글수를세다(찾는게시물.getNo()));
+			}
+		} catch (SQLException e) {
+		} finally {
+			JdbcUtil.close(게시물표);
+			JdbcUtil.close(명령자);
+		}
+		return 찾는게시물;
+		
+	}
+	
+	public Notice 찾는다By번호(int 번호) {
+		Notice 찾는게시물 = null;
 		PreparedStatement 명령자 = null;
 		ResultSet 게시물표 = null;
 		String sql = "select * from notice where no = ?";
@@ -110,7 +139,7 @@ public class NoticeDAO {
 			명령자.setInt(1, 번호);
 			게시물표 = 명령자.executeQuery();
 			if (게시물표.next()) {
-				찾는게시물 = new Board();
+				찾는게시물 = new Notice();
 				찾는게시물.setNo(번호);
 				찾는게시물.setTitle(게시물표.getString("title"));
 				찾는게시물.setContent(게시물표.getString("content"));
@@ -128,20 +157,22 @@ public class NoticeDAO {
 		return 찾는게시물;
 	}
 
-	public void 게시글을수정하다(Board board) {
+	public int 게시글을수정하다(Notice notice) {
 		String sql = "update notice set title=?, content=?, regDate=now() where no=?";
 		PreparedStatement pstmt = null;
-
+		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, board.getTitle());
-			pstmt.setString(2, board.getContent());
-			pstmt.setInt(3, board.getNo());
-			pstmt.executeUpdate();
+			pstmt.setString(1, notice.getTitle());
+			pstmt.setString(2, notice.getContent());
+			pstmt.setInt(3, notice.getNo());
+			result = pstmt.executeUpdate();
+			return result;
 		} catch (SQLException e) {
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
+		return result;
 	}
 
 	public int 게시글을삭제하다(int no) {
@@ -167,9 +198,10 @@ public class NoticeDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, 글번호);
-			rs = pstmt.executeQuery(sql);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				cnt = rs.getInt(1);
+				return cnt;
 			}
 		} catch (SQLException e) {
 		} finally {
@@ -180,24 +212,26 @@ public class NoticeDAO {
 	}
 
 	public int 댓글달다(NoticeReply noticeRe) {
-		String sql = "Insert into notice_reply(board_no, writer, memo) values (?,?,?)";
+		String sql = "Insert into notice_reply(notice_no,reply_no, writer, memo,regdate) values (?,?,?,?,now())";
 		PreparedStatement pstmt = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, noticeRe.getBoard_no());
-			pstmt.setString(2, noticeRe.getWriter());
-			pstmt.setString(3, noticeRe.getMemo());
+			pstmt.setInt(1, noticeRe.getNotice_no());
+			pstmt.setInt(2, 댓글수를세다(noticeRe.getNotice_no())+1);
+			pstmt.setString(3, noticeRe.getWriter());
+			pstmt.setString(4, noticeRe.getMemo());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
+			System.out.println(e.getMessage() + "댓글 작성 실패");
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
 		return 0;
 	}
 
-	public void 조회수를올리다(Board 조회할게시물) {
-		String sql = "update board set hit=? where no=?";
+	public void 조회수를올리다(Notice 조회할게시물) {
+		String sql = "update notice set hit=? where no=?";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -209,5 +243,32 @@ public class NoticeDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-
+	
+	public List<NoticeReply> 댓글목록을가져오다(int 게시글번호) {
+		String sql = "select * from notice_reply where notice_no=? order by reply_no asc";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<NoticeReply> 댓글목록 = new ArrayList<NoticeReply>();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 게시글번호);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				NoticeReply noticeReply = new NoticeReply();
+				noticeReply.setNotice_no(rs.getInt("notice_no"));
+				noticeReply.setReply_no(rs.getInt("reply_no"));
+				noticeReply.setWriter(rs.getString("writer"));
+				noticeReply.setMemo(rs.getString("memo"));
+				Date date = rs.getTimestamp("regdate");
+				noticeReply.setRegDate(date);
+				댓글목록.add(noticeReply);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getStackTrace() + "댓글 조회 실패");
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return 댓글목록;
+	}
 }

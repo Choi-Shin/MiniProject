@@ -38,5 +38,13 @@
 			location.href = "list";
 		}
 	}
+	function 관리자인가(link) {
+		if ('${admin}'){
+			location.href = link;
+		} else {
+			alert("관리자 권한이 필요합니다.");
+			location.href = "list";
+		}
+	}
 	</script>
 </head>

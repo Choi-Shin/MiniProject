@@ -3,16 +3,17 @@ package com.choi.board.common;
 import java.util.Date;
 
 public class NoticeReply {
-	private int board_no;
+	private int notice_no;
 	private int reply_no;
 	private String writer;
 	private String memo;
 	private Date regDate;
-	public int getBoard_no() {
-		return board_no;
+	
+	public int getNotice_no() {
+		return notice_no;
 	}
-	public void setBoard_no(int board_no) {
-		this.board_no = board_no;
+	public void setNotice_no(int notice_no) {
+		this.notice_no = notice_no;
 	}
 	public int getReply_no() {
 		return reply_no;

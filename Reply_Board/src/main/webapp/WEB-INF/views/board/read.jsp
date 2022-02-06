@@ -1,11 +1,17 @@
+<%@page import="com.choi.board.common.Board"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 session = request.getSession(false);
 AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
+Board board = (Board)request.getAttribute("board");
 if (loginUser == null) {
 	response.sendRedirect("list");
 }
+int row = (Integer)request.getAttribute("row");
+if (row == 0){
+	row = board.getNo();
+} 
 %>
 <%@ include file="../include/head.jsp"%>
 <style>
@@ -53,7 +59,7 @@ h2 {
 					</tr>
 				</thead>
 				<tr>
-					<td>${board.no}</td>
+					<td>${row}</td>
 					<td colspan="2">${board.title}</td>
 					<td>${board.writer}</td>
 					<td><fmt:formatDate value="${board.regDate}"
@@ -101,7 +107,8 @@ h2 {
 				<h4>${r.reply_no }</h4>
 				<div style="font-weight:bold; font-size:2em;">${r.memo }</div>
 				작성자: ${r.writer}
-				<h5>${r.regDate}</h5>
+				<h5><fmt:formatDate value="${r.regDate}"
+							pattern="yyyy년 MM월 dd일 HH:mm" /></h5>
 
 			</div>
 		</c:forEach>

@@ -47,4 +47,7 @@ public class BoardService {
 	public List<Reply> 댓글목록을가져오다(int 게시글번호){
 		return dao.댓글목록을가져오다(게시글번호);
 	}
+	public int 게시글을수정하다(Board board) {
+		return dao.게시글을수정하다(board);
+	}
 }

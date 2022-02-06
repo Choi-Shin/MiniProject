@@ -15,14 +15,13 @@ public class MemberService {
 	
 	public boolean 로그인하다(AuthUser 로그인회원) throws Exception {
 		Member DB회원 = dao.찾는다ById(로그인회원.getId());
+		boolean b = false;
 		if(DB회원.getId() != "" && DB회원.getId() != null) {
 			if(DB회원.matchPassword(로그인회원.getPassword())) {
-				return true;
-			} else {
-				throw new Exception();
+				return !b;
 			}
 		}
-		return false;
+		return b;
 	}
 	
 	public int 회원가입하다(Member member) {

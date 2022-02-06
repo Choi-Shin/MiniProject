@@ -25,11 +25,17 @@ public class MemberController {
 	public String 로그인팝업창띄우다() {
 		return "/member/로그인팝업";
 	}
-
+	
+	@GetMapping(value ="/admin/login")
+	public String 관리자로그인팝업띄우다(AuthUser user) {
+		return "/member/관리자로그인팝업";
+	}
+	
 	@PostMapping(value = "/login")
 	public ModelAndView 로그인시도하다(AuthUser user) {
 		ModelAndView mv = new ModelAndView();
 		boolean 로그인결과;
+		String welcome;
 		try {
 			로그인결과 = ms.로그인하다(user);
 
@@ -39,9 +45,11 @@ public class MemberController {
 				return mv;
 			} else if (로그인결과 == true) {
 				if (user.getId().equals("admin")) {
+					welcome = "관리자 로그인에 성공하였습니다.";
 					mv.addObject("admin", user);
+				} else {
+					welcome = "환영합니다. " + user.getId() + "님";
 				}
-				String welcome = "환영합니다. " + user.getId() + "님";
 				mv.addObject("msg", welcome);
 				mv.addObject("loginUser", user);
 				mv.setViewName("/member/로그인결과");
@@ -50,6 +58,35 @@ public class MemberController {
 		}
 		return mv;
 	}
+	
+	@PostMapping(value = "/admin/login")
+	public ModelAndView 관리자로그인시도하다(AuthUser user) {
+		ModelAndView mv = new ModelAndView();
+		boolean 로그인결과;
+		String welcome;
+		if (user.getId().equals("admin")) {
+			try {
+				로그인결과 = ms.로그인하다(user);
+				if (로그인결과 == false) {
+					welcome = "관리자 로그인에 실패하였습니다.";
+					mv.addObject("msg", welcome);
+				} else if (로그인결과 == true) {
+					welcome = "관리자 로그인에 성공하였습니다.";
+					mv.addObject("msg", welcome);
+					mv.addObject("admin", user);
+					mv.addObject("loginUser", user);
+				}
+			} catch (Exception e) {
+			}
+			
+		} else {
+			welcome = "관리자 로그인에 실패하였습니다.";
+			mv.addObject("msg", welcome);
+		}
+		mv.setViewName("/member/로그인결과");
+		return mv;
+	}
+	
 
 	@GetMapping(value = "/register")
 	public String registerPopup() {

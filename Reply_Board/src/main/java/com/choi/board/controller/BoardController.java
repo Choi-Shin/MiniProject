@@ -2,6 +2,8 @@ package com.choi.board.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.choi.board.common.AuthUser;
 import com.choi.board.common.Board;
+import com.choi.board.common.Notice;
 import com.choi.board.common.Page;
 import com.choi.board.common.PageNavigator;
 import com.choi.board.common.Reply;
@@ -26,21 +30,24 @@ public class BoardController {
 	public ModelAndView 게시판목록수집하다(Page page) {
 		ModelAndView mv = new ModelAndView();
 		PageNavigator 페이지탐색기 = new PageNavigator();
+		if(page == null) {
+			page = new Page();
+		}
 		페이지탐색기.setPage(page);
 		페이지탐색기.setTotalCount(bs.모든게시물의갯수를세다());
-		mv.addObject("board", bs.게시판목록을가져오다(page));
+		mv.addObject("boards", bs.게시판목록을가져오다(page));
 		mv.addObject("pageNavigator", 페이지탐색기);
 		mv.setViewName("board/list");
 		return mv;
 	}
 
 	@RequestMapping(value = "/read")
-	public ModelAndView 게시글상세내용출력하다(int no) {
+	public ModelAndView 게시글상세내용출력하다(int no, int row) {
 		ModelAndView mv = new ModelAndView();
 		Board board = bs.찾는다By번호(no);
 		mv.addObject("board", board);
+		mv.addObject("row", row);
 		List<Reply> 댓글목록 = bs.댓글목록을가져오다(no);
-		System.out.println("댓글목록크기: "+댓글목록.size());
 		mv.addObject("comments", 댓글목록);
 		bs.조회수를올리다(board);
 		mv.setViewName("board/read");
@@ -93,6 +100,31 @@ public class BoardController {
 		} else {
 			mv.addObject("msg", "댓글 작성에 실패하였습니다.");
 		}
+		mv.setViewName("board/read");
+		return mv;
+	}
+
+	@GetMapping(value = "/modify")
+	public ModelAndView 게시글을수정하다(Board board) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", board);
+		mv.setViewName("board/modify");
+		return mv;
+	}
+	
+	@PostMapping(value = "/modify")
+	public ModelAndView 게시글수정저장하다(Board board) {
+		ModelAndView mv = new ModelAndView();
+		String msg;
+		int result = bs.게시글을수정하다(board);
+		if (result > 0) {
+			msg = "'"  + board.getTitle() + "' 게시글을 수정하였습니다.";
+			mv.addObject("msg", msg);
+		} else {
+			msg = "게시글 수정에 실패하였습니다.";
+			mv.addObject("msg", msg);
+		}
+		mv.addObject("board", board);
 		mv.setViewName("board/read");
 		return mv;
 	}

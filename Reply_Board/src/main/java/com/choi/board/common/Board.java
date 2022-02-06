@@ -59,7 +59,6 @@ public class Board {
 		this.hit = hit;
 	}
 	public int getReplyCnt() {
-		System.out.println(replyCnt);
 		return replyCnt;
 	}
 	

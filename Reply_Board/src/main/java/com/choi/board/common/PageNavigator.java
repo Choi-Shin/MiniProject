@@ -7,10 +7,9 @@ public class PageNavigator {
 	private int endPage;
 	private boolean prev;
 	private boolean next;
+	private Page page;
 
 	private int displayPageNum = 10;
-
-	private Page page;
 
 	public void setPage(Page page) {
 		this.page = page;

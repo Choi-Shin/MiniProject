@@ -128,20 +128,21 @@ public class BoardDAO {
 		return 찾는게시물;
 	}
 
-	public void 게시글을수정하다(Board board) {
+	public int 게시글을수정하다(Board board) {
 		String sql = "update board set title=?, content=?, regDate=now() where no=?";
 		PreparedStatement pstmt = null;
-
+		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, board.getTitle());
 			pstmt.setString(2, board.getContent());
 			pstmt.setInt(3, board.getNo());
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
+		return result;
 	}
 
 	public int 게시글을삭제하다(int no) {
@@ -169,9 +170,7 @@ public class BoardDAO {
 			pstmt.setInt(1, 글번호);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				System.out.println("여기도 되나");
 				cnt = rs.getInt(1);
-				System.out.println(cnt);
 				return cnt;
 			}
 		} catch (SQLException e) {
@@ -183,7 +182,7 @@ public class BoardDAO {
 	}
 
 	public int 댓글달다(Reply reply) {
-		String sql = "Insert into reply(board_no,reply_no, writer, memo) values (?,?,?,?)";
+		String sql = "Insert into reply(board_no,reply_no, writer, memo,regdate) values (?,?,?,?,now())";
 		PreparedStatement pstmt = null;
 
 		try {
@@ -236,6 +235,7 @@ public class BoardDAO {
 			}
 			return 댓글목록;
 		} catch (SQLException e) {
+			System.out.println(e.getStackTrace() + "댓글 조회 실패");
 		}finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);

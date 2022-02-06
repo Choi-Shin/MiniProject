@@ -1,6 +1,19 @@
+<%@page import="com.choi.board.common.Notice"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../include/head.jsp"%>
+<%
+session = request.getSession(false);
+AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
+Notice board = (Notice)request.getAttribute("board");
+if (loginUser == null) {
+	response.sendRedirect("list");
+}
+int row = (Integer)request.getAttribute("row");
+if (row == 0){
+	row = board.getNo();
+} 
+%>
 <style>
 textarea {
 	width: 78vw;
@@ -46,7 +59,7 @@ h2 {
 					</tr>
 				</thead>
 				<tr>
-					<td>${board.no}</td>
+					<td><%=row %></td>
 					<td colspan="2">${board.title}</td>
 					<td>${board.writer}</td>
 					<td><fmt:formatDate value="${board.regDate}"
@@ -54,10 +67,10 @@ h2 {
 				</tr>
 			</table>
 			<div class="container p-5 my-5">${board.content}</div>
-			<a class="btn" href="../board/list?page=1">목록</a>
-			<c:if test="${loginUser.id == board.writer}">
-				<a class="btn" href="../board/modify?no=${board.no}">수정</a>
-				<a class="btn" href="../board/delete?no=${board.no}">삭제</a>
+			<a class="btn" href="../notice/list">목록</a>
+			<c:if test="${loginUser.id == 'admin'}">
+				<a class="btn" href="../notice/modify?no=${board.no}">수정</a>
+				<a class="btn" onclick="삭제하시겠습니까(${board.no})">삭제</a>
 			</c:if>
 		</div>
 		<div class="box box-warning">
@@ -66,25 +79,40 @@ h2 {
 			</div> -->
 			<div class="box-body">
 				<c:if test="${not empty loginUser}">
-					<form>
+					<form action="reply" method="post">
 						<div class="form-group">
-							<textarea class="form-control" id="newReplyText" rows="3"
+							<input type="hidden" name="no" value="${board.no}"> <input
+								type="hidden" name="notice_no" value="${board.no}"> <input
+								type="hidden" name="board" value="${board}"> <input
+								type="hidden" name="row" value="${row}">
+							<textarea class="form-control" name="memo" rows="3"
 								placeholder="댓글내용..." style="resize: none"></textarea>
 						</div>
 						<div class="col-sm-2" hidden=>
-							<input class="form-control" id="newReplyWriter" type="text"
+							<input class="form-control" name="writer" type="text"
 								value="${loginUser.id}" readonly>
 						</div>
-						<button type="button"
-							class="btn btn-default btn-block replyAddBtn">
-							<i class="fa fa-save"></i> 댓글 저장
-						</button>
+						<button type="submit"
+							class="btn btn-default btn-block replyAddBtn">댓글 저장</button>
 					</form>
 				</c:if>
 				<c:if test="${empty loginUser}">
 					<a class="btn" onclick="팝업창('login')"> 로그인 한 사용자만 댓글 등록이 가능합니다.
 					</a>
 				</c:if>
+				<c:forEach items="${comments}" var="r">
+					<div class="table table-bordered">
+						<a class="btn">수정</a><a class="btn">삭제</a>
+						<h4>${r.reply_no }</h4>
+						<div style="font-weight: bold; font-size: 2em;">${r.memo }</div>
+						작성자: ${r.writer}
+						<h5>
+							<fmt:formatDate value="${r.regDate}"
+								pattern="yyyy년 MM월 dd일 HH:mm" />
+						</h5>
+
+					</div>
+				</c:forEach>
 			</div>
 		</div>
 	</section>
@@ -95,12 +123,15 @@ h2 {
 		var popupY= (window.screen.height / 2) - (300 / 2);
 		window.open(url,'type','resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
 	}
-	$(function (){
-		var msg = "${msg}";
-		if(msg) {
-			alert(msg);
+	
+	function 삭제하시겠습니까(번호){
+		var no = 번호;
+		if(confirm('게시글을 삭제하시겠습니까?') === true) {
+			location.href = "/notice/delete?no="+no;
+		} else {
+			return false;
 		}
-	})
+	}
 	</script>
 </body>
 </html>
