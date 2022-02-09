@@ -244,7 +244,7 @@ public class NoticeDAO {
 		return 댓글목록;
 	}
 	public int 몇번째글인지출력한다(int 게시물번호) {
-		String sql = "SELECT COUNT(*) FROM board WHERE no <= (SELECT no FROM board WHERE no = ?)";
+		String sql = "SELECT COUNT(*) FROM notice WHERE no <= (SELECT no FROM notice WHERE no = ?)";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -263,17 +263,17 @@ public class NoticeDAO {
 		return 0;
 	}
 
-	public Board n번째행을출력한다(int no) {
-		String sql = "SELECT * FROM board ORDER BY no asc LIMIT ?,1";
+	public Notice n번째행을출력한다(int no) {
+		String sql = "SELECT * FROM notice ORDER BY no asc LIMIT ?,1";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Board board = null;
+		Notice board = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no-1);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				board = new Board();
+				board = new Notice();
 				board.setNo(rs.getInt("no"));
 				board.setRownum(no);
 				board.setTitle(rs.getString("title"));

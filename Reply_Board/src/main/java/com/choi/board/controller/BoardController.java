@@ -72,7 +72,9 @@ public class BoardController {
 			mv.setViewName("redirect");
 		} else {
 			mv.addObject("msg", "글 등록에 실패하였습니다.");
-			mv.setViewName("board/write");
+			String url = "/board/write";
+			mv.addObject("url", url);
+			mv.setViewName("redirect");
 		}
 		return mv;
 	}

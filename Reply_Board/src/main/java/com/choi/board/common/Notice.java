@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Notice {
 	private int no;
+	private int rownum;
 	private String title;
 	private String content;
 	private String writer;
@@ -16,6 +17,12 @@ public class Notice {
 	}
 	public void setNo(int no) {
 		this.no = no;
+	}
+	public int getRownum() {
+		return rownum;
+	}
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
 	}
 	public String getTitle() {
 		return title;

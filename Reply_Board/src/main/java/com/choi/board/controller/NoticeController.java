@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.choi.board.common.Board;
 import com.choi.board.common.Notice;
 import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
@@ -27,6 +28,9 @@ public class NoticeController {
 	public ModelAndView 게시판목록수집하다(Page page) {
 		ModelAndView mv = new ModelAndView();
 		PageNavigator 페이지탐색기 = new PageNavigator();
+		if(page == null) {
+			page = new Page();
+		}
 		페이지탐색기.setPage(page);
 		페이지탐색기.setTotalCount(ns.모든게시물의갯수를세다());
 		mv.addObject("boards", ns.게시판목록을가져오다(page));
@@ -57,18 +61,19 @@ public class NoticeController {
 	public ModelAndView 새글을저장하다(Notice 새게시물) {
 		ModelAndView mv = new ModelAndView();
 		int result = ns.새글을저장하다(새게시물);
-		새게시물 = ns.마지막게시물가져오다();
-		String msg = null;
 		if (result > 0) {
-			msg = "글이 등록되었습니다.";
-			int no = ns.모든게시물의갯수를세다();
-			mv.addObject("board", 새게시물);
-			mv.addObject("msg", msg);
-			mv.setViewName("notice/list");
+			mv.addObject("msg", "글이 등록되었습니다.");
+			int rownum = ns.모든게시물의갯수를세다();
+			새게시물 = new Notice();
+			새게시물 = ns.n번째행을출력한다(rownum);
+			String url = "/notice/read?no=" + 새게시물.getNo();
+			mv.addObject("url", url);
+			mv.setViewName("redirect");
 		} else {
-			msg = "글 등록에 실패하였습니다.";
-			mv.addObject("msg", msg);
-			mv.setViewName("notice/write");
+			mv.addObject("msg", "글 등록에 실패하였습니다.");
+			String url = "/notice/write";
+			mv.addObject("url", url);
+			mv.setViewName("redirect");
 		}
 		return mv;
 	}
@@ -77,13 +82,14 @@ public class NoticeController {
 	public ModelAndView 게시글을삭제하다(int no) {
 		ModelAndView mv = new ModelAndView();
 		int result = ns.게시글을삭제하다(no);
+		String url = "/notice/list";
+		mv.addObject("url", url);
 		if (result > 0) {
 			mv.addObject("msg", "게시글이 삭제되었습니다.");
-			mv.setViewName("redirect:/notice/list");
 		} else {
 			mv.addObject("msg", "삭제에 실패하였습니다.");
-			mv.setViewName("redirect:/notice/list");
 		}
+		mv.setViewName("redirect");
 		return mv;
 	}
 
