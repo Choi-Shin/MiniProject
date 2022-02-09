@@ -88,13 +88,6 @@ li {
 		</div>
 
 	</article>
-	<script type="text/javascript">
-		$(function() {
-			if ('${msg}') {
-				alert('${msg}');
-			}
-		});
-	</script>
 	<script src="/static/js/ckeditor.js"></script>
 </body>
 </html>

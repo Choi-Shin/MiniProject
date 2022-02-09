@@ -4,6 +4,7 @@ package com.choi.board.common;
 import java.util.Date;
 
 public class Board {
+	private int rownum;
 	private int no;
 	private String title;
 	private String content;
@@ -11,7 +12,14 @@ public class Board {
 	private Date regDate;
 	private int hit;
 	private int replyCnt;
-	
+
+	public int getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(int rownum) {
+		this.rownum = rownum;
+	}
 
 	public Board() {
 	}

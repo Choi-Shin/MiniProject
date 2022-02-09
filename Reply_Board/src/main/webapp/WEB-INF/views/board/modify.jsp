@@ -39,7 +39,6 @@ li {
 	});
 </script>
 <body>
-
 	<article>
 
 		<div class="container" role="main">
@@ -47,7 +46,7 @@ li {
 			<h2>board Form</h2>
 
 			<form name="form" id="form" role="form" method="post" action="modify">
-
+				<input type="hidden" name="no" value="${board.no}">
 				<div class="mb-3">
 
 					<label for="title">제목</label> <input type="text"
@@ -72,7 +71,7 @@ li {
 					<label for="content">내용</label>
 
 					<textarea class="form-control" rows="5" name="content" id="content"
-						>${board.contents}</textarea>
+						>${board.content}</textarea>
 
 				</div>
 

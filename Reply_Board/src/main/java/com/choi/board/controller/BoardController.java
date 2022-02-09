@@ -41,12 +41,11 @@ public class BoardController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/read")
-	public ModelAndView 게시글상세내용출력하다(int no, int row) {
+	@GetMapping(value = "/read")
+	public ModelAndView 게시글상세내용출력하다(int no) {
 		ModelAndView mv = new ModelAndView();
 		Board board = bs.찾는다By번호(no);
 		mv.addObject("board", board);
-		mv.addObject("row", row);
 		List<Reply> 댓글목록 = bs.댓글목록을가져오다(no);
 		mv.addObject("comments", 댓글목록);
 		bs.조회수를올리다(board);
@@ -65,10 +64,12 @@ public class BoardController {
 		int result = bs.새글을저장하다(새게시물);
 		if (result > 0) {
 			mv.addObject("msg", "글이 등록되었습니다.");
-			int no = bs.모든게시물의갯수를세다();
-			새게시물.setNo(no);
-			mv.addObject("board", 새게시물);
-			mv.setViewName("board/read");
+			int rownum = bs.모든게시물의갯수를세다();
+			새게시물 = new Board();
+			새게시물 = bs.n번째행을출력한다(rownum);
+			String url = "/board/read?no=" + 새게시물.getNo();
+			mv.addObject("url", url);
+			mv.setViewName("redirect");
 		} else {
 			mv.addObject("msg", "글 등록에 실패하였습니다.");
 			mv.setViewName("board/write");
@@ -85,7 +86,9 @@ public class BoardController {
 		} else {
 			mv.addObject("msg", "삭제에 실패하였습니다.");
 		}
-		mv.setViewName("board/list?page=1");
+		String url = "/board/list";
+		mv.addObject("url", url);
+		mv.setViewName("redirect");
 		return mv;
 	}
 
@@ -105,9 +108,9 @@ public class BoardController {
 	}
 
 	@GetMapping(value = "/modify")
-	public ModelAndView 게시글을수정하다(Board board) {
+	public ModelAndView 게시글을수정하다(int no) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("board", board);
+		mv.addObject("board", bs.찾는다By번호(no));
 		mv.setViewName("board/modify");
 		return mv;
 	}
@@ -124,8 +127,9 @@ public class BoardController {
 			msg = "게시글 수정에 실패하였습니다.";
 			mv.addObject("msg", msg);
 		}
-		mv.addObject("board", board);
-		mv.setViewName("board/read");
+		String url = "../board/read?no="+board.getNo();
+		mv.addObject("url", url);
+		mv.setViewName("redirect");
 		return mv;
 	}
 }

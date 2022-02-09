@@ -1,13 +1,6 @@
 <%@page import="com.choi.board.common.PageNavigator"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-PageNavigator pageNav = (PageNavigator)request.getAttribute("pageNavigator");
-int p = (pageNav.getPage().getPage()*10)-10;
-int row_ = pageNav.getTotalCount()%10;
-int	row = row_ + p;
-%>
 <html>
 <%@ include file="../include/head.jsp"%>
 <style>
@@ -25,7 +18,6 @@ h2 {
 <body>
 	<%@ include file="../include/header.jsp"%>
 	<%@ include file="../include/aside.jsp"%>
-	<c:set var="row" value="<%=row%>"></c:set>
 	<section>
 		<div id="board">
 			<h2>자유게시판</h2>
@@ -49,15 +41,15 @@ h2 {
 				<tbody>
 					<c:forEach items="${boards}" var="b" varStatus="status">
 						<tr class="detail">
-							<td colspan="1">${row}</td> 
-							<td colspan="3"><a onclick="로그인유저인가('read?no=${b.no}&row=${row}')">${b.title}</a>
+							<td colspan="1">${b.rownum}</td> 
+							<td colspan="3"><a onclick="로그인유저인가('read?no=${b.no}')">${b.title}</a>
 								<c:if test="${b.replyCnt > 0}">
 									<span class="badge bg-red">${b.replyCnt}</span>
 								</c:if></td>
 							<td colspan="1">${b.writer}</td>
 							<td colspan="2"><fmt:formatDate value="${b.regDate}"
 									pattern="yyyy년 MM월 dd일 HH:mm" /></td>
-							<td>${b.hit}</td><c:set var="row" value="${row - 1}"></c:set>
+							<td>${b.hit}</td>
 					</tr>
 					</c:forEach>
 				</tbody>

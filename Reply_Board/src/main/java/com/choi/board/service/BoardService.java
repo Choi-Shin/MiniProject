@@ -50,4 +50,10 @@ public class BoardService {
 	public int 게시글을수정하다(Board board) {
 		return dao.게시글을수정하다(board);
 	}
+	public int 몇번째글인지출력한다(int 게시물번호) {
+		return dao.몇번째글인지출력한다(게시물번호);
+	}
+	public Board n번째행을출력한다(int no) {
+		return dao.n번째행을출력한다(no);
+	}
 }

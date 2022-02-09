@@ -4,14 +4,9 @@
 <%
 session = request.getSession(false);
 AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
-Board board = (Board)request.getAttribute("board");
 if (loginUser == null) {
 	response.sendRedirect("list");
 }
-int row = (Integer)request.getAttribute("row");
-if (row == 0){
-	row = board.getNo();
-} 
 %>
 <%@ include file="../include/head.jsp"%>
 <style>
@@ -59,7 +54,7 @@ h2 {
 					</tr>
 				</thead>
 				<tr>
-					<td>${row}</td>
+					<td>${board.rownum}</td>
 					<td colspan="2">${board.title}</td>
 					<td>${board.writer}</td>
 					<td><fmt:formatDate value="${board.regDate}"
@@ -68,7 +63,7 @@ h2 {
 			</table>
 			<div class="container p-5 my-5">${board.content}</div>
 			<a class="btn" href="../board/list?page=1">목록</a>
-			<c:if test="${loginUser.id == board.writer}">
+			<c:if test="${loginUser.id == board.writer || loginUser.id == 'admin'}">
 				<a class="btn" href="../board/modify?no=${board.no}">수정</a>
 				<a class="btn" href="../board/delete?no=${board.no}">삭제</a>
 			</c:if>

@@ -24,9 +24,8 @@ public class BoardDAO {
 	public BoardDAO() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://3.37.252.132:3306/db1?useUnicode=true&" + "characterEncoding=utf8&&ServerTimeZone=UTC",
-					"root", "1234");
+			conn = DriverManager.getConnection("jdbc:mysql://3.37.252.132:3306/db1?useUnicode=true&"
+					+ "characterEncoding=utf8&&ServerTimeZone=UTC", "root", "1234");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버를 찾을 수 없습니다.");
 		} catch (SQLException e) {
@@ -63,6 +62,7 @@ public class BoardDAO {
 			while (rs.next()) {
 				Board 글 = new Board();
 				글.setNo(rs.getInt("no"));
+				글.setRownum(몇번째글인지출력한다(글.getNo()));
 				글.setTitle(rs.getString("title"));
 				글.setWriter(rs.getString("writer"));
 				글.setContent(rs.getString("content"));
@@ -112,6 +112,7 @@ public class BoardDAO {
 			if (게시물표.next()) {
 				찾는게시물 = new Board();
 				찾는게시물.setNo(번호);
+				찾는게시물.setRownum(몇번째글인지출력한다(번호));
 				찾는게시물.setTitle(게시물표.getString("title"));
 				찾는게시물.setContent(게시물표.getString("content"));
 				찾는게시물.setWriter(게시물표.getString("writer"));
@@ -188,7 +189,7 @@ public class BoardDAO {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, reply.getBoard_no());
-			pstmt.setInt(2, 댓글수를세다(reply.getBoard_no())+1);
+			pstmt.setInt(2, 댓글수를세다(reply.getBoard_no()) + 1);
 			pstmt.setString(3, reply.getWriter());
 			pstmt.setString(4, reply.getMemo());
 			return pstmt.executeUpdate();
@@ -212,18 +213,18 @@ public class BoardDAO {
 			JdbcUtil.close(pstmt);
 		}
 	}
-	
-	public List<Reply> 댓글목록을가져오다(int 게시글번호){
+
+	public List<Reply> 댓글목록을가져오다(int 게시글번호) {
 		String sql = "select * from reply where board_no=? order by reply_no asc";
 		List<Reply> 댓글목록 = new ArrayList<Reply>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, 게시글번호);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Reply 댓글 = new Reply();
 				댓글.setBoard_no(rs.getInt("board_no"));
 				댓글.setReply_no(rs.getInt("reply_no"));
@@ -236,10 +237,61 @@ public class BoardDAO {
 			return 댓글목록;
 		} catch (SQLException e) {
 			System.out.println(e.getStackTrace() + "댓글 조회 실패");
-		}finally {
+		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 		}
 		return null;
+	}
+
+	public int 몇번째글인지출력한다(int 게시물번호) {
+		String sql = "SELECT COUNT(*) FROM board WHERE no <= (SELECT no FROM board WHERE no = ?)";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 게시물번호);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return 0;
+	}
+
+	public Board n번째행을출력한다(int no) {
+		String sql = "SELECT * FROM board ORDER BY no asc LIMIT ?,1";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Board board = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no-1);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				board = new Board();
+				board.setNo(rs.getInt("no"));
+				board.setRownum(no);
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content"));
+				board.setWriter(rs.getString("writer"));
+				Date date = rs.getTimestamp("regDate");
+				board.setRegDate(date);
+				board.setHit(rs.getInt("hit"));
+				board.setReplyCnt(댓글수를세다(board.getNo()));
+				return board;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return board;
 	}
 }

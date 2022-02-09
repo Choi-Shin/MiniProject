@@ -6,6 +6,9 @@
 PageNavigator pageNav = (PageNavigator)request.getAttribute("pageNavigator");
 int p = (pageNav.getPage().getPage()*10)-10;
 int row_ = pageNav.getTotalCount()%10;
+if(row_ == 0) {
+	row_ = 10;
+}
 int	row = row_ + p;
 %>
 <!DOCTYPE html>

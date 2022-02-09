@@ -101,34 +101,6 @@ public class NoticeDAO {
 		return 0;
 	}
 	
-	public Notice 마지막게시물가져오다() {
-		String sql = "SELECT * FROM notice DESC LIMIT 1";
-		Notice 찾는게시물 = null;
-		Statement 명령자 = null;
-		ResultSet 게시물표 = null;
-		try {
-			명령자 = conn.createStatement();
-			게시물표 = 명령자.executeQuery(sql);
-			if (게시물표.next()) {
-				찾는게시물 = new Notice();
-				찾는게시물.setNo(게시물표.getInt("no"));
-				찾는게시물.setTitle(게시물표.getString("title"));
-				찾는게시물.setContent(게시물표.getString("content"));
-				찾는게시물.setWriter(게시물표.getString("writer"));
-				Date date = 게시물표.getTimestamp("regDate");
-				찾는게시물.setRegDate(date);
-				찾는게시물.setHit(게시물표.getInt("hit"));
-				찾는게시물.setReplyCnt(댓글수를세다(찾는게시물.getNo()));
-			}
-		} catch (SQLException e) {
-		} finally {
-			JdbcUtil.close(게시물표);
-			JdbcUtil.close(명령자);
-		}
-		return 찾는게시물;
-		
-	}
-	
 	public Notice 찾는다By번호(int 번호) {
 		Notice 찾는게시물 = null;
 		PreparedStatement 명령자 = null;
@@ -270,5 +242,55 @@ public class NoticeDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return 댓글목록;
+	}
+	public int 몇번째글인지출력한다(int 게시물번호) {
+		String sql = "SELECT COUNT(*) FROM board WHERE no <= (SELECT no FROM board WHERE no = ?)";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, 게시물번호);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return 0;
+	}
+
+	public Board n번째행을출력한다(int no) {
+		String sql = "SELECT * FROM board ORDER BY no asc LIMIT ?,1";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Board board = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no-1);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				board = new Board();
+				board.setNo(rs.getInt("no"));
+				board.setRownum(no);
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content"));
+				board.setWriter(rs.getString("writer"));
+				Date date = rs.getTimestamp("regDate");
+				board.setRegDate(date);
+				board.setHit(rs.getInt("hit"));
+				board.setReplyCnt(댓글수를세다(board.getNo()));
+				return board;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return board;
 	}
 }
