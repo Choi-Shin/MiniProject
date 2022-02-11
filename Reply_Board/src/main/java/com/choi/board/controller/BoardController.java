@@ -98,14 +98,15 @@ public class BoardController {
 	public ModelAndView 댓글을달다(int no, Reply reply) {
 		ModelAndView mv = new ModelAndView();
 		int result = bs.댓글달다(reply);
-		Board board = bs.찾는다By번호(no);
-		mv.addObject("board", board);
+		String url = "/board/read?no="+no;
+		mv.addObject("url", url);
 		if (result > 0) {
 			mv.addObject("msg", "댓글을 달았습니다.");
+			
 		} else {
 			mv.addObject("msg", "댓글 작성에 실패하였습니다.");
 		}
-		mv.setViewName("board/read");
+		mv.setViewName("redirect");
 		return mv;
 	}
 

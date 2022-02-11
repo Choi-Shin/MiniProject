@@ -74,8 +74,7 @@ CREATE TABLE IF NOT EXISTS `db1`.`notice_reply` (
   `writer` VARCHAR(24) NOT NULL,
   `memo` TEXT NULL DEFAULT NULL,
   `regDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`reply_no`),
-  INDEX `notice_no` (`notice_no` ASC) VISIBLE,
+  INDEX `notice_no` (`notice_no` ASC),
   CONSTRAINT `notice_reply_ibfk_1`
     FOREIGN KEY (`notice_no`)
     REFERENCES `db1`.`notice` (`no`)
@@ -94,8 +93,7 @@ CREATE TABLE IF NOT EXISTS `db1`.`reply` (
   `writer` VARCHAR(24) NOT NULL,
   `memo` TEXT NULL DEFAULT NULL,
   `regDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`reply_no`),
-  INDEX `board_no` (`board_no` ASC) VISIBLE,
+  INDEX `board_no` (`board_no` ASC),
   CONSTRAINT `reply_ibfk_1`
     FOREIGN KEY (`board_no`)
     REFERENCES `db1`.`board` (`no`)

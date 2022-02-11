@@ -8,7 +8,6 @@
 	width: 78vw;
 	font-size: 14px;
 }
-
 h2 {
 	text-align: center;
 	margin-right: 15%;
@@ -41,7 +40,7 @@ h2 {
 				<tbody>
 					<c:forEach items="${boards}" var="b" varStatus="status">
 						<tr class="detail">
-							<td colspan="1">${b.rownum}</td> 
+							<td colspan="1">${b.rownum}</td>
 							<td colspan="3"><a onclick="로그인유저인가('read?no=${b.no}')">${b.title}</a>
 								<c:if test="${b.replyCnt > 0}">
 									<span class="badge bg-red">${b.replyCnt}</span>
@@ -50,7 +49,7 @@ h2 {
 							<td colspan="2"><fmt:formatDate value="${b.regDate}"
 									pattern="yyyy년 MM월 dd일 HH:mm" /></td>
 							<td>${b.hit}</td>
-					</tr>
+						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -77,7 +76,6 @@ h2 {
 			</div>
 		</div>
 	</footer>
-
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.js"></script>
 </body>

@@ -97,14 +97,15 @@ public class NoticeController {
 	public ModelAndView 댓글을달다(int no, int row, NoticeReply noticeReply) {
 		ModelAndView mv = new ModelAndView();
 		int result = ns.댓글달다(noticeReply);
-		Notice board = ns.찾는다By번호(no);
-		mv.addObject("board", board);
+		String url = "/notice/read?no="+no;
+		mv.addObject("url", url);
 		if (result > 0) {
 			mv.addObject("msg", "댓글을 달았습니다.");
+			
 		} else {
 			mv.addObject("msg", "댓글 작성에 실패하였습니다.");
 		}
-		mv.setViewName("notice/read");
+		mv.setViewName("redirect");
 		return mv;
 	}
 
@@ -122,14 +123,15 @@ public class NoticeController {
 		String msg;
 		int result = ns.게시글을수정하다(board);
 		if (result > 0) {
-			msg = "'" + board.getTitle() + "' 게시글을 수정하였습니다.";
+			msg = "'"  + board.getTitle() + "' 게시글을 수정하였습니다.";
 			mv.addObject("msg", msg);
 		} else {
 			msg = "게시글 수정에 실패하였습니다.";
 			mv.addObject("msg", msg);
 		}
-		mv.addObject("board", board);
-		mv.setViewName("notice/read");
+		String url = "../notice/read?no="+board.getNo();
+		mv.addObject("url", url);
+		mv.setViewName("redirect");
 		return mv;
 	}
 }

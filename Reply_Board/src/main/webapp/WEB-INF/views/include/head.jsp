@@ -16,7 +16,6 @@
 	href="/static/fonts/glyphicons-halflings-regular.woff2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap"
 	rel="stylesheet">
@@ -25,13 +24,13 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-	$(function(){
-		if('${msg}') {
+	$(function() {
+		if ('${msg}') {
 			alert('${msg}');
 		}
 	});
-	function 로그인유저인가(link){
-		if ('${loginUser}'){
+	function 로그인유저인가(link) {
+		if ('${loginUser}') {
 			location.href = link;
 		} else {
 			alert("로그인이 필요합니다.");
@@ -39,12 +38,13 @@
 		}
 	}
 	function 관리자인가(link) {
-		if ('${admin}'){
+		if ('${admin}') {
 			location.href = link;
 		} else {
 			alert("관리자 권한이 필요합니다.");
 			location.href = "list";
 		}
 	}
-	</script>
+	
+</script>
 </head>

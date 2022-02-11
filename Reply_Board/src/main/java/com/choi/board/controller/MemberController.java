@@ -119,13 +119,12 @@ public class MemberController {
 	}
 
 	@PostMapping(value = "/modify")
-	public ModelAndView 회원정보수정을요청하다(HttpSession session, String newPassword, String newEmail) {
+	public ModelAndView 회원정보수정을요청하다(HttpSession session, String newPassword) {
 		ModelAndView mv = new ModelAndView();
 		AuthUser user = (AuthUser) session.getAttribute("loginUser");
 		Member m = ms.찾는다ById(user.getId());
-		m.setPassword(newPassword);
-		m.setEmail(newEmail);
-		int result = ms.회원정보수정하다(m);
+		m.setPassword(newPassword);	
+		int result = ms.비밀번호변경하다(m);
 		if (result > 0) {
 			mv.addObject("msg", "정보를 수정하였습니다.");
 			user.setPassword(newPassword);
@@ -135,6 +134,23 @@ public class MemberController {
 			mv.addObject("msg", "수정에 실패하였습니다.");
 			mv.setViewName("/member/회원정보수정결과");
 		}
+		return mv;
+	}
+	
+	@GetMapping(value = "/withdraw")
+	public ModelAndView 회원탈퇴하다(String id) {
+		ModelAndView mv = new ModelAndView();
+		int result = ms.회원탈퇴하다(id);
+		String msg;
+		if(result > 0) {
+			msg = id + "님의 탈퇴가 정상처리 되었습니다.";
+			mv.addObject("msg", msg);
+		} else {
+			msg = "탈퇴에 실패하였습니다. 관리자에게 문의바랍니다.";
+			mv.addObject("msg", msg);
+		}
+		mv.addObject("url", "/");
+		mv.setViewName("redirect");
 		return mv;
 	}
 }
