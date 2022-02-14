@@ -1,4 +1,6 @@
 -- MySQL Workbench Forward Engineering
+use miniproject;
+
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -14,13 +16,15 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema db1
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `db1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
-USE `db1` ;
+CREATE SCHEMA IF NOT EXISTS `miniproject` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+USE `miniproject` ;
+
+drop database miniproject;
 
 -- -----------------------------------------------------
 -- Table `db1`.`board`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`board` (
+CREATE TABLE IF NOT EXISTS `board` (
   `no` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(200) NOT NULL,
   `content` TEXT NULL DEFAULT NULL,
@@ -37,10 +41,10 @@ COLLATE = utf8mb4_unicode_ci;
 -- -----------------------------------------------------
 -- Table `db1`.`member`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`member` (
+CREATE TABLE IF NOT EXISTS `member` (
   `id` VARCHAR(50) NOT NULL,
   `name` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
   `email` VARCHAR(30) NOT NULL,
   `regdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`))
@@ -52,7 +56,7 @@ COLLATE = utf8mb4_unicode_ci;
 -- -----------------------------------------------------
 -- Table `db1`.`notice`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`notice` (
+CREATE TABLE IF NOT EXISTS `notice` (
   `no` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(200) NOT NULL,
   `content` TEXT NULL DEFAULT NULL,
@@ -68,7 +72,7 @@ COLLATE = utf8mb4_unicode_ci;
 -- -----------------------------------------------------
 -- Table `db1`.`notice_reply`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`notice_reply` (
+CREATE TABLE IF NOT EXISTS `notice_reply` (
   `notice_no` INT NOT NULL,
   `reply_no` INT NOT NULL,
   `writer` VARCHAR(24) NOT NULL,
@@ -77,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `db1`.`notice_reply` (
   INDEX `notice_no` (`notice_no` ASC),
   CONSTRAINT `notice_reply_ibfk_1`
     FOREIGN KEY (`notice_no`)
-    REFERENCES `db1`.`notice` (`no`)
+    REFERENCES `notice` (`no`)
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -87,7 +91,7 @@ COLLATE = utf8mb4_unicode_ci;
 -- -----------------------------------------------------
 -- Table `db1`.`reply`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`reply` (
+CREATE TABLE IF NOT EXISTS `reply` (
   `board_no` INT NOT NULL,
   `reply_no` INT NOT NULL,
   `writer` VARCHAR(24) NOT NULL,
@@ -96,7 +100,7 @@ CREATE TABLE IF NOT EXISTS `db1`.`reply` (
   INDEX `board_no` (`board_no` ASC),
   CONSTRAINT `reply_ibfk_1`
     FOREIGN KEY (`board_no`)
-    REFERENCES `db1`.`board` (`no`)
+    REFERENCES `board` (`no`)
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

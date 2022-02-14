@@ -44,7 +44,7 @@ public interface IBoardMapper {
 			@Result(property = "hit", column = "hit"), @Result(property = "replyCnt", column = "replyCnt") })
 	Board 찾는다By번호(int no);
 
-	@Select("SELECT * FROM board WHERE no > 0 ORDER BY no DESC LIMIT #{pageStart}, #{pageNum}")
+	@Select("SELECT * FROM board WHERE no > 0 ORDER BY no DESC LIMIT #{pageStart}, #{perPageNum}")
 	@Results(value = {
 			@Result(property = "rownum", column = "rownum", one = @One(select = "com.choi.board.dataservice.몇번째글인지출력한다")),
 			@Result(property = "no", column = "no"), @Result(property = "title", column = "title"),

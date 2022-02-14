@@ -1,13 +1,5 @@
 package com.choi.board.dataservice;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.choi.board.common.Board;
 import com.choi.board.common.Page;
 import com.choi.board.common.Reply;
-import com.choi.board.util.JdbcUtil;
 
 @Repository
 public class BoardDAO implements IBoardDAO{
