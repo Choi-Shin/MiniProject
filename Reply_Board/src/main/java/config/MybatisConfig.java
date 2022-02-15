@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages= {"com.stone"})
+@MapperScan(basePackages= {"com.choi"})
 public class MybatisConfig {
 	@Bean
 	public DataSource dataSource() {
 		String driverClassName="com.mysql.cj.jdbc.Driver";
-		String url="jdbc:mysql://3.37.252.132:3306/db1?useUnicode=true&"
+		String url="jdbc:mysql://3.37.252.132:3306/miniproject?useUnicode=true&"
 				+ "characterEncoding=utf8&&ServerTimeZone=UTC";
-		String username="root";
+		String username="miniproject";
 		String password="1234";
 		//DriverManagerDataSource dataSource=new DriverManagerDataSource();//매번 새로 연결객체구함
 		BasicDataSource dataSource=new BasicDataSource();//connection pooling지원

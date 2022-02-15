@@ -13,15 +13,8 @@ public class MemberService {
 	@Autowired
 	MemberDAO dao;
 	
-	public boolean 로그인하다(AuthUser 로그인회원) throws Exception {
-		Member DB회원 = dao.찾는다ById(로그인회원.getId());
-		boolean b = false;
-		if(DB회원.getId() != "" && DB회원.getId() != null) {
-			if(DB회원.matchPassword(로그인회원.getPassword())) {
-				return !b;
-			}
-		}
-		return b;
+	public Member 로그인하다(AuthUser 로그인회원) throws Exception {
+		return dao.로그인하다(로그인회원);
 	}
 	
 	public int 회원가입하다(Member member) {
@@ -39,7 +32,7 @@ public class MemberService {
 	public Member 찾는다ById(String id) {
 		return dao.찾는다ById(id);
 	}
-	
+
 	public int 회원탈퇴하다(String id) {
 		return dao.회원탈퇴하다(id);
 	}

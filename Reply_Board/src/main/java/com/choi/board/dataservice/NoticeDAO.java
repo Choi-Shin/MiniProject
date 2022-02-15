@@ -27,8 +27,8 @@ public class NoticeDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://3.37.252.132:3306/db1?useUnicode=true&" + "characterEncoding=utf8&&ServerTimeZone=UTC",
-					"root", "1234");
+					"jdbc:mysql://3.37.252.132:3306/miniproject?useUnicode=true&" + "characterEncoding=utf8&&ServerTimeZone=UTC",
+					"miniproject", "1234");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버를 찾을 수 없습니다.");
 		} catch (SQLException e) {
@@ -65,6 +65,7 @@ public class NoticeDAO {
 			while (rs.next()) {
 				Notice 글 = new Notice();
 				글.setNo(rs.getInt("no"));
+				글.setRownum(몇번째글인지출력한다(글.getNo()));
 				글.setTitle(rs.getString("title"));
 				글.setWriter(rs.getString("writer"));
 				글.setContent(rs.getString("content"));
@@ -113,6 +114,7 @@ public class NoticeDAO {
 			if (게시물표.next()) {
 				찾는게시물 = new Notice();
 				찾는게시물.setNo(번호);
+				찾는게시물.setRownum(몇번째글인지출력한다(번호));
 				찾는게시물.setTitle(게시물표.getString("title"));
 				찾는게시물.setContent(게시물표.getString("content"));
 				찾는게시물.setWriter(게시물표.getString("writer"));
@@ -292,5 +294,21 @@ public class NoticeDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return board;
+	}
+
+	public int 댓글을삭제하다(int no, int replyNo) {
+		String sql = "delete from notice_reply where notice_no=? and reply_no=?";
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, no);
+			pstmt.setInt(2, replyNo);
+			int result = pstmt.executeUpdate();
+			return result;
+		} catch (SQLException e) {
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		return 0;
 	}
 }

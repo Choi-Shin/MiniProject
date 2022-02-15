@@ -9,7 +9,7 @@
 				style="width: 90%">공지사항</a></li>
 			<li style="width: 100%"><a class="btn" href="../board/list"
 				style="width: 90%">자유게시판</a></li>
-			<li style="width: 100%"><a class="btn" href="#"
+			<li style="width: 100%"><a class="btn" href="/references"
 				style="width: 90%">참고한 자료</a></li>
 			<li style="width: 100%"><a class="btn"
 				href="https://github.com/Choi-Shin/ToyProject" target="_blank"

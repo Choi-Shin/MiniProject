@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <aop-reference-model>
-<aop-project name="nam-spring-webservice-master"/>
 <aop-project name="Reply_Board"/>
 </aop-reference-model>

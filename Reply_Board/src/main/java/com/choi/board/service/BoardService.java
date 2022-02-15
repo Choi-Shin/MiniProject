@@ -56,4 +56,8 @@ public class BoardService {
 	public Board n번째행을출력한다(int no) {
 		return dao.n번째행을출력한다(no);
 	}
+
+	public int 댓글을삭제하다(int no, int replyNo) {
+		return dao.댓글을삭제하다(no, replyNo);
+	}
 }
