@@ -30,6 +30,18 @@ h2 {
 	text-align: center;
 	margin-right: 15%;
 }
+
+.table-bordered {
+	margin-top: 6%;
+}
+.reply > button {
+	width:99%;
+}
+.form-group {
+	margin-bottom: 0;
+}
+
+
 </style>
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -74,7 +86,7 @@ h2 {
 			</div> -->
 			<div class="box-body">
 				<c:if test="${not empty loginUser}">
-					<form action="reply" method="post">
+					<form action="reply" method="post" class="reply">
 						<div class="form-group">
 							<input type="hidden" name="no" value="${board.no}"> <input
 								type="hidden" name="board_no" value="${board.no}"> <input
@@ -98,8 +110,7 @@ h2 {
 		</div>
 		<c:forEach items="${comments}" var="r">
 			<div class="table table-bordered">
-				<a class="btn">수정</a><a class="btn">삭제</a>
-				<h4>${r.reply_no }</h4>
+				<a class="btn">수정</a><a class="btn" onclick="댓글을삭제하시겠습니까(${board.no},${r.reply_no})">삭제</a>
 				<div style="font-weight:bold; font-size:2em;">${r.memo }</div>
 				작성자: ${r.writer}
 				<h5><fmt:formatDate value="${r.regDate}"
@@ -114,6 +125,25 @@ h2 {
 		var popupX = (document.body.offsetWidth / 2) - (200 / 2);
 		var popupY= (window.screen.height / 2) - (300 / 2);
 		window.open(url,'type','resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
+	}
+	
+	function 삭제하시겠습니까(번호){
+		var no = 번호;
+		if(confirm('게시글을 삭제하시겠습니까?') === true) {
+			location.href = "/notice/delete?no="+no;
+		} else {
+			return false;
+		}
+	}
+	
+	function 댓글을삭제하시겠습니까(글번호, 댓글번호){
+		var no = 글번호;
+		var rno = 댓글번호;
+		if(confirm('댓글을 삭제하시겠습니까?') === true) {
+			location.href = "/notice/replyDelete?no="+no+"&replyNo="+rno;
+		} else {
+			return false;
+		}
 	}
 	</script>
 </body>

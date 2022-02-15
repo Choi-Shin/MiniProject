@@ -8,7 +8,7 @@ h3 {
 }
 </style>
 <header>
-	<h1>미니 프로젝트</h1>
+	<h1><span onclick="location.href='/'">미니 프로젝트</span></h1>
 	<nav>
 		<ul>
 			<u:notLogin>
@@ -18,7 +18,7 @@ h3 {
 			</u:notLogin>
 			<u:isLogin>
 				<li><h3>${loginUser.id}님의</h3></li>
-				<li><a class="btn" onclick="팝업창('modify')">회원정보수정</a></li>
+				<li><a class="btn" href="../member/modify">내 정보 보기</a></li>
 
 				<li><a class="btn" href="../member/logout">로그아웃</a></li>
 			</u:isLogin>

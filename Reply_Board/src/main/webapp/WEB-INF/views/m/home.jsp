@@ -4,8 +4,14 @@
 <html lang="ko">
 <%@ include file="include/head.jsp"%>
 <style>
-.btn {
-	display: inline-block;
+.container>h1 {
+	font-size: 2rem;
+	padding: 0;
+	margin: 0 auto;
+}
+
+.container>p {
+	font-size: 1.5rem;
 }
 </style>
 <body>
@@ -14,9 +20,9 @@
 	<div class="container" align="center">
 		<div class="jumbotron">
 			<div class="container" align="center">
-				<h1>웹 사이트 소개</h1>
-				<p align="center">자유게시판 모바일 사이트 입니다.</p>
-				<a class="btn btn-primary btn-block" href="board/list?page=1">게시판</a>
+				<h1>환영합니다.</h1>
+				<p align="center">이 페이지는 자유게시판 모바일페이지 입니다.</p>
+				<a class="btn btn-primary btn-block" href="../board/list?page=1">게시판</a>
 				<p>
 					<a class="btn btn-primary btn-block" onclick="상세설명()">자세히 알아보기</a>
 				</p>
@@ -36,18 +42,15 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="/static/img/1.png" alt="Spring"
-						style="width: auto; height: 50vh;">
+					<img src="/static/img/1.png" alt="Spring">
 				</div>
 
 				<div class="item">
-					<img src="/static/img/2.png" alt="Tomcat"
-						style="width: auto; height: 50vh">
+					<img src="/static/img/2.png" alt="Tomcat">
 				</div>
 
 				<div class="item">
-					<img src="/static/img/3.png" alt="Bootstrap"
-						style="width: auto; height: 50vh">
+					<img src="/static/img/3.png" alt="Bootstrap">
 				</div>
 			</div>
 
@@ -68,7 +71,7 @@
 			const element = document.getElementById('detail');
 			element.innerText = '이 게시판은 스프링, 톰캣, 부트스트랩으로 제작되었습니다.';
 		}
-		</script>
+	</script>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
 </body>

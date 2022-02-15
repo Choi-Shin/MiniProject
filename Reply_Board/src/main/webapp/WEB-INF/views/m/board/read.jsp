@@ -3,8 +3,8 @@
 	pageEncoding="UTF-8"%>
 <%
 session = request.getSession(false);
-AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
-if (loginUser == null) {
+AuthUser 회원 = (AuthUser) session.getAttribute("loginUser");
+if (회원 == null) {
 	response.sendRedirect("list");
 }
 %>
@@ -28,8 +28,42 @@ textarea:focus {
 
 h2 {
 	text-align: center;
-	margin-right: 15%;
+	color: gray;
 }
+
+.container {
+	font-size: 2rem;
+}
+
+.board>a {
+	width: 20%;
+	float: right
+}
+
+.board-top>a {
+	width: 20%;
+	float: right
+}
+
+.table-bordered> .btn {
+	float: right;
+	width:20%;
+}
+
+.table-bordered {
+	margin-top: 1%;
+}
+
+.table-bordered, .table-bordered>.btn, .table-bordered>.replyNo,  .table-bordered>.replyWriter, .table-bordered>.replyDate
+ {
+	display: inline-block;
+}
+
+th {
+	font-size: 1rem;
+}
+
+
 </style>
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -56,14 +90,15 @@ h2 {
 				<tr>
 					<td>${board.rownum}</td>
 					<td colspan="2">${board.title}</td>
-					<td>${board.writer}</td>
-					<td><fmt:formatDate value="${board.regDate}"
-							pattern="yyyy년 MM월 dd일 HH:mm" /></td>
+					<td style="font-size: 1rem;">${board.writer}</td>
+					<td style="font-size: 1rem;"><fmt:formatDate
+							value="${board.regDate}" pattern="yyyy/MM/dd HH:mm" /></td>
 				</tr>
 			</table>
 			<div class="container p-5 my-5">${board.content}</div>
 			<a class="btn" href="../board/list?page=1">목록</a>
-			<c:if test="${loginUser.id == board.writer || loginUser.id == 'admin'}">
+			<c:if
+				test="${loginUser.id == board.writer || loginUser.id == 'admin'}">
 				<a class="btn" href="../board/modify?no=${board.no}">수정</a>
 				<a class="btn" href="../board/delete?no=${board.no}">삭제</a>
 			</c:if>
@@ -87,34 +122,48 @@ h2 {
 								value="${loginUser.id}" readonly>
 						</div>
 						<button type="submit"
-							class="btn btn-default btn-block replyAddBtn">댓글 저장</button>
+							class="btn btn-default btn-block replyAddBtn" style="width:90%; margin:0 auto;">댓글 저장</button>
 					</form>
 				</c:if>
 				<c:if test="${empty loginUser}">
-					<a class="btn" onclick="팝업창('login')"> 로그인 한 사용자만 댓글 등록이 가능합니다.
-					</a>
+					<h5>로그인 한 사용자만 댓글 등록이 가능합니다.</h5>
+					<a class="btn" href="../member/login"> 로그인하기 </a>
 				</c:if>
 			</div>
 		</div>
 		<c:forEach items="${comments}" var="r">
 			<div class="table table-bordered">
-				<a class="btn">수정</a><a class="btn">삭제</a>
-				<h4>${r.reply_no }</h4>
-				<div style="font-weight:bold; font-size:2em;">${r.memo }</div>
-				작성자: ${r.writer}
-				<h5><fmt:formatDate value="${r.regDate}"
-							pattern="yyyy년 MM월 dd일 HH:mm" /></h5>
-
+				<h4 class="replyNo">${r.reply_no }</h4><br>
+				<div class="replyWriter" style="font-weight: bold; font-size: 2rem;">${r.memo }</div><br>
+				작성자: ${r.writer}<br>
+				<h5 class="replyDate">
+					<fmt:formatDate value="${r.regDate}" pattern="yyyy년 MM월 dd일 HH:mm" />
+				</h5>
+				<a class="btn">수정</a><a class="btn"
+					onclick="댓글을삭제하시겠습니까(${board.no},${r.reply_no})">삭제</a>
 			</div>
 		</c:forEach>
 	</section>
 	<script type="text/javascript">
-	function 팝업창(type){
-		var url = "../member/"+type;
-		var popupX = (document.body.offsetWidth / 2) - (200 / 2);
-		var popupY= (window.screen.height / 2) - (300 / 2);
-		window.open(url,'type','resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
-	}
+		function 삭제하시겠습니까(번호) {
+			var no = 번호;
+			if (confirm('게시글을 삭제하시겠습니까?') === true) {
+				location.href = "/notice/delete?no=" + no;
+			} else {
+				return false;
+			}
+		}
+
+		function 댓글을삭제하시겠습니까(글번호, 댓글번호) {
+			var no = 글번호;
+			var rno = 댓글번호;
+			if (confirm('댓글을 삭제하시겠습니까?') === true) {
+				location.href = "/board/replyDelete?no=" + no + "&replyNo="
+						+ rno;
+			} else {
+				return false;
+			}
+		}
 	</script>
 </body>
 </html>

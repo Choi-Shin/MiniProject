@@ -4,15 +4,11 @@
 <%@ include file="../include/head.jsp"%>
 <%
 session = request.getSession(false);
-AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
-Notice board = (Notice)request.getAttribute("board");
-if (loginUser == null) {
+AuthUser 회원 = (AuthUser) session.getAttribute("loginUser");
+Notice board = (Notice) request.getAttribute("board");
+if (회원 == null) {
 	response.sendRedirect("list");
 }
-int row = (Integer)request.getAttribute("row");
-if (row == 0){
-	row = board.getNo();
-} 
 %>
 <style>
 textarea {
@@ -33,7 +29,35 @@ textarea:focus {
 
 h2 {
 	text-align: center;
-	margin-right: 15%;
+	color: gray;
+}
+
+.container {
+	font-size: 1.5rem;
+}
+
+.board>a {
+	width: 20%;
+	float: right
+}
+
+.board-top>a {
+	width: 20%;
+	float: right
+}
+
+.table-bordered>.btn {
+	float: right;
+	width: 20%;
+}
+
+.table-bordered, .table-bordered>.btn, .table-bordered>.replyNo,
+	.table-bordered>.replyWriter, .table-bordered>.replyDate {
+	display: inline-block;
+}
+
+th {
+	font-size: 1rem;
 }
 </style>
 <body>
@@ -59,11 +83,11 @@ h2 {
 					</tr>
 				</thead>
 				<tr>
-					<td><%=row %></td>
-					<td colspan="2">${board.title}</td>
-					<td>${board.writer}</td>
-					<td><fmt:formatDate value="${board.regDate}"
-							pattern="yyyy년 MM월 dd일 HH:mm" /></td>
+					<td>${board.rownum}</td>
+					<td colspan="2" style="font-size:1.5rem">${board.title}</td>
+					<td style="font-size: 1.5rem;">${board.writer}</td>
+					<td style="font-size: 1rem;"><fmt:formatDate
+							value="${board.regDate}" pattern="yyyy/MM/dd HH:mm" /></td>
 				</tr>
 			</table>
 			<div class="container p-5 my-5">${board.content}</div>
@@ -84,7 +108,7 @@ h2 {
 							<input type="hidden" name="no" value="${board.no}"> <input
 								type="hidden" name="notice_no" value="${board.no}"> <input
 								type="hidden" name="board" value="${board}"> <input
-								type="hidden" name="row" value="${row}">
+								type="hidden" name="row" value="${board.rownum}">
 							<textarea class="form-control" name="memo" rows="3"
 								placeholder="댓글내용..." style="resize: none"></textarea>
 						</div>
@@ -97,37 +121,42 @@ h2 {
 					</form>
 				</c:if>
 				<c:if test="${empty loginUser}">
-					<a class="btn" onclick="팝업창('login')"> 로그인 한 사용자만 댓글 등록이 가능합니다.
-					</a>
+					<h5>로그인 한 사용자만 댓글 등록이 가능합니다.</h5>
+					<a class="btn" href="../member/login"> 로그인하기 </a>
 				</c:if>
 				<c:forEach items="${comments}" var="r">
 					<div class="table table-bordered">
-						<a class="btn">수정</a><a class="btn">삭제</a>
-						<h4>${r.reply_no }</h4>
-						<div style="font-weight: bold; font-size: 2em;">${r.memo }</div>
-						작성자: ${r.writer}
-						<h5>
+						<h4 class="replyNo">${r.reply_no }</h4>
+						<br>
+						<div class="replyWriter"
+							style="font-weight: bold; font-size: 2em;">${r.memo }</div>
+						<br> 작성자: ${r.writer}<br>
+						<h5 class="replyDate">
 							<fmt:formatDate value="${r.regDate}"
 								pattern="yyyy년 MM월 dd일 HH:mm" />
 						</h5>
-
+						<a class="btn">수정</a><a class="btn"
+							onclick="댓글을삭제하시겠습니까(${board.no},${r.reply_no})">삭제</a>
 					</div>
 				</c:forEach>
 			</div>
 		</div>
 	</section>
 	<script type="text/javascript">
-	function 팝업창(type){
-		var url = "../member/"+type;
-		var popupX = (document.body.offsetWidth / 2) - (200 / 2);
-		var popupY= (window.screen.height / 2) - (300 / 2);
-		window.open(url,'type','resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');
-	}
-	
 	function 삭제하시겠습니까(번호){
 		var no = 번호;
 		if(confirm('게시글을 삭제하시겠습니까?') === true) {
 			location.href = "/notice/delete?no="+no;
+		} else {
+			return false;
+		}
+	}
+	
+	function 댓글을삭제하시겠습니까(글번호, 댓글번호){
+		var no = 글번호;
+		var rno = 댓글번호;
+		if(confirm('댓글을 삭제하시겠습니까?') === true) {
+			location.href = "/notice/replyDelete?no="+no+"&replyNo="+rno;
 		} else {
 			return false;
 		}

@@ -5,8 +5,8 @@
 <%
 session = request.getSession(false);
 Board board = (Board)request.getAttribute("board");
-AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
-if (loginUser == null && !board.getWriter().equals(loginUser.getId())) {
+AuthUser 회원 = (AuthUser) session.getAttribute("loginUser");
+if (회원 == null && !board.getWriter().equals(회원.getId())) {
 	response.sendRedirect("list");
 }
 %>

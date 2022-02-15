@@ -8,15 +8,17 @@ public class Member {
 	private String password;
 	private String email;
 	private Date regDate;
+	private int state;
 	
 	public Member() {
 	}
 	
-	public Member(String id, String name, String password, String email) {
+	public Member(String id, String name, String password, String email, int state) {
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
+		this.state = state;
 	}
 	
 	public Member(String newPassword, String newEmail) {
@@ -71,4 +73,14 @@ public class Member {
 	public void changePassword(String newPwd) {
 		this.password = newPwd;
 	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+	
+	
 }

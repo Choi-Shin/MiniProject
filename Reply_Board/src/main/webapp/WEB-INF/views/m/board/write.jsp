@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 session = request.getSession(false);
-AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");
-if (loginUser == null) {
+AuthUser 회원 = (AuthUser) session.getAttribute("loginUser");
+if (회원 == null) {
 	response.sendRedirect("list");
 }
 %>
@@ -24,7 +24,7 @@ li {
 .container {
 	display: block;
 	float: right;
-	width: 82vw;
+	width: 100vw;
 }
 </style>
 <%@ include file="../include/header.jsp"%>

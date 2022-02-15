@@ -45,11 +45,10 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	public ModelAndView 게시글상세내용출력하다(int no, int row, Device device) {
+	public ModelAndView 게시글상세내용출력하다(int no, Device device) {
 		ModelAndView mv = new ModelAndView();
 		Notice board = ns.찾는다By번호(no);
 		mv.addObject("board", board);
-		mv.addObject("row", row);
 		List<NoticeReply> 댓글목록 = ns.댓글목록을가져오다(no);
 		mv.addObject("comments", 댓글목록);
 		ns.조회수를올리다(board);
@@ -79,20 +78,11 @@ public class NoticeController {
 			int rownum = ns.모든게시물의갯수를세다();
 			새게시물 = new Notice();
 			새게시물 = ns.n번째행을출력한다(rownum);
-			if (device.isMobile()) {
-				url = "/m/notice/read?no=" + 새게시물.getNo();
-			} else {
-				url = "/notice/read?no=" + 새게시물.getNo();
-			}
+			url = "/notice/read?no=" + 새게시물.getNo();
 			mv.addObject("url", url);
 			mv.setViewName("redirect");
 		} else {
 			mv.addObject("msg", "글 등록에 실패하였습니다.");
-			if (device.isMobile()) {
-				url = "/m/notice/write";
-			} else {
-				url = "/notice/write";
-			}
 			url = "/notice/write";
 			mv.addObject("url", url);
 			mv.setViewName("redirect");
@@ -105,9 +95,6 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		int result = ns.게시글을삭제하다(no);
 		String url = "/notice/list";
-		if (device.isMobile()) {
-			url = "/m/notice/list";
-		}
 		mv.addObject("url", url);
 		if (result > 0) {
 			mv.addObject("msg", "게시글이 삭제되었습니다.");
@@ -118,33 +105,14 @@ public class NoticeController {
 		return mv;
 	}
 
-	@RequestMapping(value = "/reply", method = RequestMethod.POST)
-	public ModelAndView 댓글을달다(int no, int row, NoticeReply noticeReply, Device device) {
-		ModelAndView mv = new ModelAndView();
-		int result = ns.댓글달다(noticeReply);
-		String url = "/notice/read?no=" + no;
-		if (device.isMobile()) {
-			url = "/m/" + url;
-		}
-		mv.addObject("url", url);
-		if (result > 0) {
-			mv.addObject("msg", "댓글을 달았습니다.");
-
-		} else {
-			mv.addObject("msg", "댓글 작성에 실패하였습니다.");
-		}
-		mv.setViewName("redirect");
-		return mv;
-	}
-
 	@GetMapping(value = "/modify")
 	public ModelAndView 게시글을수정하다(Notice board, Device device) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("board", board);
-		if(device.isMobile()) {
+		if (device.isMobile()) {
 			mv.setViewName("m/notice/modify");
 		} else {
-			mv.setViewName("notice/modify");			
+			mv.setViewName("notice/modify");
 		}
 		return mv;
 	}
@@ -162,10 +130,38 @@ public class NoticeController {
 			mv.addObject("msg", msg);
 		}
 		String url = "../notice/read?no=" + board.getNo();
-		if(device.isMobile()) {
-			url = "../m/notice/read?no=" + board.getNo();
-		}
 		mv.addObject("url", url);
+		mv.setViewName("redirect");
+		return mv;
+	}
+
+	@RequestMapping(value = "/reply", method = RequestMethod.POST)
+	public ModelAndView 댓글을달다(int no, NoticeReply noticeReply, Device device) {
+		ModelAndView mv = new ModelAndView();
+		int result = ns.댓글달다(noticeReply);
+		String url = "/notice/read?no=" + no;
+		mv.addObject("url", url);
+		if (result > 0) {
+			mv.addObject("msg", "댓글을 달았습니다.");
+
+		} else {
+			mv.addObject("msg", "댓글 작성에 실패하였습니다.");
+		}
+		mv.setViewName("redirect");
+		return mv;
+	}
+
+	@RequestMapping(value = "/replyDelete", method = RequestMethod.GET)
+	public ModelAndView 댓글을삭제하다(int no, int replyNo, Device device) {
+		ModelAndView mv = new ModelAndView();
+		int result = ns.댓글을삭제하다(no, replyNo);
+		String url = "/notice/read?no=" + no;
+		mv.addObject("url", url);
+		if (result > 0) {
+			mv.addObject("msg", "게시글이 삭제되었습니다.");
+		} else {
+			mv.addObject("msg", "삭제에 실패하였습니다.");
+		}
 		mv.setViewName("redirect");
 		return mv;
 	}

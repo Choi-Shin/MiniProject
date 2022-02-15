@@ -24,7 +24,7 @@ public class MemberController {
 	@GetMapping(value = "/login")
 	public String 로그인팝업창띄우다(Device device) {
 		if (device.isMobile()) {
-			return "/m/member/로그인팝업";
+			return "/m/member/로그인";
 		} else {
 			return "/member/로그인팝업";
 		}
@@ -33,26 +33,24 @@ public class MemberController {
 	@GetMapping(value = "/admin/login")
 	public String 관리자로그인팝업띄우다(AuthUser user, Device device) {
 		if (device.isMobile()) {
-			return "/m/member/관리자로그인팝업";
+			return "/m/member/관리자로그인";
 		} else {
 			return "/member/관리자로그인팝업";
 		}
 	}
 
 	@PostMapping(value = "/login")
-	public ModelAndView 로그인시도하다(AuthUser user, Device device) {
+	public ModelAndView 로그인시도하다(AuthUser user, Device device) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		Member 회원;
 		String welcome;
-		if (device.isMobile()) {
-			mv.setViewName("/m/member/로그인결과");
-		} else {
-			mv.setViewName("/member/로그인결과");
-		}
-		회원 = ms.로그인하다(user.getId(), user.getPassword());
-		if (회원 == null) {
+		Member m = ms.로그인하다(user);
+		mv.setViewName("/member/로그인결과");
+		if (m == null) {
 			mv.addObject("msg", "존재하지 않는 아이디이거나 비밀번호가 틀립니다.");
-		} else if (회원 != null) {
+			if (device.isMobile()) {
+				mv.setViewName("/m/member/로그인");
+			}
+		} else {
 			if (user.getId().equals("admin")) {
 				welcome = "관리자 로그인에 성공하였습니다.";
 				mv.addObject("admin", user);
@@ -60,24 +58,27 @@ public class MemberController {
 				System.out.println("id: " + user.getId());
 				welcome = "환영합니다. " + user.getId() + "님";
 			}
+			if (device.isMobile()) {
+				mv.setViewName("/m/home");
+			}
 			mv.addObject("msg", welcome);
 			mv.addObject("loginUser", user);
 		}
+
 		return mv;
 	}
 
 	@PostMapping(value = "/admin/login")
 	public ModelAndView 관리자로그인시도하다(AuthUser user, Device device) {
 		ModelAndView mv = new ModelAndView();
-		Member 회원;
 		String welcome;
 		if (user.getId().equals("admin")) {
 			try {
-				회원 = ms.로그인하다(user.getId(), user.getPassword());
-				if (회원 == null) {
+				Member m = ms.로그인하다(user);
+				if (m == null) {
 					welcome = "관리자 로그인에 실패하였습니다.";
 					mv.addObject("msg", welcome);
-				} else if (회원 != null) {
+				} else {
 					welcome = "관리자 로그인에 성공하였습니다.";
 					mv.addObject("msg", welcome);
 					mv.addObject("admin", user);
@@ -91,7 +92,7 @@ public class MemberController {
 			mv.addObject("msg", welcome);
 		}
 		if (device.isMobile()) {
-			mv.setViewName("/m/member/로그인결과");
+			mv.setViewName("/m/notice/list?page=1");
 		} else {
 			mv.setViewName("/member/로그인결과");
 		}
@@ -111,7 +112,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		int result = ms.회원가입하다(member);
 		if (device.isMobile()) {
-			mv.setViewName("/m/member/회원가입결과");
+			mv.setViewName("/m/board/list");
 		} else {
 			mv.setViewName("/member/회원가입결과");
 		}
@@ -134,11 +135,17 @@ public class MemberController {
 	}
 
 	@GetMapping(value = "/modify")
-	public String 정보수정창을띄우다(Device device) {
+	public ModelAndView 정보수정창을띄우다(HttpSession session, Device device) {
+		ModelAndView mv = new ModelAndView();
+		AuthUser user = (AuthUser) session.getAttribute("loginUser");
+		Member m = ms.찾는다ById(user.getId());
+		mv.addObject("member", m);
 		if (device.isMobile()) {
-			return "m/member/회원정보수정";
+			mv.setViewName("/m/member/내정보보기");
+		} else {
+			mv.setViewName("/member/내정보보기");
 		}
-		return "member/회원정보수정";
+		return mv;
 	}
 
 	@PostMapping(value = "/modify")
@@ -149,18 +156,16 @@ public class MemberController {
 		m.setPassword(newPassword);
 		int result = ms.비밀번호변경하다(m);
 		if (result > 0) {
-			mv.addObject("msg", "정보를 수정하였습니다.");
+			mv.addObject("msg", "비밀번호를 변경하였습니다.");
 			user.setPassword(newPassword);
 			session.setAttribute("loginUser", user);
-			mv.setViewName("/member/회원정보수정결과");
 		} else {
 			mv.addObject("msg", "수정에 실패하였습니다.");
-			mv.setViewName("/member/회원정보수정결과");
 		}
 		if (device.isMobile()) {
-			mv.setViewName("/m/member/회원정보수정결과");
+			mv.setViewName("/m/home");
 		} else {
-			mv.setViewName("/member/회원정보수정결과");
+			mv.setViewName("/home");
 		}
 		return mv;
 	}

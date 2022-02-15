@@ -23,8 +23,6 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.choi.board.util.JdbcUtil"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Param"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.One"/>
@@ -53,11 +51,13 @@
     <fullyQualifiedTypeName name="com.choi.board.dataservice.IMemberDAO"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Select"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.annotations.Result"/>
-    <fullyQualifiedTypeName name="com.choi.board.common.AuthUser"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="com.choi.board.dataservice.INoticeDAO"/>
     <fullyQualifiedTypeName name="com.choi.board.dataservice.INoticeMapper"/>
     <fullyQualifiedTypeName name="com.choi.board.common.NoticeReply"/>
     <fullyQualifiedTypeName name="com.choi.board.common.Notice"/>
     <fullyQualifiedTypeName name="com.choi.board.common.Member"/>
+    <fullyQualifiedTypeName name="com.choi.board.common.AuthUser"/>
+    <fullyQualifiedTypeName name="org.springframework.web.servlet.ModelAndView"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 </qualifiedTypeNameHistroy>

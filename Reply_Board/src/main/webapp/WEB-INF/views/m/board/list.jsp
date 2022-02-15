@@ -1,16 +1,14 @@
-<%@page import="com.choi.board.common.PageNavigator"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html>
 <%@ include file="../include/head.jsp"%>
 <style>
 .table {
-	width: 78vw;
-	font-size: 14px;
+	width: 100vw;
+	font-size: 1rem;
 }
 h2 {
 	text-align: center;
-	margin-right: 15%;
 	color: gray;
 }
 </style>
@@ -21,34 +19,31 @@ h2 {
 		<div id="board">
 			<h2>자유게시판</h2>
 			<div class="board-top">
-				<a class="btn" style="margin-right: 5%" onclick="로그인유저인가('write')">글쓰기</a>
+				<a class="btn" style="margin-right: 5%;width:20%;float:right" onclick="로그인유저인가('write')">글쓰기</a>
 			</div>
 
 			<table class="table table-striped">
 				<colgroup>
-					<col width="12.5%" span="8">
+					<col width="14%" span="7">
 				</colgroup>
 				<thead>
 					<tr>
 						<th colspan="1">번호</th>
 						<th colspan="3">제목</th>
 						<th colspan="1">작성자</th>
-						<th colspan="2">날짜</th>
-						<th>조회수</th>
+						<th colspan="2">조회수</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach items="${boards}" var="b" varStatus="status">
 						<tr class="detail">
 							<td colspan="1">${b.rownum}</td>
-							<td colspan="3"><a onclick="로그인유저인가('read?no=${b.no}')">${b.title}</a>
+							<td colspan="3" style="font-size:1.2rem"><a onclick="로그인유저인가('read?no=${b.no}')">${b.title}</a>
 								<c:if test="${b.replyCnt > 0}">
 									<span class="badge bg-red">${b.replyCnt}</span>
 								</c:if></td>
-							<td colspan="1">${b.writer}</td>
-							<td colspan="2"><fmt:formatDate value="${b.regDate}"
-									pattern="yyyy년 MM월 dd일 HH:mm" /></td>
-							<td>${b.hit}</td>
+							<td colspan="1" style="font-size: 1rem">${b.writer}</td>
+							<td colspan="2">${b.hit}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
