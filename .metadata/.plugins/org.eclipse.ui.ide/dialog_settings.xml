@@ -40,6 +40,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="/Users/macintosh/git/ToyProject/Reply_Board"/>
 			<item value="/Users/macintosh/git/ToyProject"/>
 			<item value="/Users/macintosh/Downloads/nam-spring-webservice-master/nam-spring-webservice-master"/>
 		</list>
