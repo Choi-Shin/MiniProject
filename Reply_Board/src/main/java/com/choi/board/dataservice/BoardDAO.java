@@ -86,13 +86,11 @@ public class BoardDAO {
 	public int 새글을저장하다(Board 새게시물) {
 		String sql = "insert into board (title, writer, content, regDate) values(?,?,?,now())";
 		PreparedStatement pstmt = null;
-
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, 새게시물.getTitle());
 			pstmt.setString(2, 새게시물.getWriter());
 			pstmt.setString(3, 새게시물.getContent());
-			;
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage() + "저장 실패");
@@ -149,16 +147,16 @@ public class BoardDAO {
 	public int 게시글을삭제하다(int no) {
 		String sql = "delete from board where no=?";
 		PreparedStatement pstmt = null;
+		int result = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
-			int result = pstmt.executeUpdate();
-			return result;
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
 			JdbcUtil.close(pstmt);
 		}
-		return 0;
+		return result;
 	}
 
 	public int 댓글수를세다(int 글번호) {

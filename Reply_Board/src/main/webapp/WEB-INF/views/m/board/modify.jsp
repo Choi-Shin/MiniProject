@@ -25,8 +25,13 @@ li {
 
 .container {
 	display: block;
+	width: 100vw;
+}
+
+.btn-primary {
+	width: 20%;
+	display: inline-block;
 	float: right;
-	width: 82vw;
 }
 </style>
 <%@ include file="../include/header.jsp"%>
@@ -80,8 +85,8 @@ li {
 			</form>
 
 			<div>
+				<a class="btn btn-sm btn-primary" id="btnSave">저장</a>
 				<a class="btn btn-sm btn-primary" href="../board/list">목록</a>
-				<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 
 
 			</div>

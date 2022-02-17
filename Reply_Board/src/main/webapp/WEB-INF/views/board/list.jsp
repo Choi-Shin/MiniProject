@@ -56,25 +56,27 @@ h2 {
 			</table>
 		</div>
 	</section>
-	<div class="box-footer">
-		<div class="text-center">
-			<ul class="pagination" style="display: inline-block;">
-				<c:if test="#{pageNavigator.prev}">
-					<li><a href="list?page=${pageNavigator.startPage - 1}">이전</a></li>
-				</c:if>
-				<c:forEach begin="${pageNavigator.startPage}"
-					end="${pageNavigator.endPage}" var="num">
-					<li
-						<c:out value="${pageNavigator.page.page == num ? 'class=active' : ''}"/>>
-						<a href="list?page=${num}" class="btn">${num}</a>
-					</li>
-				</c:forEach>
-				<c:if test="${pageNavigator.next && pageNavigator.endPage > 0}">
-					<li><a href="list?page=${pageNavigator.endPage + 1}">다음</a></li>
-				</c:if>
-			</ul>
+	<footer>
+		<div class="box-footer">
+			<div class="text-center">
+				<ul class="pagination" style="display: inline-block;">
+					<c:if test="#{pageNavigator.prev}">
+						<li><a href="list?page=${pageNavigator.startPage - 1}">이전</a></li>
+					</c:if>
+					<c:forEach begin="${pageNavigator.startPage}"
+						end="${pageNavigator.endPage}" var="num">
+						<li
+							<c:out value="${pageNavigator.page.page == num ? 'class=active' : ''}"/>>
+							<a href="list?page=${num}" class="btn">${num}</a>
+						</li>
+					</c:forEach>
+					<c:if test="${pageNavigator.next && pageNavigator.endPage > 0}">
+						<li><a href="list?page=${pageNavigator.endPage + 1}">다음</a></li>
+					</c:if>
+				</ul>
+			</div>
 		</div>
-	</div>
+	</footer>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.js"></script>
 	<%@include file="../include/footer.jsp"%>

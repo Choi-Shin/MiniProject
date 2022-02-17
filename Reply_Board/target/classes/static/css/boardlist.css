@@ -24,24 +24,18 @@ aside>ul, li {
 }
 
 footer {
-	position: fixed;
-	bottom: 0;
 	width: 100%;
-	height: 5%;
 }
 
 section {
 	margin-bottom: 10px;
 	width: 82vw;
-	height: 100%;
 	float: right;
 }
 
-.aside {
+aside {
 	width: 15vw;
-	height: 85vh;
-	position: sticky;
-	left: 0;
+	height: 100vh;
 	border-top: 1px solid white;
 	float: left;
 	color: white;
@@ -54,12 +48,6 @@ header {
 	justify-content: space-between;
 	background: cadetblue;
 	padding: 20px;
-	position: fixed;
-	overflow-y: scroll;
-	overflow-x: hidden;
-	display: flex;
-	justify-content: space-between;
-	background: cadetblue;
 }
 
 nav {
@@ -110,22 +98,30 @@ h1 {
 	float: right;
 }
 
-@media screen and (max-width: 500px) {
-	aside {
-		width: 28vw;
-		font-size: 4vw;
-	}
-	section {
-		margin-bottom: 10px;
-		width: 67vw;
-		float: right;
-		font-size: 1.5vw;
-	}
-}
-
 .table-striped>tbody>tr:hover {
 	background-color: #DCDCDC;
 	color: white;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+#container {
+	position: relative;
+	width: 1130px;
+	padding: 20px 30px;
+	margin: 0 auto;
+	letter-spacing: -.2px;
 }
 
 h1 {
@@ -150,6 +146,81 @@ nav>ul {
 
 nav>li.icon {
 	flex-basis: 25%;
+}
+
+header {
+	background: cadetblue;
+	padding: 20px;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+img {
+	display: block;
+	margin: 0 auto;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	background: teal;
+	padding: 20px;
+}
+
+h1 {
+	display: inline-block;
+	vertical-align: middle;
+	color: white;
+	margin: 0.5rem;
+	padding: 0;
+}
+
+nav {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+li.icon {
+	flex-basis: 25%;
+}
+
+.btn, .btn:visited, .btn:link, .btn:active {
+	display: block;
+	text-align: center;
+	margin: .25rem;
+	padding: .5rem 1rem;
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	background: teal;
+}
+
+.btn:hover {
+	background: yellowgreen;
+	text-decoration: none;
+}
+
+.btn:link {
+	color: white;
 }
 
 html {

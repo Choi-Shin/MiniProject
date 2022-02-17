@@ -100,7 +100,7 @@ th {
 			<c:if
 				test="${loginUser.id == board.writer || loginUser.id == 'admin'}">
 				<a class="btn" href="../board/modify?no=${board.no}">수정</a>
-				<a class="btn" href="../board/delete?no=${board.no}">삭제</a>
+				<a class="btn" onclick="삭제하시겠습니까(${board.no})">삭제</a>
 			</c:if>
 		</div>
 		<div class="box box-warning">
@@ -158,7 +158,7 @@ th {
 			var no = 글번호;
 			var rno = 댓글번호;
 			if (confirm('댓글을 삭제하시겠습니까?') === true) {
-				location.href = "/board/replyDelete?no=" + no + "&replyNo="
+				location.href = "/notice/replyDelete?no=" + no + "&replyNo="
 						+ rno;
 			} else {
 				return false;

@@ -97,7 +97,7 @@ public class NoticeDAO {
 			;
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage() + "저장 실패");
+			System.out.println(e.getMessage() + " 저장 실패");
 		}
 		return 0;
 	}

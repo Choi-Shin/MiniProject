@@ -79,7 +79,7 @@ h2 {
 	<footer>
 		<div class="box-footer">
 			<div class="text-center">
-				<ul class="pagination">
+				<ul class="pagination" style="display: inline-block;">
 					<c:if test="#{pageNavigator.prev}">
 						<li><a href="list?page=${pageNavigator.startPage - 1}">이전</a></li>
 					</c:if>
@@ -87,7 +87,7 @@ h2 {
 						end="${pageNavigator.endPage}" var="num">
 						<li
 							<c:out value="${pageNavigator.page.page == num ? 'class=active' : ''}"/>>
-							<a href="list?page=${num}">${num}</a>
+							<a href="list?page=${num}" class="btn">${num}</a>
 						</li>
 					</c:forEach>
 					<c:if test="${pageNavigator.next && pageNavigator.endPage > 0}">
@@ -99,5 +99,6 @@ h2 {
 	</footer>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.js"></script>
+	<%@include file="../include/footer.jsp"%>
 </body>
 </html>

@@ -106,8 +106,9 @@ public class NoticeController {
 	}
 
 	@GetMapping(value = "/modify")
-	public ModelAndView 게시글을수정하다(Notice board, Device device) {
+	public ModelAndView 게시글을수정하다(int no, Device device) {
 		ModelAndView mv = new ModelAndView();
+		Notice board = ns.찾는다By번호(no);
 		mv.addObject("board", board);
 		if (device.isMobile()) {
 			mv.setViewName("m/notice/modify");

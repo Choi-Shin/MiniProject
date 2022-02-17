@@ -67,9 +67,16 @@ th {
 	<section>
 		<div id="board" class="board">
 			<h2>게시글보기</h2>
-			<div class="board-top">
-				<a class="btn" style="margin-right: 5%" onclick="로그인유저인가('write')">글쓰기</a>
-			</div>
+			<u:isAdmin>
+				<div class="board-top">
+					<a class="btn" onclick="관리자인가('write')" style="margin-right: 5%;width:20%;float:right;">글쓰기</a>
+				</div>
+			</u:isAdmin>
+			<u:notAdmin>
+				<div class="board-top">
+					<a class="btn" href="../member/admin/login" style="margin-right: 5%;width:30%;float:right;">관리자로그인</a>
+				</div>
+			</u:notAdmin>
 			<table class="table table-striped">
 				<colgroup>
 					<col width="16%" span="5">

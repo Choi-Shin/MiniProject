@@ -8,7 +8,9 @@ h3 {
 }
 </style>
 <header>
-	<h1><span onclick="location.href='/'">미니 프로젝트</span></h1>
+	<h1>
+		<span onclick="location.href='/'">미니 프로젝트</span>
+	</h1>
 	<nav>
 		<ul>
 			<u:notLogin>

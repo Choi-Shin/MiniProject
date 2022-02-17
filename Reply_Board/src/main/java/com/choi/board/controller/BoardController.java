@@ -76,9 +76,6 @@ public class BoardController {
 			새게시물 = new Board();
 			새게시물 = bs.n번째행을출력한다(rownum);
 			String url = "/board/read?no=" + 새게시물.getNo();
-			if (device.isMobile()) {
-				url = "/m" + url;
-			}
 			mv.addObject("url", url);
 			mv.setViewName("redirect");
 		} else {
@@ -94,6 +91,7 @@ public class BoardController {
 	public ModelAndView 게시글을삭제하다(int no, Device device) {
 		ModelAndView mv = new ModelAndView();
 		int result = bs.게시글을삭제하다(no);
+		System.out.println(result);
 		if (result > 0) {
 			mv.addObject("msg", "게시글이 삭제되었습니다.");
 		} else {
