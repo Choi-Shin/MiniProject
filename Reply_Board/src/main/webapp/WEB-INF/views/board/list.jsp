@@ -14,6 +14,17 @@ h2 {
 	margin-right: 15%;
 	color: gray;
 }
+
+.user_data {
+	position: absolute;
+	z-index: 2;
+	background-color: white;
+	border: 1px gray solid;
+	border-radius: 1rem;
+}
+.user_data > ul {
+	margin-top: 1rem;
+}
 </style>
 <body>
 	<%@ include file="../include/header.jsp"%>
@@ -38,15 +49,33 @@ h2 {
 						<th>조회수</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id='tbody'>
 					<c:forEach items="${boards}" var="b" varStatus="status">
 						<tr class="detail">
 							<td colspan="1">${b.rownum}</td>
-							<td colspan="3"><a onclick="로그인유저인가('read?no=${b.no}')">${b.title}</a>
+							<td colspan="3" onclick="로그인유저인가('read?no=${b.no}')">${b.title}
 								<c:if test="${b.replyCnt > 0}">
 									<span class="badge bg-red">${b.replyCnt}</span>
 								</c:if></td>
-							<td colspan="1">${b.writer}</td>
+							<td colspan="1"><a class="menu"
+								onclick="메뉴보이기('${b.writer}${b.rownum}')"
+								>${b.writer}</a>
+								<div id="${b.writer}${b.rownum}" class="user_data"
+									style="display: none" onmouseleave="메뉴사라지기('${b.writer}${b.rownum}')">
+									<ul class="user_data_list" >
+										<li><a href="//gallog.dcinside.com/engmatpro/posting">작성글 보기
+										</a></li>
+										<li><a href="//gallog.dcinside.com/engmatpro/comment">메시지 보내기
+										</a></li>
+										<li class="bg_grey"><a
+											href="/mgallery/board/lists/?id=github&amp;s_type=search_name&amp;s_keyword=%EA%B2%8C%EC%9C%BC%EB%A5%B8%EB%91%94%EC%9E%AC">
+												회원 정보 보기<em class="sp_img icon_go"></em>
+										</a></li>
+										<li class="bg_grey"><a
+											href="//gallog.dcinside.com/engmatpro">차단하기<em
+												class="sp_img icon_go"></em></a></li>
+									</ul>
+								</div></td>
 							<td colspan="2"><fmt:formatDate value="${b.regDate}"
 									pattern="yyyy년 MM월 dd일 HH:mm" /></td>
 							<td>${b.hit}</td>
@@ -77,6 +106,21 @@ h2 {
 			</div>
 		</div>
 	</footer>
+	<script>
+		function 메뉴보이기(menu) {
+			var link = document.getElementById(menu);
+			if (link.style.display == 'none') {
+				link.style.display = 'block';
+			} else {
+				link.style.display = 'none';
+			}
+		}
+
+		function 메뉴사라지기(menu) {
+			var link = document.getElementById(menu);
+			link.style.display = 'none';
+		}
+	</script>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.js"></script>
 	<%@include file="../include/footer.jsp"%>

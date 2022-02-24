@@ -1,5 +1,7 @@
 package com.choi.board.controller;
 
+import java.util.Base64;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,17 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.choi.board.common.AuthUser;
 import com.choi.board.common.Member;
-import com.choi.board.service.MemberService;
+import com.choi.board.service.IMemberService;
 
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
 	@Autowired
-	MemberService ms;
+	IMemberService ms;
 
 	@GetMapping(value = "/login")
 	public String 로그인팝업창띄우다(Device device) {
@@ -50,12 +53,11 @@ public class MemberController {
 			if (device.isMobile()) {
 				mv.setViewName("/m/member/로그인");
 			}
-		} else {
+		} else if (m.getState() == 1){
 			if (user.getId().equals("admin")) {
 				welcome = "관리자 로그인에 성공하였습니다.";
 				mv.addObject("admin", user);
 			} else {
-				System.out.println("id: " + user.getId());
 				welcome = "환영합니다. " + user.getId() + "님";
 			}
 			if (device.isMobile()) {
@@ -64,7 +66,6 @@ public class MemberController {
 			mv.addObject("msg", welcome);
 			mv.addObject("loginUser", user);
 		}
-
 		return mv;
 	}
 
@@ -108,7 +109,7 @@ public class MemberController {
 	}
 
 	@PostMapping(value = "/register")
-	public ModelAndView 회원가입하다(Member member, Device device) {
+	public ModelAndView 회원가입하다(Member member, Device device, MultipartFile profileFile) {
 		ModelAndView mv = new ModelAndView();
 		int result = ms.회원가입하다(member);
 		if (device.isMobile()) {
@@ -117,7 +118,7 @@ public class MemberController {
 			mv.setViewName("/member/회원가입결과");
 		}
 		if (result == -1) {
-			mv.addObject("msg", "가입에 실패하였습니다.");
+			mv.addObject("msg", "탈퇴한 계정과 같거나 휴면계정입니다.");
 		} else if (result == 0) {
 			mv.addObject("msg", "이미 존재하는 아이디입니다.");
 		} else if (result > 0) {
@@ -140,6 +141,8 @@ public class MemberController {
 		AuthUser user = (AuthUser) session.getAttribute("loginUser");
 		Member m = ms.찾는다ById(user.getId());
 		mv.addObject("member", m);
+		String profile = Base64.getEncoder().encodeToString(m.getProfile());
+		mv.addObject("profile", profile);
 		if (device.isMobile()) {
 			mv.setViewName("/m/member/내정보보기");
 		} else {
@@ -169,6 +172,26 @@ public class MemberController {
 		}
 		return mv;
 	}
+	
+	@PostMapping(value = "/profile")
+	public ModelAndView 프로필사진변경하다(HttpSession session, MultipartFile profileFile) {
+		ModelAndView mv = new ModelAndView();
+		AuthUser authUser = (AuthUser)session.getAttribute("loginUser");
+		Member 회원 = ms.찾는다ById(authUser.getId());
+		회원.setProfileFile(profileFile);
+		int result = ms.프로필사진변경하다(회원);
+		String msg;
+		if(result > 0) {
+			msg = 회원.getId() + "님의 프로필 사진이 변경되었습니다.";
+			mv.addObject("msg", msg);
+		} else {
+			msg = "프로필 사진 변경에 실패하였습니다. 이용에 불편을 드려 죄송합니다.";
+			mv.addObject("msg", msg);
+		}
+		mv.addObject("url", "/");
+		mv.setViewName("redirect");
+		return mv;
+	}
 
 	@GetMapping(value = "/withdraw")
 	public ModelAndView 회원탈퇴하다(String id) {
@@ -182,8 +205,10 @@ public class MemberController {
 			msg = "탈퇴에 실패하였습니다. 관리자에게 문의바랍니다.";
 			mv.addObject("msg", msg);
 		}
-		mv.addObject("url", "/");
+		mv.addObject("url", "/member/logout");
 		mv.setViewName("redirect");
 		return mv;
 	}
+	
+	
 }

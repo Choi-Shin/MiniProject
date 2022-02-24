@@ -15,13 +15,13 @@ import com.choi.board.common.Board;
 import com.choi.board.common.Page;
 import com.choi.board.common.PageNavigator;
 import com.choi.board.common.Reply;
-import com.choi.board.service.BoardService;
+import com.choi.board.service.IBoardService;
 
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
 	@Autowired
-	BoardService bs;
+	IBoardService bs;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView 게시판목록수집하다(Page page, Device device) {
@@ -43,13 +43,17 @@ public class BoardController {
 	}
 
 	@GetMapping(value = "/read")
-	public ModelAndView 게시글상세내용출력하다(int no, Device device) {
+	public ModelAndView 게시글상세내용출력하다(int no, Device device) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Board board = bs.찾는다By번호(no);
-		mv.addObject("board", board);
-		List<Reply> 댓글목록 = bs.댓글목록을가져오다(no);
-		mv.addObject("comments", 댓글목록);
-		bs.조회수를올리다(board);
+		if(board.getState() == 1) {
+			mv.addObject("board", board);
+			List<Reply> 댓글목록 = bs.댓글목록을가져오다(no);
+			mv.addObject("comments", 댓글목록);
+			bs.조회수를올리다(board);
+		} else {
+			throw new Exception();
+		}
 		if (device.isMobile()) {
 			mv.setViewName("m/board/read");
 		} else {

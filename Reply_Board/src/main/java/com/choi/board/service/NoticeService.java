@@ -5,15 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.choi.board.common.Board;
 import com.choi.board.common.Notice;
 import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
-import com.choi.board.common.Reply;
 import com.choi.board.dataservice.NoticeDAO;
 
 @Service
-public class NoticeService {
+public class NoticeService implements INoticeService {
 	
 	@Autowired
 	NoticeDAO dao;
@@ -36,6 +34,9 @@ public class NoticeService {
 	public int 게시글을삭제하다(int no) {
 		return dao.게시글을삭제하다(no);
 	}
+	public int 댓글수를세다(int no) {
+		return dao.댓글수를세다(no);
+	}
 	public int 댓글달다(NoticeReply noticeRe) {
 		return dao.댓글달다(noticeRe);
 	}
@@ -44,6 +45,10 @@ public class NoticeService {
 	}
 	public int 게시글을수정하다(Notice notice) {
 		return dao.게시글을수정하다(notice);
+	}
+	@Override
+	public int 몇번째글인지출력한다(int no) {
+		return dao.몇번째글인지출력한다(no);
 	}
 	public Notice n번째행을출력한다(int no) {
 		return dao.n번째행을출력한다(no);

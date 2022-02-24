@@ -20,9 +20,8 @@ public class MemberDAO {
 	public MemberDAO() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://3.37.252.132/miniproject?useUnicode=true&" + "characterEncoding=utf8&&ServerTimeZone=UTC",
-					"miniproject", "1234");
+			conn = DriverManager.getConnection("jdbc:mysql://3.37.252.132/miniproject?useUnicode=true&"
+					+ "characterEncoding=utf8&&ServerTimeZone=UTC&autoReconnect=true", "miniproject", "1234");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버를 찾을 수 없습니다.");
 		} catch (SQLException e) {
@@ -43,9 +42,11 @@ public class MemberDAO {
 				회원.setId(id);
 				회원.setName(rs.getString("name"));
 				회원.setPassword(rs.getString("password"));
+				회원.setProfile(rs.getBytes("profile"));
 				회원.setEmail(rs.getString("email"));
 				Date date = rs.getTimestamp("regdate");
 				회원.setRegDate(date);
+				회원.setState(rs.getInt("state"));
 			}
 			return 회원;
 		} catch (SQLException e) {
@@ -57,15 +58,16 @@ public class MemberDAO {
 	}
 
 	public int 회원가입하다(Member member) {
-		String sql = "insert into member(id, name, password, email) values(?,?,md5(?),?)";
+		String sql = "insert into member(id, name, profile, password, email) values(?,?,?,md5(?),?)";
 		PreparedStatement pstmt = null;
 
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getId());
 			pstmt.setString(2, member.getName());
-			pstmt.setString(3, member.getPassword());
-			pstmt.setString(4, member.getEmail());
+			pstmt.setBytes(3, member.getProfile());
+			pstmt.setString(4, member.getPassword());
+			pstmt.setString(5, member.getEmail());
 			return pstmt.executeUpdate();
 		} catch (SQLException e) {
 		} finally {
@@ -89,9 +91,32 @@ public class MemberDAO {
 		return 0;
 	}
 
-	public int 회원탈퇴하다(String id) {
-		String sql = "update member set state=3 where id=?";
+	public int 프로필사진변경하다(Member member) {
+		String sql = "update member set profile=? where id=?";
 		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setBytes(1, member.getProfile());
+			pstmt.setString(2, member.getId());
+			return pstmt.executeUpdate();
+		} catch (SQLException e) {
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		return 0;
+	}
+
+	public int 회원탈퇴하다(String id) {
+		PreparedStatement pstmt = null;
+		String 게시판상태변경 = "update board set state=3 where writer=?";
+		try {
+			pstmt = conn.prepareStatement(게시판상태변경);
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e1) {
+		}
+		pstmt = null;
+		String sql = "update member set state=3 where id=?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -117,9 +142,11 @@ public class MemberDAO {
 				회원.setId(rs.getString("id"));
 				회원.setName(rs.getString("name"));
 				회원.setPassword(rs.getString("password"));
+				회원.setProfile(rs.getBytes("profile"));
 				회원.setEmail(rs.getString("email"));
 				Date date = rs.getTimestamp("regdate");
 				회원.setRegDate(date);
+				회원.setState(rs.getInt("state"));
 				return 회원;
 			}
 		} catch (SQLException e) {

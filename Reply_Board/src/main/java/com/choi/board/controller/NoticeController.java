@@ -9,21 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.choi.board.common.Board;
 import com.choi.board.common.Notice;
 import com.choi.board.common.NoticeReply;
 import com.choi.board.common.Page;
 import com.choi.board.common.PageNavigator;
-import com.choi.board.service.NoticeService;
+import com.choi.board.service.INoticeService;
 
 @Controller
 @RequestMapping("/notice/*")
 public class NoticeController {
 	@Autowired
-	NoticeService ns;
+	INoticeService ns;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView 게시판목록수집하다(Page page, Device device) {

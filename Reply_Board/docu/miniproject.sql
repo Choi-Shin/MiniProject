@@ -8,41 +8,43 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema db1
+-- Schema miniproject
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema db1
+-- Schema miniproject
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `db1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
-USE `db1` ;
+CREATE SCHEMA IF NOT EXISTS `miniproject` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ;
+USE `miniproject` ;
 
 -- -----------------------------------------------------
--- Table `db1`.`board`
+-- Table `miniproject`.`board`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`board` (
+CREATE TABLE IF NOT EXISTS `miniproject`.`board` (
   `no` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(200) NOT NULL,
-  `content` TEXT NULL DEFAULT NULL,
+  `content` LONGTEXT NULL DEFAULT NULL,
   `writer` VARCHAR(50) NOT NULL,
   `regdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hit` INT NULL DEFAULT '0',
   PRIMARY KEY (`no`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 16
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `db1`.`member`
+-- Table `miniproject`.`member`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`member` (
+CREATE TABLE IF NOT EXISTS `miniproject`.`member` (
   `id` VARCHAR(50) NOT NULL,
   `name` VARCHAR(20) NOT NULL,
-  `password` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `profile` BLOB NULL DEFAULT NULL,
   `email` VARCHAR(30) NOT NULL,
   `regdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `state` INT NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -50,15 +52,19 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `db1`.`notice`
+-- Table `miniproject`.`message`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`notice` (
-  `no` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(200) NOT NULL,
-  `content` TEXT NULL DEFAULT NULL,
-  `writer` VARCHAR(50) NOT NULL DEFAULT '관리자',
-  `regdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `hit` INT NULL DEFAULT '0',
+CREATE TABLE IF NOT EXISTS `miniproject`.`message` (
+  `no` INT NOT NULL DEFAULT '0',
+  `recv_id` VARCHAR(45) NOT NULL,
+  `send_id` VARCHAR(45) NOT NULL,
+  `title` VARCHAR(45) NOT NULL,
+  `note` TEXT NOT NULL,
+  `date_sent` TIMESTAMP NOT NULL,
+  `date_read` TIMESTAMP NOT NULL,
+  `recv_read` ENUM('N', 'Y') NOT NULL DEFAULT 'N',
+  `recv_del` ENUM('N', 'Y') NULL DEFAULT 'N',
+  `sent_del` ENUM('N', 'Y') NULL DEFAULT 'N',
   PRIMARY KEY (`no`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -66,18 +72,35 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `db1`.`notice_reply`
+-- Table `miniproject`.`notice`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`notice_reply` (
+CREATE TABLE IF NOT EXISTS `miniproject`.`notice` (
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(200) NOT NULL,
+  `content` LONGTEXT NULL DEFAULT NULL,
+  `writer` VARCHAR(50) NOT NULL DEFAULT '관리자',
+  `regdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `hit` INT NULL DEFAULT '0',
+  PRIMARY KEY (`no`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 5
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci;
+
+
+-- -----------------------------------------------------
+-- Table `miniproject`.`notice_reply`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `miniproject`.`notice_reply` (
   `notice_no` INT NOT NULL,
   `reply_no` INT NOT NULL,
   `writer` VARCHAR(24) NOT NULL,
   `memo` TEXT NULL DEFAULT NULL,
   `regDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  INDEX `notice_no` (`notice_no` ASC),
+  INDEX `notice_no` (`notice_no` ASC) VISIBLE,
   CONSTRAINT `notice_reply_ibfk_1`
     FOREIGN KEY (`notice_no`)
-    REFERENCES `db1`.`notice` (`no`)
+    REFERENCES `miniproject`.`notice` (`no`)
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -85,18 +108,18 @@ COLLATE = utf8mb4_unicode_ci;
 
 
 -- -----------------------------------------------------
--- Table `db1`.`reply`
+-- Table `miniproject`.`reply`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db1`.`reply` (
+CREATE TABLE IF NOT EXISTS `miniproject`.`reply` (
   `board_no` INT NOT NULL,
   `reply_no` INT NOT NULL,
   `writer` VARCHAR(24) NOT NULL,
   `memo` TEXT NULL DEFAULT NULL,
   `regDate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  INDEX `board_no` (`board_no` ASC),
+  INDEX `board_no` (`board_no` ASC) VISIBLE,
   CONSTRAINT `reply_ibfk_1`
     FOREIGN KEY (`board_no`)
-    REFERENCES `db1`.`board` (`no`)
+    REFERENCES `miniproject`.`board` (`no`)
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

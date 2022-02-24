@@ -8,7 +8,7 @@ import com.choi.board.common.Member;
 import com.choi.board.dataservice.MemberDAO;
 
 @Service
-public class MemberService {
+public class MemberService implements IMemberService {
 
 	@Autowired
 	MemberDAO dao;
@@ -27,6 +27,10 @@ public class MemberService {
 	
 	public int 비밀번호변경하다(Member member) {
 		return dao.비밀번호변경하다(member);
+	}
+	@Override
+	public int 프로필사진변경하다(Member m) {
+		return dao.프로필사진변경하다(m);
 	}
 	
 	public Member 찾는다ById(String id) {

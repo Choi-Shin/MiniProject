@@ -25,7 +25,7 @@ public class BoardDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://3.37.252.132:3306/miniproject?useUnicode=true&"
-					+ "characterEncoding=utf8&&ServerTimeZone=UTC", "miniproject", "1234");
+					+ "characterEncoding=utf8&&ServerTimeZone=UTC&autoReconnect=true", "miniproject", "1234");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버를 찾을 수 없습니다.");
 		} catch (SQLException e) {
@@ -70,7 +70,10 @@ public class BoardDAO {
 				글.setRegDate(date);
 				글.setHit(rs.getInt("hit"));
 				글.setReplyCnt(댓글수를세다(글.getNo()));
-				목록.add(글);
+				글.setState(rs.getInt("state"));
+				if(글.getState() == 1) {
+					목록.add(글);
+				}
 			}
 			if (목록.size() > 0) {
 				return 목록;

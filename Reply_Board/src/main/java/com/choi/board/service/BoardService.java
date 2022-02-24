@@ -11,7 +11,7 @@ import com.choi.board.common.Reply;
 import com.choi.board.dataservice.BoardDAO;
 
 @Service
-public class BoardService {
+public class BoardService implements IBoardService{
 	
 	@Autowired
 	BoardDAO dao;

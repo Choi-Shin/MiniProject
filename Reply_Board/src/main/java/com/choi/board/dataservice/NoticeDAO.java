@@ -27,7 +27,7 @@ public class NoticeDAO {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://3.37.252.132:3306/miniproject?useUnicode=true&" + "characterEncoding=utf8&&ServerTimeZone=UTC",
+					"jdbc:mysql://3.37.252.132:3306/miniproject?useUnicode=true&" + "characterEncoding=utf8&&ServerTimeZone=UTC&autoReconnect=true",
 					"miniproject", "1234");
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버를 찾을 수 없습니다.");

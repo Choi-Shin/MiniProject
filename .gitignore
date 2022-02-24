@@ -122,4 +122,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# 개인 정보
+MailAuthConfiguration.java
+
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse,macos

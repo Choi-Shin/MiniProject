@@ -12,6 +12,7 @@ public class Board {
 	private Date regDate;
 	private int hit;
 	private int replyCnt;
+	private int state;
 
 	public int getRownum() {
 		return rownum;
@@ -73,4 +74,13 @@ public class Board {
 	public void setReplyCnt(int replyCnt) {
 		this.replyCnt = replyCnt;
 	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+	
 }
