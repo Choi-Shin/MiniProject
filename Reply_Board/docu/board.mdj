@@ -19,6 +19,14 @@
 					},
 					"name": "Use Cases",
 					"defaultDiagram": true
+				},
+				{
+					"_type": "UMLUseCase",
+					"_id": "AAAAAAF/PgVH9JtVLtA=",
+					"_parent": {
+						"$ref": "AAAAAAFElm6BOFNpegQ="
+					},
+					"name": "UseCase1"
 				}
 			]
 		},
@@ -7920,7 +7928,7 @@
 									"visible": false,
 									"font": "Arial;12;0",
 									"containerExtending": true,
-									"left": 347,
+									"left": 343,
 									"top": 634,
 									"height": 12,
 									"alpha": 1.5707963267948966,
@@ -7942,7 +7950,7 @@
 									"visible": null,
 									"font": "Arial;12;0",
 									"containerExtending": true,
-									"left": 347,
+									"left": 343,
 									"top": 619,
 									"height": 12,
 									"alpha": 1.5707963267948966,
@@ -7964,7 +7972,7 @@
 									"visible": false,
 									"font": "Arial;12;0",
 									"containerExtending": true,
-									"left": 347,
+									"left": 343,
 									"top": 664,
 									"height": 12,
 									"alpha": -1.5707963267948966,
@@ -22973,9 +22981,9 @@
 																		"$ref": "AAAAAAF/PQ6+oqpPfKU="
 																	},
 																	"font": "Arial;13;0",
-																	"left": 20,
+																	"left": 19,
 																	"top": 29,
-																	"width": 99.93115234375,
+																	"width": 101.9052734375,
 																	"height": 13,
 																	"alpha": -0.7853981633974483,
 																	"distance": 40,
@@ -22994,9 +23002,9 @@
 																		"$ref": "AAAAAAF/PQ6+oqpPfKU="
 																	},
 																	"font": "Arial;13;0",
-																	"left": 93,
+																	"left": 92,
 																	"top": 60,
-																	"width": 5.05908203125,
+																	"width": 6.5,
 																	"height": 13,
 																	"alpha": 0.5235987755982988,
 																	"distance": 25,
@@ -23245,9 +23253,9 @@
 																		"$ref": "AAAAAAF/PQ6+papk7f4="
 																	},
 																	"font": "Arial;13;0",
-																	"left": 135,
+																	"left": 134,
 																	"top": 65,
-																	"width": 99.93115234375,
+																	"width": 101.9052734375,
 																	"height": 13,
 																	"alpha": -0.7853981633974483,
 																	"distance": 40,
@@ -23266,9 +23274,9 @@
 																		"$ref": "AAAAAAF/PQ6+papk7f4="
 																	},
 																	"font": "Arial;13;0",
-																	"left": 183,
+																	"left": 182,
 																	"top": 23,
-																	"width": 5.05908203125,
+																	"width": 6.5,
 																	"height": 13,
 																	"alpha": 0.5235987755982988,
 																	"distance": 25,
@@ -29066,7 +29074,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 5,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "«constructor»+BoardDAO()",
 																			"horizontalAlignment": 0
@@ -29083,7 +29091,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 20,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+모든게시물의갯수를세다(): int",
 																			"horizontalAlignment": 0
@@ -29100,7 +29108,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 35,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+게시판목록을가져오다(page: Page): Board[*]",
 																			"horizontalAlignment": 0
@@ -29117,7 +29125,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 50,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+새글을저장하다(새게시물: Board): int",
 																			"horizontalAlignment": 0
@@ -29134,7 +29142,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 65,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+찾는다By번호(번호: int): Board",
 																			"horizontalAlignment": 0
@@ -29151,7 +29159,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 80,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+게시글을수정하다(board: Board): int",
 																			"horizontalAlignment": 0
@@ -29168,7 +29176,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 95,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+게시글을삭제하다(no: int): int",
 																			"horizontalAlignment": 0
@@ -29185,7 +29193,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 110,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+댓글수를세다(글번호: int): int",
 																			"horizontalAlignment": 0
@@ -29202,7 +29210,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 125,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+댓글달다(reply: Reply): int",
 																			"horizontalAlignment": 0
@@ -29219,7 +29227,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 140,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+조회수를올리다(조회할게시물: Board): void",
 																			"horizontalAlignment": 0
@@ -29236,7 +29244,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 155,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+댓글목록을가져오다(게시글번호: int): Reply[*]",
 																			"horizontalAlignment": 0
@@ -29253,7 +29261,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 170,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+몇번째글인지출력한다(게시물번호: int): int",
 																			"horizontalAlignment": 0
@@ -29270,7 +29278,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 185,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+n번째행을출력한다(no: int): Board",
 																			"horizontalAlignment": 0
@@ -29287,7 +29295,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 200,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+댓글을삭제하다(no: int, replyNo: int): int",
 																			"horizontalAlignment": 0
@@ -29304,7 +29312,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 215,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+작성자로검색하다(id: String, page: Page): Board[*]",
 																			"horizontalAlignment": 0
@@ -29312,7 +29320,7 @@
 																	],
 																	"visible": false,
 																	"font": "Arial;13;0",
-																	"width": 295.43603515625,
+																	"width": 295.6064453125,
 																	"height": 233
 																},
 																{
@@ -30427,7 +30435,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 5,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "«constructor»+NoticeDAO()",
 																			"horizontalAlignment": 0
@@ -30444,7 +30452,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 20,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+모든게시물의갯수를세다(): int",
 																			"horizontalAlignment": 0
@@ -30461,7 +30469,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 35,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+게시판목록을가져오다(page: Page): Notice[*]",
 																			"horizontalAlignment": 0
@@ -30478,7 +30486,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 50,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+새글을저장하다(새게시물: Notice): int",
 																			"horizontalAlignment": 0
@@ -30495,7 +30503,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 65,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+찾는다By번호(번호: int): Notice",
 																			"horizontalAlignment": 0
@@ -30512,7 +30520,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 80,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+게시글을수정하다(notice: Notice): int",
 																			"horizontalAlignment": 0
@@ -30529,7 +30537,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 95,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+게시글을삭제하다(no: int): int",
 																			"horizontalAlignment": 0
@@ -30546,7 +30554,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 110,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+댓글수를세다(글번호: int): int",
 																			"horizontalAlignment": 0
@@ -30563,7 +30571,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 125,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+댓글달다(noticeRe: NoticeReply): int",
 																			"horizontalAlignment": 0
@@ -30580,7 +30588,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 140,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+조회수를올리다(조회할게시물: Notice): void",
 																			"horizontalAlignment": 0
@@ -30597,7 +30605,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 155,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+댓글목록을가져오다(게시글번호: int): NoticeReply[*]",
 																			"horizontalAlignment": 0
@@ -30614,7 +30622,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 170,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+몇번째글인지출력한다(게시물번호: int): int",
 																			"horizontalAlignment": 0
@@ -30631,7 +30639,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 185,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+n번째행을출력한다(no: int): Notice",
 																			"horizontalAlignment": 0
@@ -30648,7 +30656,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 200,
-																			"width": 284.224365234375,
+																			"width": 306.1220703125,
 																			"height": 13,
 																			"text": "+댓글을삭제하다(no: int, replyNo: int): int",
 																			"horizontalAlignment": 0
@@ -30656,7 +30664,7 @@
 																	],
 																	"visible": false,
 																	"font": "Arial;13;0",
-																	"width": 294.224365234375,
+																	"width": 316.1220703125,
 																	"height": 218
 																},
 																{
@@ -34067,7 +34075,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 5,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+게시판목록을가져오다(page: Page): Board[*]",
 																			"horizontalAlignment": 0
@@ -34084,7 +34092,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 20,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+찾는다By번호(번호: int): Board",
 																			"horizontalAlignment": 0
@@ -34101,7 +34109,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 35,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+새글을저장하다(새게시물: Board): int",
 																			"horizontalAlignment": 0
@@ -34118,7 +34126,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 50,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+조회수를올리다(게시물: Board): void",
 																			"horizontalAlignment": 0
@@ -34135,7 +34143,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 65,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+게시글을삭제하다(no: int): int",
 																			"horizontalAlignment": 0
@@ -34152,7 +34160,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 80,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+댓글달다(reply: Reply): int",
 																			"horizontalAlignment": 0
@@ -34169,7 +34177,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 95,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+댓글수를세다(글번호: int): int",
 																			"horizontalAlignment": 0
@@ -34186,7 +34194,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 110,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+댓글목록을가져오다(게시글번호: int): Reply[*]",
 																			"horizontalAlignment": 0
@@ -34203,7 +34211,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 125,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+게시글을수정하다(board: Board): int",
 																			"horizontalAlignment": 0
@@ -34220,7 +34228,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 140,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+몇번째글인지출력한다(게시물번호: int): int",
 																			"horizontalAlignment": 0
@@ -34237,7 +34245,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 155,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+n번째행을출력한다(no: int): Board",
 																			"horizontalAlignment": 0
@@ -34254,7 +34262,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 170,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+댓글을삭제하다(no: int, replyNo: int): int",
 																			"horizontalAlignment": 0
@@ -34271,7 +34279,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 185,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+작성자로검색하다(id: String, page: Page): Board[*]",
 																			"horizontalAlignment": 0
@@ -34288,7 +34296,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 200,
-																			"width": 285.43603515625,
+																			"width": 285.6064453125,
 																			"height": 13,
 																			"text": "+모든게시물의갯수를세다(): int",
 																			"horizontalAlignment": 0
@@ -34296,7 +34304,7 @@
 																	],
 																	"visible": false,
 																	"font": "Arial;13;0",
-																	"width": 295.43603515625,
+																	"width": 295.6064453125,
 																	"height": 218
 																},
 																{
@@ -34884,7 +34892,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 5,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~로그인하다(user: AuthUser): Member",
 																			"horizontalAlignment": 0
@@ -34901,7 +34909,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 20,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~회원가입하다(m: Member): int",
 																			"horizontalAlignment": 0
@@ -34918,7 +34926,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 35,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~비밀번호변경하다(m: Member): int",
 																			"horizontalAlignment": 0
@@ -34935,7 +34943,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 50,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~프로필사진변경하다(m: Member): int",
 																			"horizontalAlignment": 0
@@ -34952,7 +34960,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 65,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~찾는다ById(id: String): Member",
 																			"horizontalAlignment": 0
@@ -34969,7 +34977,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 80,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~회원탈퇴하다(id: String): int",
 																			"horizontalAlignment": 0
@@ -34986,7 +34994,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 95,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~임시비밀번호생성하고db처리한다(id: String): String",
 																			"horizontalAlignment": 0
@@ -35003,7 +35011,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 110,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~이메일주소변경하다(m: Member): int",
 																			"horizontalAlignment": 0
@@ -35020,7 +35028,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 125,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~중복아이디를확인하다(id: String): String",
 																			"horizontalAlignment": 0
@@ -35037,7 +35045,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 140,
-																			"width": 285.340576171875,
+																			"width": 297.91455078125,
 																			"height": 13,
 																			"text": "~가입인증하다(email: String, authKey: int): boolean",
 																			"horizontalAlignment": 0
@@ -35045,7 +35053,7 @@
 																	],
 																	"visible": false,
 																	"font": "Arial;13;0",
-																	"width": 295.340576171875,
+																	"width": 307.91455078125,
 																	"height": 158
 																},
 																{
@@ -35481,7 +35489,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 5,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~게시판목록을가져오다(page: Page): Notice[*]",
 																			"horizontalAlignment": 0
@@ -35498,7 +35506,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 20,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~모든게시물의갯수를세다(): int",
 																			"horizontalAlignment": 0
@@ -35515,7 +35523,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 35,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~찾는다By번호(no: int): Notice",
 																			"horizontalAlignment": 0
@@ -35532,7 +35540,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 50,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~새글을저장하다(board: Notice): int",
 																			"horizontalAlignment": 0
@@ -35549,7 +35557,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 65,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~조회수를올리다(board: Notice): void",
 																			"horizontalAlignment": 0
@@ -35566,7 +35574,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 80,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~게시글을삭제하다(no: int): int",
 																			"horizontalAlignment": 0
@@ -35583,7 +35591,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 95,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~댓글달다(reply: NoticeReply): int",
 																			"horizontalAlignment": 0
@@ -35600,7 +35608,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 110,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~댓글수를세다(no: int): int",
 																			"horizontalAlignment": 0
@@ -35617,7 +35625,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 125,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~댓글목록을가져오다(no: int): NoticeReply[*]",
 																			"horizontalAlignment": 0
@@ -35634,7 +35642,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 140,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~게시글을수정하다(board: Notice): int",
 																			"horizontalAlignment": 0
@@ -35651,7 +35659,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 155,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~몇번째글인지출력한다(no: int): int",
 																			"horizontalAlignment": 0
@@ -35668,7 +35676,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 170,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~n번째행을출력한다(no: int): Notice",
 																			"horizontalAlignment": 0
@@ -35685,7 +35693,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 185,
-																			"width": 251.558837890625,
+																			"width": 258.908203125,
 																			"height": 13,
 																			"text": "~댓글을삭제하다(no: int, ReplyNo: int): int",
 																			"horizontalAlignment": 0
@@ -35693,7 +35701,7 @@
 																	],
 																	"visible": false,
 																	"font": "Arial;13;0",
-																	"width": 261.558837890625,
+																	"width": 268.908203125,
 																	"height": 203
 																},
 																{
@@ -36145,7 +36153,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 5,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+로그인하다(로그인회원: AuthUser): Member",
 																			"horizontalAlignment": 0
@@ -36162,7 +36170,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 20,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+회원가입하다(member: Member): int",
 																			"horizontalAlignment": 0
@@ -36179,7 +36187,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 35,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+비밀번호변경하다(member: Member): int",
 																			"horizontalAlignment": 0
@@ -36196,7 +36204,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 50,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+프로필사진변경하다(m: Member): int",
 																			"horizontalAlignment": 0
@@ -36213,7 +36221,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 65,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+찾는다ById(id: String): Member",
 																			"horizontalAlignment": 0
@@ -36230,7 +36238,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 80,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+회원탈퇴하다(id: String): int",
 																			"horizontalAlignment": 0
@@ -36247,7 +36255,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 95,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+임시비밀번호생성하고db처리한다(id: String): String",
 																			"horizontalAlignment": 0
@@ -36264,7 +36272,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 110,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+이메일주소변경하다(m: Member): int",
 																			"horizontalAlignment": 0
@@ -36281,7 +36289,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 125,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+중복아이디를확인하다(id: String): String",
 																			"horizontalAlignment": 0
@@ -36298,7 +36306,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 140,
-																			"width": 285.340576171875,
+																			"width": 298.212890625,
 																			"height": 13,
 																			"text": "+가입인증하다(email: String, authKey: int): boolean",
 																			"horizontalAlignment": 0
@@ -36306,7 +36314,7 @@
 																	],
 																	"visible": false,
 																	"font": "Arial;13;0",
-																	"width": 295.340576171875,
+																	"width": 308.212890625,
 																	"height": 158
 																},
 																{
@@ -36774,7 +36782,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 5,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+게시판목록을가져오다(page: Page): Notice[*]",
 																			"horizontalAlignment": 0
@@ -36791,7 +36799,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 20,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+모든게시물의갯수를세다(): int",
 																			"horizontalAlignment": 0
@@ -36808,7 +36816,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 35,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+찾는다By번호(번호: int): Notice",
 																			"horizontalAlignment": 0
@@ -36825,7 +36833,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 50,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+새글을저장하다(새게시물: Notice): int",
 																			"horizontalAlignment": 0
@@ -36842,7 +36850,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 65,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+조회수를올리다(게시물: Notice): void",
 																			"horizontalAlignment": 0
@@ -36859,7 +36867,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 80,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+게시글을삭제하다(no: int): int",
 																			"horizontalAlignment": 0
@@ -36876,7 +36884,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 95,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+댓글수를세다(no: int): int",
 																			"horizontalAlignment": 0
@@ -36893,7 +36901,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 110,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+댓글달다(noticeRe: NoticeReply): int",
 																			"horizontalAlignment": 0
@@ -36910,7 +36918,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 125,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+댓글목록을가져오다(no: int): NoticeReply[*]",
 																			"horizontalAlignment": 0
@@ -36927,7 +36935,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 140,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+게시글을수정하다(notice: Notice): int",
 																			"horizontalAlignment": 0
@@ -36944,7 +36952,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 155,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+몇번째글인지출력한다(no: int): int",
 																			"horizontalAlignment": 0
@@ -36961,7 +36969,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 170,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+n번째행을출력한다(no: int): Notice",
 																			"horizontalAlignment": 0
@@ -36978,7 +36986,7 @@
 																			"font": "Arial;13;0",
 																			"left": 5,
 																			"top": 185,
-																			"width": 251.558837890625,
+																			"width": 259.20654296875,
 																			"height": 13,
 																			"text": "+댓글을삭제하다(no: int, replyNo: int): int",
 																			"horizontalAlignment": 0
@@ -36986,7 +36994,7 @@
 																	],
 																	"visible": false,
 																	"font": "Arial;13;0",
-																	"width": 261.558837890625,
+																	"width": 269.20654296875,
 																	"height": 203
 																},
 																{
@@ -47653,7 +47661,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 5,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "«constructor»+BoardDAO()",
 											"horizontalAlignment": 0
@@ -47670,7 +47678,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 20,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+모든게시물의갯수를세다(): int",
 											"horizontalAlignment": 0
@@ -47687,7 +47695,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 35,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+게시판목록을가져오다(page: Page): Board[*]",
 											"horizontalAlignment": 0
@@ -47704,7 +47712,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 50,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+새글을저장하다(새게시물: Board): int",
 											"horizontalAlignment": 0
@@ -47721,7 +47729,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 65,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+찾는다By번호(번호: int): Board",
 											"horizontalAlignment": 0
@@ -47738,7 +47746,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 80,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+게시글을수정하다(board: Board): int",
 											"horizontalAlignment": 0
@@ -47755,7 +47763,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 95,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+게시글을삭제하다(no: int): int",
 											"horizontalAlignment": 0
@@ -47772,7 +47780,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 110,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+댓글수를세다(글번호: int): int",
 											"horizontalAlignment": 0
@@ -47789,7 +47797,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 125,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+댓글달다(reply: Reply): int",
 											"horizontalAlignment": 0
@@ -47806,7 +47814,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 140,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+조회수를올리다(조회할게시물: Board): void",
 											"horizontalAlignment": 0
@@ -47823,7 +47831,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 155,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+댓글목록을가져오다(게시글번호: int): Reply[*]",
 											"horizontalAlignment": 0
@@ -47840,7 +47848,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 170,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+몇번째글인지출력한다(게시물번호: int): int",
 											"horizontalAlignment": 0
@@ -47857,7 +47865,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 185,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+n번째행을출력한다(no: int): Board",
 											"horizontalAlignment": 0
@@ -47874,7 +47882,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 200,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+댓글을삭제하다(no: int, replyNo: int): int",
 											"horizontalAlignment": 0
@@ -47891,7 +47899,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 215,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+작성자로검색하다(id: String, page: Page): Board[*]",
 											"horizontalAlignment": 0
@@ -47899,7 +47907,7 @@
 									],
 									"visible": false,
 									"font": "Arial;13;0",
-									"width": 295.43603515625,
+									"width": 295.6064453125,
 									"height": 233
 								},
 								{
@@ -49014,7 +49022,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 5,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "«constructor»+NoticeDAO()",
 											"horizontalAlignment": 0
@@ -49031,7 +49039,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 20,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+모든게시물의갯수를세다(): int",
 											"horizontalAlignment": 0
@@ -49048,7 +49056,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 35,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+게시판목록을가져오다(page: Page): Notice[*]",
 											"horizontalAlignment": 0
@@ -49065,7 +49073,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 50,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+새글을저장하다(새게시물: Notice): int",
 											"horizontalAlignment": 0
@@ -49082,7 +49090,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 65,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+찾는다By번호(번호: int): Notice",
 											"horizontalAlignment": 0
@@ -49099,7 +49107,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 80,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+게시글을수정하다(notice: Notice): int",
 											"horizontalAlignment": 0
@@ -49116,7 +49124,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 95,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+게시글을삭제하다(no: int): int",
 											"horizontalAlignment": 0
@@ -49133,7 +49141,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 110,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+댓글수를세다(글번호: int): int",
 											"horizontalAlignment": 0
@@ -49150,7 +49158,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 125,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+댓글달다(noticeRe: NoticeReply): int",
 											"horizontalAlignment": 0
@@ -49167,7 +49175,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 140,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+조회수를올리다(조회할게시물: Notice): void",
 											"horizontalAlignment": 0
@@ -49184,7 +49192,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 155,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+댓글목록을가져오다(게시글번호: int): NoticeReply[*]",
 											"horizontalAlignment": 0
@@ -49201,7 +49209,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 170,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+몇번째글인지출력한다(게시물번호: int): int",
 											"horizontalAlignment": 0
@@ -49218,7 +49226,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 185,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+n번째행을출력한다(no: int): Notice",
 											"horizontalAlignment": 0
@@ -49235,7 +49243,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 200,
-											"width": 284.224365234375,
+											"width": 306.1220703125,
 											"height": 13,
 											"text": "+댓글을삭제하다(no: int, replyNo: int): int",
 											"horizontalAlignment": 0
@@ -49243,7 +49251,7 @@
 									],
 									"visible": false,
 									"font": "Arial;13;0",
-									"width": 294.224365234375,
+									"width": 316.1220703125,
 									"height": 218
 								},
 								{
@@ -49439,7 +49447,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 5,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+게시판목록을가져오다(page: Page): Board[*]",
 											"horizontalAlignment": 0
@@ -49456,7 +49464,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 20,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+찾는다By번호(번호: int): Board",
 											"horizontalAlignment": 0
@@ -49473,7 +49481,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 35,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+새글을저장하다(새게시물: Board): int",
 											"horizontalAlignment": 0
@@ -49490,7 +49498,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 50,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+조회수를올리다(게시물: Board): void",
 											"horizontalAlignment": 0
@@ -49507,7 +49515,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 65,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+게시글을삭제하다(no: int): int",
 											"horizontalAlignment": 0
@@ -49524,7 +49532,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 80,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+댓글달다(reply: Reply): int",
 											"horizontalAlignment": 0
@@ -49541,7 +49549,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 95,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+댓글수를세다(글번호: int): int",
 											"horizontalAlignment": 0
@@ -49558,7 +49566,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 110,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+댓글목록을가져오다(게시글번호: int): Reply[*]",
 											"horizontalAlignment": 0
@@ -49575,7 +49583,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 125,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+게시글을수정하다(board: Board): int",
 											"horizontalAlignment": 0
@@ -49592,7 +49600,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 140,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+몇번째글인지출력한다(게시물번호: int): int",
 											"horizontalAlignment": 0
@@ -49609,7 +49617,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 155,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+n번째행을출력한다(no: int): Board",
 											"horizontalAlignment": 0
@@ -49626,7 +49634,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 170,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+댓글을삭제하다(no: int, replyNo: int): int",
 											"horizontalAlignment": 0
@@ -49643,7 +49651,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 185,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+작성자로검색하다(id: String, page: Page): Board[*]",
 											"horizontalAlignment": 0
@@ -49660,7 +49668,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 200,
-											"width": 285.43603515625,
+											"width": 285.6064453125,
 											"height": 13,
 											"text": "+모든게시물의갯수를세다(): int",
 											"horizontalAlignment": 0
@@ -49668,7 +49676,7 @@
 									],
 									"visible": false,
 									"font": "Arial;13;0",
-									"width": 295.43603515625,
+									"width": 295.6064453125,
 									"height": 218
 								},
 								{
@@ -50256,7 +50264,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 5,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~로그인하다(user: AuthUser): Member",
 											"horizontalAlignment": 0
@@ -50273,7 +50281,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 20,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~회원가입하다(m: Member): int",
 											"horizontalAlignment": 0
@@ -50290,7 +50298,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 35,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~비밀번호변경하다(m: Member): int",
 											"horizontalAlignment": 0
@@ -50307,7 +50315,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 50,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~프로필사진변경하다(m: Member): int",
 											"horizontalAlignment": 0
@@ -50324,7 +50332,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 65,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~찾는다ById(id: String): Member",
 											"horizontalAlignment": 0
@@ -50341,7 +50349,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 80,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~회원탈퇴하다(id: String): int",
 											"horizontalAlignment": 0
@@ -50358,7 +50366,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 95,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~임시비밀번호생성하고db처리한다(id: String): String",
 											"horizontalAlignment": 0
@@ -50375,7 +50383,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 110,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~이메일주소변경하다(m: Member): int",
 											"horizontalAlignment": 0
@@ -50392,7 +50400,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 125,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~중복아이디를확인하다(id: String): String",
 											"horizontalAlignment": 0
@@ -50409,7 +50417,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 140,
-											"width": 285.340576171875,
+											"width": 297.91455078125,
 											"height": 13,
 											"text": "~가입인증하다(email: String, authKey: int): boolean",
 											"horizontalAlignment": 0
@@ -50417,7 +50425,7 @@
 									],
 									"visible": false,
 									"font": "Arial;13;0",
-									"width": 295.340576171875,
+									"width": 307.91455078125,
 									"height": 158
 								},
 								{
@@ -50853,7 +50861,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 5,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~게시판목록을가져오다(page: Page): Notice[*]",
 											"horizontalAlignment": 0
@@ -50870,7 +50878,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 20,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~모든게시물의갯수를세다(): int",
 											"horizontalAlignment": 0
@@ -50887,7 +50895,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 35,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~찾는다By번호(no: int): Notice",
 											"horizontalAlignment": 0
@@ -50904,7 +50912,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 50,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~새글을저장하다(board: Notice): int",
 											"horizontalAlignment": 0
@@ -50921,7 +50929,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 65,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~조회수를올리다(board: Notice): void",
 											"horizontalAlignment": 0
@@ -50938,7 +50946,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 80,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~게시글을삭제하다(no: int): int",
 											"horizontalAlignment": 0
@@ -50955,7 +50963,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 95,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~댓글달다(reply: NoticeReply): int",
 											"horizontalAlignment": 0
@@ -50972,7 +50980,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 110,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~댓글수를세다(no: int): int",
 											"horizontalAlignment": 0
@@ -50989,7 +50997,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 125,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~댓글목록을가져오다(no: int): NoticeReply[*]",
 											"horizontalAlignment": 0
@@ -51006,7 +51014,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 140,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~게시글을수정하다(board: Notice): int",
 											"horizontalAlignment": 0
@@ -51023,7 +51031,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 155,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~몇번째글인지출력한다(no: int): int",
 											"horizontalAlignment": 0
@@ -51040,7 +51048,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 170,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~n번째행을출력한다(no: int): Notice",
 											"horizontalAlignment": 0
@@ -51057,7 +51065,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 185,
-											"width": 251.558837890625,
+											"width": 258.908203125,
 											"height": 13,
 											"text": "~댓글을삭제하다(no: int, ReplyNo: int): int",
 											"horizontalAlignment": 0
@@ -51065,7 +51073,7 @@
 									],
 									"visible": false,
 									"font": "Arial;13;0",
-									"width": 261.558837890625,
+									"width": 268.908203125,
 									"height": 203
 								},
 								{
@@ -51517,7 +51525,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 5,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+로그인하다(로그인회원: AuthUser): Member",
 											"horizontalAlignment": 0
@@ -51534,7 +51542,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 20,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+회원가입하다(member: Member): int",
 											"horizontalAlignment": 0
@@ -51551,7 +51559,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 35,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+비밀번호변경하다(member: Member): int",
 											"horizontalAlignment": 0
@@ -51568,7 +51576,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 50,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+프로필사진변경하다(m: Member): int",
 											"horizontalAlignment": 0
@@ -51585,7 +51593,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 65,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+찾는다ById(id: String): Member",
 											"horizontalAlignment": 0
@@ -51602,7 +51610,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 80,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+회원탈퇴하다(id: String): int",
 											"horizontalAlignment": 0
@@ -51619,7 +51627,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 95,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+임시비밀번호생성하고db처리한다(id: String): String",
 											"horizontalAlignment": 0
@@ -51636,7 +51644,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 110,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+이메일주소변경하다(m: Member): int",
 											"horizontalAlignment": 0
@@ -51653,7 +51661,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 125,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+중복아이디를확인하다(id: String): String",
 											"horizontalAlignment": 0
@@ -51670,7 +51678,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 140,
-											"width": 285.340576171875,
+											"width": 298.212890625,
 											"height": 13,
 											"text": "+가입인증하다(email: String, authKey: int): boolean",
 											"horizontalAlignment": 0
@@ -51678,7 +51686,7 @@
 									],
 									"visible": false,
 									"font": "Arial;13;0",
-									"width": 295.340576171875,
+									"width": 308.212890625,
 									"height": 158
 								},
 								{
@@ -52146,7 +52154,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 5,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+게시판목록을가져오다(page: Page): Notice[*]",
 											"horizontalAlignment": 0
@@ -52163,7 +52171,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 20,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+모든게시물의갯수를세다(): int",
 											"horizontalAlignment": 0
@@ -52180,7 +52188,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 35,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+찾는다By번호(번호: int): Notice",
 											"horizontalAlignment": 0
@@ -52197,7 +52205,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 50,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+새글을저장하다(새게시물: Notice): int",
 											"horizontalAlignment": 0
@@ -52214,7 +52222,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 65,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+조회수를올리다(게시물: Notice): void",
 											"horizontalAlignment": 0
@@ -52231,7 +52239,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 80,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+게시글을삭제하다(no: int): int",
 											"horizontalAlignment": 0
@@ -52248,7 +52256,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 95,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+댓글수를세다(no: int): int",
 											"horizontalAlignment": 0
@@ -52265,7 +52273,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 110,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+댓글달다(noticeRe: NoticeReply): int",
 											"horizontalAlignment": 0
@@ -52282,7 +52290,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 125,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+댓글목록을가져오다(no: int): NoticeReply[*]",
 											"horizontalAlignment": 0
@@ -52299,7 +52307,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 140,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+게시글을수정하다(notice: Notice): int",
 											"horizontalAlignment": 0
@@ -52316,7 +52324,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 155,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+몇번째글인지출력한다(no: int): int",
 											"horizontalAlignment": 0
@@ -52333,7 +52341,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 170,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+n번째행을출력한다(no: int): Notice",
 											"horizontalAlignment": 0
@@ -52350,7 +52358,7 @@
 											"font": "Arial;13;0",
 											"left": 5,
 											"top": 185,
-											"width": 251.558837890625,
+											"width": 259.20654296875,
 											"height": 13,
 											"text": "+댓글을삭제하다(no: int, replyNo: int): int",
 											"horizontalAlignment": 0
@@ -52358,7 +52366,7 @@
 									],
 									"visible": false,
 									"font": "Arial;13;0",
-									"width": 261.558837890625,
+									"width": 269.20654296875,
 									"height": 203
 								},
 								{
@@ -61398,6 +61406,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -4.8515625,
+											"top": -16,
 											"height": 13
 										},
 										{
@@ -61407,8 +61417,8 @@
 												"$ref": "AAAAAAF/PQ7CpsAhTX0="
 											},
 											"font": "Arial;13;1",
-											"left": 879.42578125,
-											"top": 39,
+											"left": 877,
+											"top": 31,
 											"width": 92.21240234375,
 											"height": 13,
 											"text": "ModelAndView"
@@ -61421,6 +61431,8 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -4.8515625,
+											"top": -16,
 											"width": 114.13720703125,
 											"height": 13,
 											"text": "(from JavaReverse)"
@@ -61433,13 +61445,15 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": -4.8515625,
+											"top": -16,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 874.42578125,
-									"top": 32,
+									"left": 872,
+									"top": 24,
 									"width": 102.21240234375,
 									"height": 25,
 									"stereotypeLabel": {
@@ -61466,6 +61480,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -2.42578125,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								},
@@ -61480,6 +61496,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -2.42578125,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								},
@@ -61494,6 +61512,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -2.42578125,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								},
@@ -61508,14 +61528,16 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
+									"left": -2.42578125,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 874.42578125,
-							"top": 32,
+							"left": 872,
+							"top": 24,
 							"width": 102.21240234375,
 							"height": 25,
 							"nameCompartment": {
