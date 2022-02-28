@@ -146,7 +146,7 @@ public class BoardDAO {
 	}
 
 	public int 게시글을삭제하다(int no) {
-		String sql = "delete from board where no=?";
+		String sql = "update board set state=3 where no=?";
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {
@@ -244,7 +244,7 @@ public class BoardDAO {
 	}
 
 	public int 몇번째글인지출력한다(int 게시물번호) {
-		String sql = "SELECT COUNT(*) FROM board WHERE no <= (SELECT no FROM board WHERE no = ?)";
+		String sql = "SELECT COUNT(*) FROM board WHERE no <= (SELECT no FROM board WHERE no = ?) and state=1";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
@@ -264,7 +264,7 @@ public class BoardDAO {
 	}
 
 	public Board n번째행을출력한다(int no) {
-		String sql = "SELECT * FROM board ORDER BY no asc LIMIT ?,1";
+		String sql = "SELECT * FROM board where state=1 ORDER BY no asc LIMIT ?,1";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Board board = null;

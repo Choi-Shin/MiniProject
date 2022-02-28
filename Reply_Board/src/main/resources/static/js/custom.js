@@ -57,30 +57,5 @@ function 회원탈퇴하기(아이디) {
 		alert('입력되지 않았거나 id가 다릅니다.');
 	}
 }
-function 그림파일읽어출력하기(이벤트) {
-	var fileInput = 이벤트.target;
-	//change이벤트.target(대상)은 <input type="file" name="profileFile" id="profileFile"/>
-	var 선택된그림파일관리객체 = fileInput.files[0];
-	var 선택된그림size = 선택된그림파일관리객체.size;
-	/*
-	if(선택된그림size > 1024*10){
-	alert("10K 요량초과!");
-	fileInput.value="";
-	return ;
-	}
-	 */
-	if (!선택된그림파일관리객체.type.match('image.*')) {
-		alert("욱! 그림이 아니예요!");
-		fileInput.value = "";
-		return;
-	}
-	var 파일리더 = new FileReader();
-	파일리더.onload = function(선택된그림파일관리객체) {
-		var imgProfile = document.getElementById("profile");
-		imgProfile.src = 선택된그림파일관리객체.currentTarget.result;
-	};
-	파일리더.readAsDataURL(선택된그림파일관리객체);
-	return;
-}
-document.querySelector("#profileFile").addEventListener("change",
-	그림파일읽어출력하기, false);
+
+

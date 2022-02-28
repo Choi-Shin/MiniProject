@@ -133,7 +133,7 @@ public class MemberDAO {
 	}
 
 	public Member 로그인하다(AuthUser 로그인회원) {
-		String sql = "Select * from member where id=? and password=md5(?) and auth_status=1";
+		String sql = "Select * from member where id=? and password=md5(?)";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Member 회원 = new Member();
@@ -152,6 +152,7 @@ public class MemberDAO {
 				회원.setRegDate(date);
 				회원.setState(rs.getInt("state"));
 				회원.setUnreadMsg(읽지않은메시지를세다(로그인회원.getId()));
+				회원.setAuth_status(rs.getInt("auth_status"));
 				return 회원;
 			}
 		} catch (SQLException e) {

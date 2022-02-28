@@ -11,18 +11,12 @@ if (loginUser == null) {
 <!DOCTYPE html>
 <html>
 <!-- include libraries(jQuery, bootstrap) -->
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<link
-	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
-	rel="stylesheet">
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 <style>
 li {
 	display: list-item !important;
@@ -43,12 +37,10 @@ h1 {
 	padding: 0;
 }
 
-
-.container {
-	display: block;
-	float: right;
-	width: 82vw;
+section {
+	margin-right: 10px;
 }
+
 </style>
 <%@ include file="../include/header.jsp"%>
 <%@ include file="../include/aside.jsp"%>
@@ -64,9 +56,7 @@ h1 {
 </script>
 <body>
 
-	<article>
-
-		<div class="container" role="main">
+	<section>
 			<h2>board Form</h2>
 			<form id="form" action="/board/write" method="post">
 				<div class="mb-3">
@@ -89,8 +79,7 @@ h1 {
 					<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
 				</div>
 			</form>
-		</div>
-	</article>
+	</section>
 
 	<script>
 		$(document).ready(function() {

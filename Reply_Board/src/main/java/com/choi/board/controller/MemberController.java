@@ -88,6 +88,9 @@ public class MemberController {
 		} else if (m.getState() == 3) {
 			welcome = "탈퇴한 회원입니다. 관리자에게 문의하세요.";
 			mv.addObject("msg", welcome);
+		} else if (m.getAuth_status() == 0) {
+			welcome = "인증이 완료되지 않은 회원입니다. 인메일을 확인해주세요.";
+			mv.addObject("msg", welcome);
 		}
 		return mv;
 	}
@@ -182,8 +185,10 @@ public class MemberController {
 		AuthUser user = (AuthUser) session.getAttribute("loginUser");
 		Member m = ms.찾는다ById(user.getId());
 		mv.addObject("member", m);
-		String profile = Base64.getEncoder().encodeToString(m.getProfile());
-		mv.addObject("profile", profile);
+		if(m.getProfile() != null) {
+			String profile = Base64.getEncoder().encodeToString(m.getProfile());			
+			mv.addObject("profile", profile);
+		}
 		if (device.isMobile()) {
 			mv.setViewName("/m/member/내정보보기");
 		} else {

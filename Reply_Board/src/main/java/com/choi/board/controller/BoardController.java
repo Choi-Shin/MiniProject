@@ -48,12 +48,10 @@ public class BoardController {
 	public ModelAndView 게시글상세내용출력하다(int no, Device device) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Board board = bs.찾는다By번호(no);
-		if(board != null) {
-			mv.addObject("board", board);
-			List<Reply> 댓글목록 = bs.댓글목록을가져오다(no);
-			mv.addObject("comments", 댓글목록);
-			bs.조회수를올리다(board);
-		}
+		mv.addObject("board", board);
+		List<Reply> 댓글목록 = bs.댓글목록을가져오다(no);
+		mv.addObject("comments", 댓글목록);
+		bs.조회수를올리다(board);
 		if (device.isMobile()) {
 			mv.setViewName("m/board/read");
 		} else {
@@ -76,7 +74,8 @@ public class BoardController {
 		int result = bs.새글을저장하다(새게시물);
 		if (result > 0) {
 			mv.addObject("msg", "글이 등록되었습니다.");
-			int rownum = bs.모든게시물의갯수를세다();
+			int rownum = bs.모든게시물의갯수를세다() + 1;
+			System.out.println(rownum);
 			새게시물 = new Board();
 			새게시물 = bs.n번째행을출력한다(rownum);
 			String url = "/board/read?no=" + 새게시물.getNo();
@@ -152,12 +151,12 @@ public class BoardController {
 		mv.setViewName("redirect");
 		return mv;
 	}
-	
+
 	@RequestMapping(value = "/replyDelete", method = RequestMethod.GET)
 	public ModelAndView 댓글을삭제하다(int no, int replyNo, Device device) {
 		ModelAndView mv = new ModelAndView();
 		int result = bs.댓글을삭제하다(no, replyNo);
-		String url = "/board/read?no="+no;
+		String url = "/board/read?no=" + no;
 		mv.addObject("url", url);
 		if (result > 0) {
 			mv.addObject("msg", "게시글이 삭제되었습니다.");
@@ -167,7 +166,7 @@ public class BoardController {
 		mv.setViewName("redirect");
 		return mv;
 	}
-	
+
 	@GetMapping(value = "/search")
 	public ModelAndView 작성자로검색하다(String id, Page page, Device device) {
 		ModelAndView mv = new ModelAndView();

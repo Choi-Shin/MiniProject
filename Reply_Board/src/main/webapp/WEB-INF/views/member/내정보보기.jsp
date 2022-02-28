@@ -52,7 +52,6 @@ label {
 div {
 	width: 100%;
 }
-
 </style>
 </head>
 <body>
@@ -74,14 +73,14 @@ div {
 			<form action="profile" enctype="multipart/form-data" method="post">
 				<div id="img">
 					<label for="profile">프로필사진<u:hasProfile>
-							<img src="data:image/png;base64,${profile}" width="auto"
-								height="auto" />
+							<img id="profile" src="data:image/png;base64,${profile}" width="300px"
+								height="300px" />
 							<br>
 						</u:hasProfile> <u:nullProfile>
-							<img id="profile" src="/static/img/no_image.jpeg" width="100px"
+							<img src="/static/img/no_image.jpeg" width="100px"
 								height="auto" />
-						</u:nullProfile><input type="file" name="profileFile" id="profileFile" />
-					<br> <input class="btn" type="submit" value="사진 변경하기"></label>
+						</u:nullProfile><input type="file" name="profileFile" id="profileFile" /> <br>
+						<input class="btn" type="submit" value="사진 변경하기"></label>
 				</div>
 			</form>
 			<form action="email" method="post">
@@ -103,6 +102,7 @@ div {
 				<button type="button" class="btn" onclick="return 보내기()">변경하기</button>
 			</div>
 		</form>
+		
 	</section>
 	<script type="text/javascript">
 		function 비밀번호확인() {
@@ -115,6 +115,34 @@ div {
 				$('input[name=password]').val('');
 			}
 		}
+
+		function 그림파일읽어출력하기(이벤트) {
+			var fileInput = 이벤트.target;
+			//change이벤트.target(대상)은 <input type="file" name="profileFile" id="profileFile"/>
+			var 선택된그림파일관리객체 = fileInput.files[0];
+			var 선택된그림size = 선택된그림파일관리객체.size;
+			/*
+			if(선택된그림size > 1024*10){
+			alert("10K 요량초과!");
+			fileInput.value="";
+			return ;
+			}
+			 */
+			if (!선택된그림파일관리객체.type.match('image.*')) {
+				alert("욱! 그림이 아니예요!");
+				fileInput.value = "";
+				return;
+			}
+			var 파일리더 = new FileReader();
+			파일리더.onload = function(선택된그림파일관리객체) {
+				var imgProfile = document.getElementById("profile");
+				imgProfile.src = 선택된그림파일관리객체.currentTarget.result;
+			};
+			파일리더.readAsDataURL(선택된그림파일관리객체);
+			return;
+		}
+		document.querySelector("#profileFile").addEventListener("change",
+				그림파일읽어출력하기, false);
 	</script>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>

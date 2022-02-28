@@ -36,6 +36,11 @@ label {
 	display: none;
 }
 
+.id_rule {
+	color: red;
+	display: none;
+}
+
 .row {
 	overflow-x: hidden;
 }
@@ -47,10 +52,10 @@ label {
 		<div class="col-sm-4">
 			<form action="/member/register" enctype="multipart/form-data"
 				method="post" id='frm'>
-				<label for="id">아이디<input type="text" name="id" id="id" /></label>
+				<label for="id">아이디<input type="text" name="id" id="id" onblur="아이디검증();return false" /></label>
 				<button class="btn" onclick="중복확인();return false;">아이디 중복확인</button>
 				<span class=id_already>중복된 ID입니다.</span> <span class="id_ok">사용
-					가능한 ID입니다.</span><br> <label for="profile"> 프로필사진<img
+					가능한 ID입니다.</span><span class="id_rule">아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자여야합니다.</span><br> <label for="profile"> 프로필사진<img
 					id="profile" src="/static/img/no_image.jpeg" width="100px"
 					height="auto" /> <br> <input type="file" name="profileFile"
 					id="profileFile" />
@@ -69,14 +74,9 @@ label {
 		function 검증후전송() {
 			var password = $('#password').val();
 			var pwdChk = $('#pwdChk').val();
-			if (password != pwdChk) {
-				alert('비밀번호가 서로 다릅니다.');
+			if (password != pwdChk || !password) {
+				alert('비밀번호가 입력되지 않았거나 서로 다릅니다.');
 				$('#pwdChk').val('');
-				return false;
-			}
-			var regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
-			if(!id.match(regExp)) {
-				alert("영문자로 시작하는 6~20자 영문자 또는 숫자여야합니다.");
 				return false;
 			}
 			var email = $('#email').val();
@@ -116,9 +116,11 @@ label {
 		}
 		document.querySelector("#profileFile").addEventListener("change",
 				그림파일읽어출력하기, false);
-
+		
 		function 중복확인() {
 			var id = $('#id').val();
+			var regExp = /^[a-z]+[a-z0-9]{5,19}$/g;
+			
 			$.ajax({
 				url : '/member/idCheck',
 				type : 'post',
@@ -126,12 +128,26 @@ label {
 					id : id
 				},
 				success : function(result) { //컨트롤러에서 넘어온 cnt값을 받는다 
-					if (result == "0") { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-						$('.id_ok').css("display", "inline-block");
-						$('.id_already').css("display", "none");
+					if (result == "0") { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디
+						if(!id.match(regExp)) {
+							$('.id_rule').css("display", "inline-block");
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						} else {
+							$('.id_rule').css("display", "none");
+							$('.id_ok').css("display", "inline-block");
+							$('.id_already').css("display", "none");
+						}
 					} else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-						$('.id_already').css("display", "inline-block");
-						$('.id_ok').css("display", "none");
+						if(!id.match(regExp)) {
+							$('.id_rule').css("display", "inline-block");
+							$('.id_ok').css("display", "none");
+							$('.id_already').css("display", "none");
+						} else {
+							$('.id_rule').css("display", "none");
+							$('.id_already').css("display", "inline-block");
+							$('.id_ok').css("display", "none");
+						}	
 					}
 				},
 				error : function() {
