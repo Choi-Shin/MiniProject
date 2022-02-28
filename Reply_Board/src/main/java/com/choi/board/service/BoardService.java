@@ -20,10 +20,6 @@ public class BoardService implements IBoardService{
 		return dao.게시판목록을가져오다(page);
 	}
 	
-	public int 모든게시물의갯수를세다() {
-		return dao.모든게시물의갯수를세다();
-	}
-	
 	public Board 찾는다By번호(int 번호) {
 		return dao.찾는다By번호(번호);
 	}
@@ -59,5 +55,15 @@ public class BoardService implements IBoardService{
 
 	public int 댓글을삭제하다(int no, int replyNo) {
 		return dao.댓글을삭제하다(no, replyNo);
+	}
+
+	@Override
+	public List<Board> 작성자로검색하다(String id, Page page) {
+		return dao.작성자로검색하다(id, page);
+	}
+
+	@Override
+	public int 모든게시물의갯수를세다() {
+		return dao.모든게시물의갯수를세다();
 	}
 }

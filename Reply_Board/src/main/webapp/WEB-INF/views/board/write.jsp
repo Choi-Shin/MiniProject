@@ -10,8 +10,6 @@ if (loginUser == null) {
 %>
 <!DOCTYPE html>
 <html>
-<%@ include file="../include/head.jsp"%>
-
 <!-- include libraries(jQuery, bootstrap) -->
 <link
 	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"

@@ -1,7 +1,6 @@
 <%@page import="com.choi.board.common.Notice"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ include file="../include/head.jsp"%>
 <%
 session = request.getSession(false);
 AuthUser loginUser = (AuthUser) session.getAttribute("loginUser");

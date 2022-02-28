@@ -12,7 +12,6 @@ if (loginUser == null && !board.getWriter().equals("admin")) {
 %>
 <!DOCTYPE html>
 <html>
-<%@ include file="../include/head.jsp"%>
 <style>
 body {
 	padding-top: 70px;

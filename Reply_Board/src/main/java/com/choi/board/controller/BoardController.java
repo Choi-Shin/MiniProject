@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,12 +28,13 @@ public class BoardController {
 	public ModelAndView 게시판목록수집하다(Page page, Device device) {
 		ModelAndView mv = new ModelAndView();
 		PageNavigator 페이지탐색기 = new PageNavigator();
+		List<Board> boards = bs.게시판목록을가져오다(page);
 		if (page == null) {
 			page = new Page();
 		}
 		페이지탐색기.setPage(page);
 		페이지탐색기.setTotalCount(bs.모든게시물의갯수를세다());
-		mv.addObject("boards", bs.게시판목록을가져오다(page));
+		mv.addObject("boards", boards);
 		mv.addObject("pageNavigator", 페이지탐색기);
 		if (device.isMobile()) {
 			mv.setViewName("m/board/list");
@@ -46,13 +48,11 @@ public class BoardController {
 	public ModelAndView 게시글상세내용출력하다(int no, Device device) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Board board = bs.찾는다By번호(no);
-		if(board.getState() == 1) {
+		if(board != null) {
 			mv.addObject("board", board);
 			List<Reply> 댓글목록 = bs.댓글목록을가져오다(no);
 			mv.addObject("comments", 댓글목록);
 			bs.조회수를올리다(board);
-		} else {
-			throw new Exception();
 		}
 		if (device.isMobile()) {
 			mv.setViewName("m/board/read");
@@ -165,6 +165,26 @@ public class BoardController {
 			mv.addObject("msg", "삭제에 실패하였습니다.");
 		}
 		mv.setViewName("redirect");
+		return mv;
+	}
+	
+	@GetMapping(value = "/search")
+	public ModelAndView 작성자로검색하다(String id, Page page, Device device) {
+		ModelAndView mv = new ModelAndView();
+		List<Board> boards = bs.작성자로검색하다(id, page);
+		PageNavigator 페이지탐색기 = new PageNavigator();
+		if (page == null) {
+			page = new Page();
+		}
+		페이지탐색기.setPage(page);
+		페이지탐색기.setTotalCount(boards.size());
+		mv.addObject("boards", boards);
+		mv.addObject("pageNavigator", 페이지탐색기);
+		if (device.isMobile()) {
+			mv.setViewName("m/board/list");
+		} else {
+			mv.setViewName("board/list");
+		}
 		return mv;
 	}
 }

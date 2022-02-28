@@ -13,7 +13,6 @@ int	row = row_ + p;
 %>
 <!DOCTYPE html>
 <html>
-<%@ include file="../include/head.jsp"%>
 <style>
 .table {
 	width: 78vw;
@@ -26,6 +25,7 @@ h2 {
 }
 </style>
 <body>
+<div class="wrapper">
 	<%@ include file="../include/header.jsp"%>
 	<%@ include file="../include/aside.jsp"%>
 	<c:set var="row" value="<%=row%>"></c:set>
@@ -75,8 +75,6 @@ h2 {
 				</tbody>
 			</table>
 		</div>
-	</section>
-	<footer>
 		<div class="box-footer">
 			<div class="text-center">
 				<ul class="pagination" style="display: inline-block;">
@@ -96,9 +94,10 @@ h2 {
 				</ul>
 			</div>
 		</div>
-	</footer>
+		<%@include file="../include/footer.jsp"%>
+	</section></div>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.js"></script>
-	<%@include file="../include/footer.jsp"%>
+	
 </body>
 </html>

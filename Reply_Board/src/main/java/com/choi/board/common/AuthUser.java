@@ -1,9 +1,12 @@
 package com.choi.board.common;
 
+import java.util.List;
+
 public class AuthUser {
 	private String id;
 	private String password;
-
+	private List<Message> unreadMsg;
+	
 	public AuthUser(String id, String password) {
 		this.id = id;
 		this.password = password;
@@ -25,4 +28,12 @@ public class AuthUser {
 		this.password = password;
 	}
 
+	public List<Message> getUnreadMsg() {
+		return unreadMsg;
+	}
+
+	public void setUnreadMsg(List<Message> unreadMsg) {
+		this.unreadMsg = unreadMsg;
+	}
+	
 }

@@ -34,7 +34,7 @@ public class BoardDAO {
 	}
 
 	public int 모든게시물의갯수를세다() {
-		String sql = "Select count(*) from board";
+		String sql = "Select count(*) from board where state = 1";
 		Statement stmt = null;
 		ResultSet rs = null;
 		try {
@@ -50,7 +50,7 @@ public class BoardDAO {
 	}
 
 	public List<Board> 게시판목록을가져오다(Page page) {
-		String sql = "SELECT * FROM board " + "WHERE no > 0 ORDER BY no DESC " + "LIMIT ?, ?";
+		String sql = "SELECT * FROM board " + "WHERE no > 0 and state =1 ORDER BY no DESC " + "LIMIT ?, ?";
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Board> 목록 = new ArrayList<Board>();
@@ -70,10 +70,7 @@ public class BoardDAO {
 				글.setRegDate(date);
 				글.setHit(rs.getInt("hit"));
 				글.setReplyCnt(댓글수를세다(글.getNo()));
-				글.setState(rs.getInt("state"));
-				if(글.getState() == 1) {
-					목록.add(글);
-				}
+				목록.add(글);
 			}
 			if (목록.size() > 0) {
 				return 목록;
@@ -81,6 +78,7 @@ public class BoardDAO {
 				throw new SQLException();
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 			System.out.println(e.getMessage() + ": 목록을 가져오는데에 실패하였습니다.");
 		}
 		return null;
@@ -310,5 +308,42 @@ public class BoardDAO {
 			JdbcUtil.close(pstmt);
 		}
 		return 0;
+	}
+
+	public List<Board> 작성자로검색하다(String id, Page page) {
+		String sql = "select * from board where no > 0 and writer = ? ORDER BY no DESC " + "LIMIT ?, ?";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, page.getPageStart());
+			pstmt.setInt(3, page.getPerPageNum());
+			rs = pstmt.executeQuery();
+			List<Board> boards = new ArrayList<Board>();
+			while (rs.next()) {
+				Board 글 = new Board();
+				글.setNo(rs.getInt("no"));
+				글.setRownum(몇번째글인지출력한다(글.getNo()));
+				글.setTitle(rs.getString("title"));
+				글.setWriter(rs.getString("writer"));
+				글.setContent(rs.getString("content"));
+				Date date = rs.getTimestamp("regDate");
+				글.setRegDate(date);
+				글.setHit(rs.getInt("hit"));
+				글.setReplyCnt(댓글수를세다(글.getNo()));
+				글.setState(rs.getInt("state"));
+				if(글.getState() == 1) {
+					boards.add(글);
+				}
+			}
+			return boards;
+		} catch (SQLException e) {
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		return null;
 	}
 }

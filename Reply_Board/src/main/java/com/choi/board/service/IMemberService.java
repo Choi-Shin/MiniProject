@@ -10,4 +10,8 @@ public interface IMemberService {
 	int 프로필사진변경하다(Member m);
 	Member 찾는다ById(String id);
 	int 회원탈퇴하다(String id);
+	String 임시비밀번호생성하고db처리한다(String id);
+	int 이메일주소변경하다(Member m);
+	String 중복아이디를확인하다(String id);
+	boolean 가입인증하다(String email, int authKey);
 }

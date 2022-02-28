@@ -6353,9 +6353,6 @@ button.close {
 .affix {
   position: fixed;
 }
-@-ms-viewport {
-  width: device-width;
-}
 .visible-xs,
 .visible-sm,
 .visible-md,

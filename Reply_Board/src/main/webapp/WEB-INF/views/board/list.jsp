@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <html>
-<%@ include file="../include/head.jsp"%>
 <style>
 .table {
 	width: 78vw;
@@ -17,18 +16,26 @@ h2 {
 
 .user_data {
 	position: absolute;
-	z-index: 2;
+	z-index: 100;
 	background-color: white;
 	border: 1px gray solid;
 	border-radius: 1rem;
 }
-.user_data > ul {
+
+.user_data>ul {
 	margin-top: 1rem;
 }
+
+.wrapper {
+	width: 1250px;
+}
+
 </style>
 <body>
+<div class="wrapper">
 	<%@ include file="../include/header.jsp"%>
 	<%@ include file="../include/aside.jsp"%>
+	
 	<section>
 		<div id="board">
 			<h2>자유게시판</h2>
@@ -56,17 +63,18 @@ h2 {
 							<td colspan="3" onclick="로그인유저인가('read?no=${b.no}')">${b.title}
 								<c:if test="${b.replyCnt > 0}">
 									<span class="badge bg-red">${b.replyCnt}</span>
-								</c:if></td>
-							<td colspan="1"><a class="menu"
-								onclick="메뉴보이기('${b.writer}${b.rownum}')"
-								>${b.writer}</a>
+								</c:if>
+							</td>
+							<td colspan="1"><c:choose><c:when test="${loginUser.id != b.writer}"><a class="menu"
+								onclick="메뉴보이기('${b.writer}${b.rownum}')">${b.writer}</a></c:when><c:otherwise>${b.writer }</c:otherwise></c:choose>
 								<div id="${b.writer}${b.rownum}" class="user_data"
-									style="display: none" onmouseleave="메뉴사라지기('${b.writer}${b.rownum}')">
-									<ul class="user_data_list" >
-										<li><a href="//gallog.dcinside.com/engmatpro/posting">작성글 보기
-										</a></li>
-										<li><a href="//gallog.dcinside.com/engmatpro/comment">메시지 보내기
-										</a></li>
+									style="display: none"
+									onmouseleave="메뉴사라지기('${b.writer}${b.rownum}')">
+									<ul class="user_data_list">
+										<li><a href="/board/search?id=${b.writer}&page=1">작성글
+												보기 </a></li>
+										<li><a onclick="메시지보내기('${b.writer}')">메시지
+												보내기 </a></li>
 										<li class="bg_grey"><a
 											href="/mgallery/board/lists/?id=github&amp;s_type=search_name&amp;s_keyword=%EA%B2%8C%EC%9C%BC%EB%A5%B8%EB%91%94%EC%9E%AC">
 												회원 정보 보기<em class="sp_img icon_go"></em>
@@ -84,8 +92,6 @@ h2 {
 				</tbody>
 			</table>
 		</div>
-	</section>
-	<footer>
 		<div class="box-footer">
 			<div class="text-center">
 				<ul class="pagination" style="display: inline-block;">
@@ -105,7 +111,8 @@ h2 {
 				</ul>
 			</div>
 		</div>
-	</footer>
+		<%@include file="../include/footer.jsp"%>
+	</section></div>
 	<script>
 		function 메뉴보이기(menu) {
 			var link = document.getElementById(menu);
@@ -120,9 +127,18 @@ h2 {
 			var link = document.getElementById(menu);
 			link.style.display = 'none';
 		}
+		
+		function 메시지보내기(id) {
+			var url = "/message/send?id=" + id;
+			var x = document.body.offsetWidth/2;
+			var y = window.screen.height/2;
+			var popupX = (document.body.offsetWidth / 2) - (500 / 2);
+			var popupY= (window.screen.height / 2) - (300 / 2);
+			window.open(url,'메시지 보내기','resizable=no width=500 height=300 left=' + popupX +', top='+ popupY +'return false');
+		}
 	</script>
 	<script src="/static/js/jQuery-3.6.0.js"></script>
 	<script src="/static/js/bootstrap.js"></script>
-	<%@include file="../include/footer.jsp"%>
+
 </body>
 </html>

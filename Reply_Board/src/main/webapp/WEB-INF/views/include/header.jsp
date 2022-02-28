@@ -1,6 +1,7 @@
 <%@page import="com.choi.board.common.AuthUser"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="head.jsp"%>
 <style>
 h3 {
 	color: white;
@@ -23,9 +24,9 @@ h3 {
 	<nav>
 		<ul>
 			<u:notLogin>
-				<li><a class="btn" onclick="팝업창('login')">로그인</a></li>
+				<li><a class="btn" onclick="팝업창('../member/login')">로그인</a></li>
 
-				<li><a class="btn" onclick="팝업창('register')">회원가입</a></li>
+				<li><a class="btn" onclick="팝업창('../member/register')">회원가입</a></li>
 			</u:notLogin>
 			<u:isLogin>
 				<li><h3>${loginUser.id}님의</h3></li>
@@ -33,7 +34,11 @@ h3 {
 					<div id="${loginUser.id}" class="head" style="display: none"
 						onmouseleave="메뉴사라지기('${loginUser.id}')">
 						<ul class="user_data_list">
-							<li><a href="//gallog.dcinside.com/engmatpro/posting">쪽지함</a></li>
+							<li><a
+								onclick="팝업창('../message/receiveBox')">쪽지함<c:if
+										test="${fn:length(loginUser.unreadMsg) > 0}">
+										<span class="badge bg-red">${fn:length(loginUser.unreadMsg)}</span>
+									</c:if></a></li>
 							<li class="bg_grey"><a href="../member/modify"> 회원정보
 									수정하기 </a></li>
 						</ul>
@@ -45,13 +50,34 @@ h3 {
 	</nav>
 	<script type="text/javascript">
 	function 팝업창(type){
-		var url = "../member/"+type;
-		var popupX = (document.body.offsetWidth / 2) - (200 / 2);
-		var popupY= (window.screen.height / 2) - (300 / 2);
-		if (type == 'modify' || type == 'register') {
-			window.open(url,type,'resizable=no width=300 height=300 left=' + popupX +', top='+ popupY +'return false');
-		} else {
-			window.open(url,type,'resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');	
+		var url = type;
+		var x = document.body.offsetWidth/2;
+		var y = window.screen.height/2;
+		var popupX;
+		var popupY;
+		var slice;
+		if(url.indexOf('member') > 0) {
+			slice = url.split('/')[2];
+			switch (slice) {
+			case 'register':
+			popupX = x - (300/2);
+			popupY = y - (600/2);
+			window.open(url,'회원가입','resizable=no width=300 height=600 left=' + popupX +', top='+ popupY +'return false');
+			break;
+			case 'login':
+			popupX = x - (300/2);
+			popupY = y - (200/2);
+			window.open(url,'로그인','resizable=no width=300 height=200 left=' + popupX +', top='+ popupY +'return false');	
+			}
+		} else if (url.indexOf('message') > 0) {
+			slice = url.split('/')[2];
+			switch (slice) {
+			case 'receiveBox':
+			popupX = x - (500 / 2);
+			popupY= (window.screen.height / 2) - (500 / 2);
+			window.open(url,'쪽지함','resizable=no width=500 height=500 left=' + popupX +', top='+ popupY +'return false');	
+			break;
+			}
 		}
 	}
 	

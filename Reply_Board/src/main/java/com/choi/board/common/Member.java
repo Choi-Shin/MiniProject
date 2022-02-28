@@ -1,6 +1,8 @@
 package com.choi.board.common;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Random;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,9 +15,10 @@ public class Member {
 	private String email;
 	private Date regDate;
 	private int state;
-//	private String authKey; // 난수 생성
-//	private int authStatus; //default 0, 인증 후 1
-	
+	private List<Message> unreadMsg;
+	private int auth_key; // 난수 생성
+	private int auth_status; // default 0, 인증 후 1
+
 	public String getId() {
 		return id;
 	}
@@ -96,4 +99,27 @@ public class Member {
 		this.state = state;
 	}
 
+	public List<Message> getUnreadMsg() {
+		return unreadMsg;
+	}
+
+	public void setUnreadMsg(List<Message> unreadMsg) {
+		this.unreadMsg = unreadMsg;
+	}
+
+	public int getAuth_key() {
+		return auth_key;
+	}
+
+	public void setAuth_key(int auth_key) {
+		this.auth_key = auth_key;
+	}
+
+	public int getAuth_status() {
+		return auth_status;
+	}
+
+	public void setAuth_status(int auth_status) {
+		this.auth_status = auth_status;
+	}
 }

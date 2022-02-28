@@ -20,6 +20,7 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.ckeditor.com/ckeditor5/31.1.0/classic/ckeditor.js"></script>
+<script type="text/javascript" src="/static/js/custom.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>

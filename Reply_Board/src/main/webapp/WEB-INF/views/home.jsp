@@ -2,21 +2,20 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
-<%@ include file="include/head.jsp"%>
 <style>
 .btn {
 	display: inline-block;
 }
 </style>
 <body>
-	<div id="container">
 	<%@ include file="include/header.jsp"%>
-		<div class="container" align="center">
+	<div id="container" style="overflow-y: auto; overflow-x: hidden; height: 83%;">
+		<div class="container" align="center" >
 			<div class="jumbotron">
 				<div class="container" align="center">
 					<h1>웹 사이트 소개</h1>
 					<p align="center">자유게시판 사이트 입니다.</p>
-					<a class="btn btn-primary btn-block" href="board/list?page=1">게시판</a>
+					<a class="btn btn-primary btn-block" href="/board/list?page=1">게시판</a>
 					<p>
 						<a class="btn btn-primary btn-block" onclick="상세설명()">자세히 알아보기</a>
 					</p>
@@ -63,8 +62,8 @@
 				</a>
 			</div>
 		</div>
+		<%@ include file="include/footer.jsp"%>
 	</div>
-	<%@ include file="include/footer.jsp"%>
 	<script>
 		function 상세설명() {
 			const element = document.getElementById('detail');

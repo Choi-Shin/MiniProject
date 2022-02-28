@@ -27,9 +27,10 @@ CREATE TABLE IF NOT EXISTS `miniproject`.`board` (
   `writer` VARCHAR(50) NOT NULL,
   `regdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `hit` INT NULL DEFAULT '0',
+  `state` INT NOT NULL DEFAULT '1',
   PRIMARY KEY (`no`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 16
+AUTO_INCREMENT = 17
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
@@ -45,6 +46,8 @@ CREATE TABLE IF NOT EXISTS `miniproject`.`member` (
   `email` VARCHAR(30) NOT NULL,
   `regdate` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `state` INT NOT NULL DEFAULT '1',
+  `auth_status` INT NOT NULL DEFAULT '0',
+  `auth_key` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -55,18 +58,19 @@ COLLATE = utf8mb4_unicode_ci;
 -- Table `miniproject`.`message`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `miniproject`.`message` (
-  `no` INT NOT NULL DEFAULT '0',
+  `no` INT NOT NULL AUTO_INCREMENT,
   `recv_id` VARCHAR(45) NOT NULL,
   `send_id` VARCHAR(45) NOT NULL,
   `title` VARCHAR(45) NOT NULL,
   `note` TEXT NOT NULL,
   `date_sent` TIMESTAMP NOT NULL,
-  `date_read` TIMESTAMP NOT NULL,
-  `recv_read` ENUM('N', 'Y') NOT NULL DEFAULT 'N',
-  `recv_del` ENUM('N', 'Y') NULL DEFAULT 'N',
-  `sent_del` ENUM('N', 'Y') NULL DEFAULT 'N',
+  `date_read` TIMESTAMP NULL DEFAULT NULL,
+  `recv_read` CHAR(1) NOT NULL DEFAULT 'N',
+  `recv_del` CHAR(1) NOT NULL DEFAULT 'N',
+  `sent_del` CHAR(1) NOT NULL DEFAULT 'N',
   PRIMARY KEY (`no`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 

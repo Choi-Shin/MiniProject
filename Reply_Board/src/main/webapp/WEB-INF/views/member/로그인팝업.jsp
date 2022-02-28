@@ -39,7 +39,7 @@ label {
 			</form>
 			<form id="forgot" action="/member/tempPwd" method="post" style="display:none">
 				<label for="id">아이디<input type="text" name="id" required="required"/></label><br> <label
-					for="password">이메일주소<input type="password" name="password" required="required"/></label>
+					for="password">이메일주소<input type="email" name="email" required="required"/></label>
 				<button class="btn big-login" type="submit">임시 비밀번호 받기</button><br>
 			</form>
 		</div>

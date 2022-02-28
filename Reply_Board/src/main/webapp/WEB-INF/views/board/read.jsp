@@ -8,7 +8,6 @@ if (loginUser == null) {
 	response.sendRedirect("list");
 }
 %>
-<%@ include file="../include/head.jsp"%>
 <style>
 textarea {
 	width: 78vw;
