@@ -59,10 +59,10 @@
     
     DB : MySQL 8.0.27
 #### :package: 패키지구조
-<img src="../ToyProject/Reply_Board/img/패키지구조.png">
+<img src="../MiniProject/Reply_Board/img/패키지구조.png">
 
 #### :file_cabinet: 테이블구조
-<img src="../ToyProject/Reply_Board/img/테이블구조.png">
+<img src="../MiniProject/Reply_Board/img/테이블구조.png">
 
 #### :keyboard: &nbsp;sql문
 <details>
