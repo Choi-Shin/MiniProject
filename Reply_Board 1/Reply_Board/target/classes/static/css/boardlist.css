@@ -1,0 +1,156 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+footer, aside, section, article {
+	display: block;
+}
+
+.board-top h1 {
+	color: gray;
+}
+
+.board-top {
+	text-align: center;
+}
+
+aside>ul, li {
+	list-style: none;
+	display: table;
+}
+
+footer {
+	text-align: right;
+	width: 100%;
+	margin-bottom: 0;
+	background:transparent;
+}
+
+section {
+	margin-bottom: 10px;
+	width: 82vw;
+	float: right;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 85%;
+}
+
+aside {
+	width: 15vw;
+	height: 87%;
+	border-top: 1px solid white;
+	float: left;
+	color: white;
+	background: teal;
+	font-size: 2vw;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	background: cadetblue;
+	padding: 20px;
+}
+
+nav {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+header>ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+textarea {
+	resize: none;
+}
+
+header>li.icon {
+	flex-basis: 25%;
+}
+
+header>.btn {
+	display: block;
+}
+
+h1 {
+	text-align: center;
+}
+
+.btn, .btn-main, .btn:visited, .btn-main:link, .btn-main:visited, .btn:active,
+	.btn-main:active, .btn-main:hover {
+	display: block;
+	text-align: center;
+	margin: .25rem;
+	padding: .5rem 1rem;
+	text-decoration: none;
+	font-weight: bold;
+	color: white;
+	background: teal;
+}
+
+.btn:hover {
+	background: yellowgreen;
+	text-decoration: none;
+}
+
+.btn {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	float: right;
+}
+
+.table-striped>tbody>tr:hover {
+	background-color: #DCDCDC;
+	color: white;
+}
+
+h1 {
+	display: inline-block;
+	vertical-align: middle;
+	color: white;
+	margin: 0.5rem;
+	padding: 0;
+}
+
+nav {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+nav>ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+nav>li.icon {
+	flex-basis: 25%;
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
